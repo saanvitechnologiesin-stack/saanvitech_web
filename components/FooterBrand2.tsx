@@ -13,7 +13,7 @@ const FooterBrand2 = () => {
                 src={LogoImage.src}
                 width={189}
                 height={32}
-                url="/home-6"
+                url="/"
                 cls="footer-logo"
                 alt="Consulo logo"
                 ariaLabel="Consulo logo" 

@@ -1,47 +1,10 @@
 import Icons from "../components/Icons";
+import { MenuItem } from "@/types/menu";
 
-const Menus = [
+const Menus: MenuItem[] = [
     {
         title: 'Home',
-        path: '/',
-        dropdown: [
-            {
-                title: 'Home 1',
-                path: '/'
-            },
-            {
-                title: 'Home 2',
-                path: '/home-2'
-            },
-            {
-                title: 'Home 3',
-                path: '/home-3'
-            },
-            {
-                title: 'Home 4',
-                path: '/home-4'
-            },
-            {
-                title: 'Home 5',
-                path: '/home-5'
-            },
-            {
-                title: 'Home 6',
-                path: '/home-6'
-            },
-            {
-                title: 'Home 7',
-                path: '/home-7'
-            } ,
-            {
-                title: 'Home 8',
-                path: '/home-8'
-            },
-            {
-                title: 'Home 9',
-                path: '/home-9'
-            }
-        ]
+        path: '/'
     },
     {
         title: 'About Us',
@@ -134,24 +97,6 @@ const Menus = [
                 ]
             },
             {
-                heading: 'BLOG PAGES',
-                path: '/blogs',
-                dropdown: [
-                    {
-                        title: 'Blog',
-                        path: '/blogs'
-                    },
-                    {
-                        title: 'Blog List',
-                        path: '/blogs-list'
-                    },
-                    {
-                        title: 'Blog Details',
-                        path: '/blogs/empowering-entrepreneu-fueling-growth-knowledge'
-                    }
-                ]
-            },
-            {
                 heading: 'OTHER PAGES',
                 path: '/projects',
                 dropdown: [
@@ -211,34 +156,6 @@ const Menus = [
                 title: 'Webinars',
                 path: '/projects',
                 icon: <Icons.Webinar />
-            }
-        ]
-    },
-    {
-        title: 'Blog',
-        path: '/blogs',
-        dropdown: [
-            {
-                title: 'Blog',
-                path: '/blogs'
-            },
-            {
-                title: 'Blog Details',
-                path: '/blogs/empowering-entrepreneu-fueling-growth-knowledge'
-            },
-            {
-                title: 'Blog Style',
-                path: '/blogs',
-                dropdown: [
-                    {
-                        title: 'Blog Card',
-                        path: '/blogs'
-                    },
-                    {
-                        title: 'Blog List',
-                        path: '/blogs-list'
-                    }
-                ]
             }
         ]
     },
