@@ -1,6 +1,6 @@
 export const HeroSlidesData = [
     {
-      subheading: "welcome to Zentra",
+      subheading: "welcome to Saanvi Technologies",
       heading: "Business Growth Made Simple",
       text: "Transform your business with expert consultancy services our team of seasoned consultants unparalleled. Transform your business.",
       button: {
@@ -8,22 +8,22 @@ export const HeroSlidesData = [
           href: "/contact-us",
           type: "secondary"
       },
-      image: "/img/slider/hero-1.jpg",
-      imageTablet: "/img/slider/hero-991.jpg",
-      imageMobile: "/img/slider/hero-575.jpg"
+      image: "/img/pexels-jack-sparrow-5918384.jpg",
+      imageTablet: "/img/slider/hero-office-991.jpg",
+      imageMobile: "/img/slider/hero-office-575.jpg"
     },
     {
-      subheading: "welcome to Zentra",
-      heading: "Business Growth Made Simple",
+      subheading: "welcome to Saanvi Technologies",
+      heading: "Innovative Technology & Consulting",
       text: "Transform your business with expert consultancy services our team of seasoned consultants unparalleled. Transform your business.",
       button: {
           label: "Free Consultation",
           href: "/contact-us",
           type: "secondary"
       },
-      image: "/img/slider/hero-2.jpg",
-      imageTablet: "/img/slider/hero2-991.jpg",
-      imageMobile: "/img/slider/hero2-575.jpg"
+      image: "/img/slider/pexels-karola-g-7876708.jpg",
+      imageTablet: "/img/slider/hero-consulting-991.jpg",
+      imageMobile: "/img/slider/hero-consulting-575.jpg"
     }
 ];
 

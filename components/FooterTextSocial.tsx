@@ -1,5 +1,5 @@
 import Logo from "./Logo";
-import LogoImage from "@/public/img/logo-white.png";
+import LogoImage from "@/public/img/logo-white.webp";
 import Social from "./Social";
 
 const FooterTextSocial = () => {

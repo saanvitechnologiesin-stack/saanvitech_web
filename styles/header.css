@@ -1,12 +1,16 @@
 .header-1 {
   --header-radius: 0;
-  --color-background: rgba(28, 37, 57, 0);
-  --color-foreground: rgba(255, 255, 255, 1);
-  --color-primary-hover: rgba(255, 255, 255, 0.6);
-  --color-border: rgba(255, 255, 255, 0.2);
+  --color-background: rgba(255, 255, 255, 0.92);
+  --color-foreground: rgba(28, 37, 57, 1);
+  --color-primary-hover: #f28749;
+  --color-border: rgba(0, 0, 0, 0.08);
   --style-border-width: 1px;
   background: var(--color-background);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: var(--style-border-width) solid var(--color-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
 }
 
 .header-2 {
@@ -45,9 +49,10 @@
 
 .header-1.header-floating:hover,
 .header-1.header-sticky.scrolled-past-header {
-  --color-secondary-button-hover-border: rgba(255, 255, 255, 0.3);
-  --color-background: rgba(28, 37, 57, 1);
-  border-bottom: var(--style-border-width) solid rgba(255, 255, 255, 0);
+  --color-background: rgba(255, 255, 255, 0.98);
+  --color-foreground: rgba(28, 37, 57, 1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border-bottom: var(--style-border-width) solid rgba(0, 0, 0, 0.06);
 }
 
 .header-3.header-floating:hover,
@@ -98,10 +103,16 @@ sticky-header[data-sticky-type="always"] {
 }
 
 .header-logo {
-  max-width: 188px;
+  max-width: 145px;
   text-decoration: none;
   display: flex;
   align-items: center;
+}
+
+.header-logo img {
+  width: auto;
+  max-height: 48px;
+  object-fit: contain;
 }
 
 .header-actions {
@@ -134,6 +145,32 @@ sticky-header[data-sticky-type="always"] {
 .header-separator {
   --color-border: rgba(255, 255, 255, 1);
   color: var(--color-border);
+}
+
+.header-1 .header-search {
+  --color-border: rgba(28, 37, 57, 0.25);
+  color: var(--color-foreground);
+}
+
+.header-1 .header-separator {
+  --color-border: rgba(28, 37, 57, 0.15);
+  color: var(--color-border);
+}
+
+.header-1 .button--secondary {
+  --color-secondary-button-text: rgba(28, 37, 57, 1);
+  --color-secondary-button-background: rgba(28, 37, 57, 0.05);
+  --color-secondary-button-border: rgba(28, 37, 57, 0.2);
+  --color-secondary-button-icon: rgba(255, 255, 255, 1);
+  --color-secondary-button-icon-background: rgba(28, 37, 57, 1);
+}
+
+.header-1 .button--secondary:hover {
+  --color-secondary-button-hover-text: rgba(255, 255, 255, 1);
+  --color-secondary-button-hover-background: #f28749;
+  --color-secondary-button-hover-border: #f28749;
+  --color-secondary-button-hover-icon: #f28749;
+  --color-secondary-button-hover-icon-background: rgba(255, 255, 255, 1);
 }
 
 .header-actions .header-search svg {
@@ -215,7 +252,7 @@ sticky-header[data-sticky-type="always"] {
   }
 
   .header-logo {
-    max-width: 160px;
+    max-width: 130px;
   }
 }
 
@@ -234,7 +271,7 @@ sticky-header[data-sticky-type="always"] {
 
 @media (max-width: 767px) {
   .header-logo {
-    max-width: 130px;
+    max-width: 110px;
   }
 
   .header-2 {

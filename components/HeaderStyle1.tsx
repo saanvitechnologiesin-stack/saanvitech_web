@@ -1,6 +1,6 @@
 import "@/styles/header.css";
 import Logo from "./Logo";
-import LogoImage from "@/public/img/logo-white.png";
+import LogoImage from "@/public/img/logo-white.webp";
 import NavBar from "./menus/NavBar";
 import HeaderActions from "./HeaderActions";
 import StickyHeader from "./StickyHeader";
@@ -16,12 +16,12 @@ const Header = () => {
           {/* Logo */}
           <Logo                   
             src={LogoImage.src}
-            width={189}
-            height={32}
+            width={145}
+            height={50}
             url="/"
             cls="header-logo"
-            alt="Consulo logo"
-            ariaLabel="Consulo logo"
+            alt="Saanvi Technologies logo"
+            ariaLabel="Saanvi Technologies logo"
             loading="eager"
           />
           

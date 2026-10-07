@@ -7,12 +7,14 @@ import Text from "../Text";
 import PrimaryButton from "../buttons/PrimaryButton";
 import SecondaryButton from "../buttons/SecondaryButton";
 import Icons from "../Icons";
+import GeometricCollage from "../GeometricCollage";
 
 const ImageText = ({ data }: { data: SectionProps }) => {
     const {
         wrapperCls,
         container,
         image,
+        imageList,
         subheading,
         heading,
         text,
@@ -25,7 +27,9 @@ const ImageText = ({ data }: { data: SectionProps }) => {
             <div className={container ? container : 'container'}>
                 <div className="grid lg:grid-cols-2 lg:gap-1 items-center">
                     <div className="lg:col-span-1 col-span-2">
-                        {image &&
+                        {imageList && imageList.length >= 3 ? (
+                            <GeometricCollage images={imageList} />
+                        ) : image ? (
                             <div className="media-wrap" data-aos="zoom-in-up">
                                 <Image
                                     src={image.src}
@@ -35,7 +39,7 @@ const ImageText = ({ data }: { data: SectionProps }) => {
                                     alt={image.alt ? image.alt : 'Image'}
                                 />
                             </div>
-                        }
+                        ) : null}
                     </div>
 
                     <div className="lg:col-span-1 col-span-2">

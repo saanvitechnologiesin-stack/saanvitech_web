@@ -64,8 +64,9 @@ const HeroSlider = ({
                                         src={slide.image}
                                         width={1920}
                                         height={1000}
-                                        loading="lazy"
-                                        alt="Hero image"
+                                        priority={index === 0}
+                                        loading={index === 0 ? "eager" : "lazy"}
+                                        alt="Saanvi Technologies office workspace"
                                     />
                                 </picture>
                             }
