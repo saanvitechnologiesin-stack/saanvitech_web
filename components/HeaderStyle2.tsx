@@ -20,7 +20,7 @@ const Header2 = () => {
               src={LogoImage.src}
               width={189}
               height={32}
-              url="/home-2"
+              url="/"
               cls="header-logo"
               alt="Consulo logo"
               ariaLabel="Consulo logo"
