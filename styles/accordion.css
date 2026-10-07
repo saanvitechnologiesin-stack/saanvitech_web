@@ -1,0 +1,38 @@
+.accordion-title {
+  cursor: pointer;
+}
+
+.accordion-title * {
+  pointer-events: none;
+}
+
+.accordion-li {
+  flex-direction: column;
+}
+
+.accordion-contents {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+@media (min-width: 992px) {
+  .accordion-horizontal .accordion-li {
+    min-width: var(--width);
+    width: var(--width);
+    overflow: hidden;
+    transition: width 0.4s ease, min-width 0.4s ease;
+  }
+
+  .accordion-horizontal .accordion-li.active {
+    width: 100%;
+    min-width: 420px;
+  }
+}
+
+@media (max-width: 991px) {
+  .accordion-title {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

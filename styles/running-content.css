@@ -1,0 +1,119 @@
+.running-content .content-inner {
+  overflow: hidden;
+  background-color: var(--color-background, rgba(255, 255, 255, 0));
+}
+
+.running-content-bg {
+  --color-background: rgba(28, 37, 57, 0.1);
+}
+
+.running-content .logos-background {
+  background-image: linear-gradient(90deg, #e1e2ee, #1c253900 15% 85%, #e3e1ee);
+  inset: 0%;
+}
+
+.running-content .content-lists {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  gap: 80px;
+}
+
+.running-content .content-lists:hover {
+  animation-play-state: paused;
+}
+
+.running-content .content-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 80px;
+}
+
+.running-content .content-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.running-animation {
+  will-change: transform;
+  animation: scroll 20s linear infinite;
+}
+
+.running-content .content-link img {
+  object-fit: contain;
+}
+
+.running-content.has-large-text .image-logo {
+  width: 80px;
+  height: auto;
+}
+
+.brand {
+  position: relative;
+}
+
+.brand-bg {
+  background: #e7e7e7;
+}
+
+.brand-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-logo img {
+  width: fit-content;
+}
+
+.brand .product-grid {
+  row-gap: 40px;
+}
+
+.running-content.has-bg .content-lists,
+.running-content.has-bg {
+  --color-background: rgba(28, 37, 57, 1);
+  background: var(--color-background);
+}
+
+.running-content.has-bg .heading {
+  --color-foreground-heading: rgba(255, 255, 255, 1);
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 991px) {
+  .running-content .content-item,
+  .running-content .content-lists {
+    gap: 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .running-content .content-item,
+  .running-content .content-lists {
+    gap: 48px;
+  }
+
+  .running-animation {
+    animation: scroll 5s linear infinite;
+  }
+    
+  .running-content.has-large-text .image-logo {
+    width: 60px;
+  }
+}

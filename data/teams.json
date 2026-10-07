@@ -1,0 +1,234 @@
+[
+  {
+    "id": 1,
+    "slug": "ethan-reynolds",
+    "name": "Ethan Reynolds",
+    "designation": "Managing Director",
+    "image": "/img/team/1.jpg",
+    "social": {
+      "facebook": "Ethan Reynolds",
+      "facebook_url": "https://facebook.com",
+      "twitter": "@ethan_reynolds",
+      "twitter_url": "https://x.com",
+      "instagram": "@ethan.reynolds",
+      "instagram_url": "https://instagram.com",
+      "linkedin": "Ethan Reynolds",
+      "linkedin_url": "https://linkedin.com"
+    },
+    "year_of_expertise": "15",
+    "expertise": "Specialized in strategic business planning, leadership development, and corporate restructuring. Ethan drives organizational growth through data-driven insights, innovative leadership models, and sustainable business strategies that align company goals with market opportunities for long-term success.",
+    "phone": "+1 202 555 0147",
+    "email": "ethan@consultcorp.com",
+    "biography": "Ethan Reynolds brings over 15 years of management consulting experience across industries including finance, technology, and manufacturing. He has led multiple large-scale transformation initiatives, guiding executive teams toward operational excellence and improved profitability. His expertise lies in balancing strategic foresight with practical execution, helping organizations navigate complex market environments. Ethan is known for fostering collaborative cultures and implementing scalable solutions that drive measurable impact while maintaining integrity and innovation as his core leadership values.",
+    "about": "Ethan believes that exceptional leadership stems from clarity, empathy, and purpose. He focuses on empowering professionals to make informed decisions that inspire growth and accountability. His vision is to build organizations where innovation thrives, collaboration drives progress, and strategic foresight ensures long-term success for both clients and teams alike.",
+    "about_skills": "We begin with an in-depth consultation to understand your energy needs and goals. Our team then conducts a site assessment, analyzing sunlight exposure, roof condition, and energy usage to design the ideal solar solution for your property.",
+    "skills": {
+      "project_management": 95,
+      "client_relationship": 90,
+      "soft_skill": 92
+    }
+  },
+  {
+    "id": 2,
+    "slug": "olivia-carter",
+    "name": "Olivia Carter",
+    "designation": "Business Consultant",
+    "image": "/img/team/2.jpg",
+    "social": {
+      "facebook": "Olivia Carter",
+      "facebook_url": "https://facebook.com",
+      "twitter": "@oliviac_consult",
+      "twitter_url": "https://x.com",
+      "instagram": "@olivia.carter",
+      "instagram_url": "https://instagram.com",
+      "linkedin": "Olivia Carter",
+      "linkedin_url": "https://linkedin.com"
+    },
+    "year_of_expertise": "10",
+    "expertise": "Focused on optimizing business operations, driving process efficiency, and enabling sustainable performance growth. Olivia blends analytical insights with creative problem-solving to enhance productivity, reduce costs, and align operational frameworks with organizational goals and evolving client expectations across industries.",
+    "phone": "+1 202 555 0179",
+    "email": "olivia@consultcorp.com",
+    "biography": "With over a decade in business consulting, Olivia Carter has transformed underperforming operations into streamlined, profitable systems. She has successfully managed organizational change projects in logistics, healthcare, and technology sectors. Olivia is known for her sharp analytical mindset and deep understanding of operational efficiency. Her consulting approach prioritizes transparency, collaboration, and measurable outcomes. She has guided numerous executive teams in implementing sustainable business processes, ensuring adaptability in rapidly shifting markets. Olivia remains passionate about empowering businesses to thrive through innovation, disciplined execution, and continuous improvement that builds lasting competitive advantages in every engagement.",
+    "about": "Olivia's consulting philosophy centers on strategic clarity and operational excellence. She strives to uncover inefficiencies, design adaptive frameworks, and deliver actionable recommendations that create tangible results. Her goal is to help businesses achieve consistency, agility, and measurable impact while nurturing teams to perform at their highest potential in dynamic corporate environments.",
+    "about_skills": "We begin with an in-depth consultation to understand your energy needs and goals. Our team then conducts a site assessment, analyzing sunlight exposure, roof condition, and energy usage to design the ideal solar solution for your property.",
+    "skills": {
+      "project_management": 88,
+      "client_relationship": 85,
+      "soft_skill": 90
+    }
+  },
+  {
+    "id": 3,
+    "slug": "liam-anderson",
+    "name": "Liam Anderson",
+    "designation": "Financial Advisor",
+    "image": "/img/team/3.jpg",
+    "social": {
+      "facebook": "Liam Anderson",
+      "facebook_url": "https://facebook.com",
+      "twitter": "@liam_finance",
+      "twitter_url": "https://x.com",
+      "instagram": "@liam.analyst",
+      "instagram_url": "https://instagram.com",
+      "linkedin": "Liam Anderson",
+      "linkedin_url": "https://linkedin.com"
+    },
+    "year_of_expertise": "12",
+    "expertise": "Expert in corporate finance, risk analysis, and strategic investment management. Liam provides data-driven financial guidance, enabling organizations to maximize profitability, manage risk, and align investment strategies with evolving economic trends and long-term growth objectives.",
+    "phone": "+1 202 555 0193",
+    "email": "liam@consultcorp.com",
+    "biography": "Liam Anderson is a seasoned financial strategist with over 12 years of experience helping organizations make informed investment and capital allocation decisions. His work spans sectors including banking, manufacturing, and private equity. Liam has led financial restructuring programs and developed strategic frameworks that improved cost efficiency and shareholder value. Known for his analytical precision, he combines economic forecasting with pragmatic execution. Liam's client-centered approach ensures transparency, alignment, and measurable ROI. His commitment to financial innovation and sustainable growth continues to make him a trusted advisor to executives navigating complex fiscal challenges and opportunities worldwide.",
+    "about": "Liam believes financial success requires a balance of vision, discipline, and adaptability. His approach integrates market intelligence with customized strategic insights to strengthen organizational stability. He focuses on helping clients anticipate financial challenges, optimize capital efficiency, and build lasting resilience in dynamic business environments.",
+    "about_skills": "We begin with an in-depth consultation to understand your energy needs and goals. Our team then conducts a site assessment, analyzing sunlight exposure, roof condition, and energy usage to design the ideal solar solution for your property.",
+    "skills": {
+      "project_management": 85,
+      "client_relationship": 87,
+      "soft_skill": 80
+    }
+  },
+  {
+    "id": 4,
+    "slug": "sophia-martinez",
+    "name": "Sophia Martinez",
+    "designation": "Operations Head",
+    "image": "/img/team/4.jpg",
+    "social": {
+      "facebook": "Sophia Martinez",
+      "facebook_url": "https://facebook.com",
+      "twitter": "@sophiam_ops",
+      "twitter_url": "https://x.com",
+      "instagram": "@sophia.consults",
+      "instagram_url": "https://instagram.com",
+      "linkedin": "Sophia Martinez",
+      "linkedin_url": "https://linkedin.com"
+    },
+    "year_of_expertise": "11",
+    "expertise": "Experienced in process optimization, performance improvement, and lean transformation. Sophia helps companies enhance operational agility, eliminate inefficiencies, and establish data-backed workflows that improve productivity, reduce costs, and sustain organizational excellence long-term.",
+    "phone": "+1 202 555 0158",
+    "email": "sophia@consultcorp.com",
+    "biography": "Sophia Martinez has spent over 11 years helping businesses streamline their operations and implement high-performance process frameworks. She specializes in lean methodology, Six Sigma practices, and technology-driven efficiency models. Sophia has collaborated with multinational corporations to design process improvement programs that deliver tangible results and cultural alignment. Her expertise lies in bridging the gap between operations and innovation. Clients value her ability to translate complex data into actionable business insights. Sophia's deep understanding of cross-functional dynamics allows her to drive transformative change while maintaining operational integrity and employee engagement throughout every project phase.",
+    "about": "Sophia approaches every project with a balance of strategic insight and hands-on problem-solving. She believes operational excellence is achieved through clarity, consistency, and communication. Her passion lies in empowering organizations to evolve through sustainable process improvement and building systems that align people, performance, and innovation effectively.",
+    "about_skills": "We begin with an in-depth consultation to understand your energy needs and goals. Our team then conducts a site assessment, analyzing sunlight exposure, roof condition, and energy usage to design the ideal solar solution for your property.",
+    "skills": {
+      "project_management": 90,
+      "client_relationship": 86,
+      "soft_skill": 88
+    }
+  },
+  {
+    "id": 5,
+    "slug": "noah-bennett",
+    "name": "Noah Bennett",
+    "designation": "Brand Specialist",
+    "image": "/img/team/5.jpg",
+    "social": {
+      "facebook": "Noah Bennett",
+      "facebook_url": "https://facebook.com",
+      "twitter": "@noah_tech",
+      "twitter_url": "https://x.com",
+      "instagram": "@noah.codes",
+      "instagram_url": "https://instagram.com",
+      "linkedin": "Noah Bennett",
+      "linkedin_url": "https://linkedin.com"
+    },
+    "year_of_expertise": "10",
+    "expertise": "Specialist in digital transformation, IT modernization, and cloud integration. Noah helps businesses leverage emerging technologies to streamline operations, strengthen data infrastructure, and achieve scalable growth through innovative, customer-focused digital solutions.",
+    "phone": "+1 202 555 0135",
+    "email": "noah@consultcorp.com",
+    "biography": "With over 10 years in technology consulting, Noah Bennett has guided organizations through digital transformation initiatives that redefined their operational capabilities. His experience spans cloud architecture, enterprise software, and automation systems. Noah's passion for innovation drives him to design technology solutions that are both future-ready and human-centric. He has collaborated with C-suite leaders to align IT strategies with corporate vision, enabling greater agility and competitiveness. Noah's technical acumen, combined with his strategic insight, makes him a trusted partner for companies navigating modernization and digital disruption across complex business environments.",
+    "about": "Noah views technology as a strategic enabler for progress, not just efficiency. His goal is to help organizations evolve through meaningful innovation, bridging technical potential with business outcomes. He believes successful transformation requires foresight, adaptability, and collaboration across teams and disciplines to create lasting digital value.",
+    "about_skills": "We begin with an in-depth consultation to understand your energy needs and goals. Our team then conducts a site assessment, analyzing sunlight exposure, roof condition, and energy usage to design the ideal solar solution for your property.",
+    "skills": {
+      "project_management": 92,
+      "client_relationship": 84,
+      "soft_skill": 87
+    }
+  },
+  {
+    "id": 6,
+    "slug": "ava-mitchell",
+    "name": "Ava Mitchell",
+    "designation": "Human Resource",
+    "image": "/img/team/6.jpg",
+    "social": {
+      "facebook": "Ava Mitchell",
+      "facebook_url": "https://facebook.com",
+      "twitter": "@avam_hr",
+      "twitter_url": "https://x.com",
+      "instagram": "@ava.people",
+      "instagram_url": "https://instagram.com",
+      "linkedin": "Ava Mitchell",
+      "linkedin_url": "https://linkedin.com"
+    },
+    "year_of_expertise": "9",
+    "expertise": "Expert in human capital management, employee engagement, and leadership development. Ava helps companies design people-centered strategies that enhance culture, improve retention, and drive organizational performance through talent optimization and HR innovation.",
+    "phone": "+1 202 555 0186",
+    "email": "ava@consultcorp.com",
+    "biography": "Ava Mitchell brings over 9 years of experience in human resources consulting, partnering with organizations to strengthen their people strategies. She has advised clients across industries on workforce planning, leadership development, and change management. Ava's empathetic and analytical approach helps leaders create inclusive, high-performing environments. She is passionate about aligning organizational goals with employee well-being, fostering engagement, and driving measurable business outcomes. Ava has led HR transformation projects that improved talent retention and productivity. Her focus on communication, collaboration, and culture makes her a trusted partner in creating workplaces that inspire success and innovation.",
+    "about": "Ava believes that people are a company's most powerful asset. Her consulting work focuses on helping leaders cultivate meaningful employee experiences and resilient workplace cultures. She emphasizes empathy, growth, and accountability to empower organizations to adapt, inspire, and excel in an evolving business landscape built on trust and collaboration.",
+    "about_skills": "We begin with an in-depth consultation to understand your energy needs and goals. Our team then conducts a site assessment, analyzing sunlight exposure, roof condition, and energy usage to design the ideal solar solution for your property.",
+    "skills": {
+      "project_management": 80,
+      "client_relationship": 92,
+      "soft_skill": 95
+    }
+  },
+  {
+    "id": 7,
+    "slug": "james-collins",
+    "name": "James Collins",
+    "designation": "Marketing Specialist",
+    "image": "/img/team/7.jpg",
+    "social": {
+      "facebook": "James Collins",
+      "facebook_url": "https://facebook.com",
+      "twitter": "@jamesgrowth",
+      "twitter_url": "https://x.com",
+      "instagram": "@james.branding",
+      "instagram_url": "https://instagram.com",
+      "linkedin": "James Collins",
+      "linkedin_url": "https://linkedin.com"
+    },
+    "year_of_expertise": "11",
+    "expertise": "Specialized in digital marketing, growth strategy, and brand development. James empowers businesses to achieve measurable expansion through creative marketing campaigns, audience engagement, and strategic positioning that builds visibility and drives lasting client relationships.",
+    "phone": "+1 202 555 0124",
+    "email": "james@consultcorp.com",
+    "biography": "James Collins is an experienced marketing strategist with over 11 years helping companies strengthen brand identity and drive growth. His expertise includes digital campaign management, analytics-driven strategy, and integrated marketing solutions. James has worked with startups and established firms to craft data-backed narratives that resonate with target audiences. He emphasizes measurable results through innovative thinking and customer insights. His leadership in campaign execution and performance tracking ensures continuous optimization. James's holistic understanding of brand communication helps organizations sustain growth while maintaining authenticity, relevance, and competitive differentiation across all platforms and markets.",
+    "about": "James approaches marketing as both art and science. He focuses on creating authentic connections between brands and audiences through storytelling and data insights. His strategies are designed to inspire engagement, build credibility, and deliver sustainable growth by aligning creativity with measurable business performance outcomes.",
+    "about_skills": "We begin with an in-depth consultation to understand your energy needs and goals. Our team then conducts a site assessment, analyzing sunlight exposure, roof condition, and energy usage to design the ideal solar solution for your property.",
+    "skills": {
+      "project_management": 83,
+      "client_relationship": 88,
+      "soft_skill": 91
+    }
+  },
+  {
+    "id": 8,
+    "slug": "isabella-turner",
+    "name": "Isabella Turner",
+    "designation": "Client Success Manager",
+    "image": "/img/team/8.jpg",
+    "social": {
+      "facebook": "Isabella Turner",
+      "facebook_url": "https://facebook.com",
+      "twitter": "@isabellat_csm",
+      "twitter_url": "https://x.com",
+      "instagram": "@isabella.turner",
+      "instagram_url": "https://instagram.com",
+      "linkedin": "Isabella Turner",
+      "linkedin_url": "https://linkedin.com"
+    },
+    "year_of_expertise": "10",
+    "expertise": "Specialist in client engagement, retention, and service optimization. Isabella ensures long-term client satisfaction by fostering communication, aligning goals, and implementing solutions that enhance value delivery and strengthen business partnerships.",
+    "phone": "+1 202 555 0169",
+    "email": "isabella@consultcorp.com",
+    "biography": "With a decade of experience in client relationship management, Isabella Turner leads initiatives that ensure exceptional customer experiences and measurable business outcomes. She has collaborated with clients from diverse industries to strengthen post-engagement success and streamline feedback systems. Isabella's dedication to transparency, responsiveness, and problem-solving makes her a trusted partner for long-term growth. Her analytical mindset helps identify opportunities for service improvement, while her interpersonal skills promote lasting collaboration. Isabella's approach blends empathy with accountability, ensuring clients not only meet but exceed their strategic objectives through ongoing partnership excellence.",
+    "about": "Isabella's approach to client success is rooted in empathy and communication. She believes meaningful relationships are the foundation of sustainable growth. Her focus is on creating win-win outcomes, driving customer satisfaction, and ensuring that every engagement leaves a lasting impression built on trust, responsiveness, and strategic alignment.",
+    "about_skills": "We begin with an in-depth consultation to understand your energy needs and goals. Our team then conducts a site assessment, analyzing sunlight exposure, roof condition, and energy usage to design the ideal solar solution for your property.",
+    "skills": {
+      "project_management": 82,
+      "client_relationship": 95,
+      "soft_skill": 94
+    }
+  }
+]

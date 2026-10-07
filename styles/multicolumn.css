@@ -1,0 +1,134 @@
+.multicolumn {
+  position: relative;
+  overflow: hidden;
+}
+
+.multicolumn.with-bg-color {
+  --color-background: rgba(242, 242, 242, 1);
+  background-color: var(--color-background);
+}
+
+.multicolumn.with-bg-color .multicolumn-inner {
+  margin-block-start: 60px;
+}
+
+.multicolumn-card {
+  --color-background: rgba(255, 255, 255, 1);
+}
+
+.multicolumn-page .multicolumn-card {
+  --color-background: rgba(242, 242, 242, 1);
+}
+
+.multicolumn-card .card-icon {
+  --color-background: rgba(242, 242, 242, 1);
+}
+
+.multicolumn-page .multicolumn-card .card-icon {
+  --color-background: rgba(255, 255, 255, 1);
+}
+
+.multicolumn-header {
+  text-align: center;
+  max-width: 638px;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+}
+
+.multi-col {
+  margin-block-start: 60px;
+}
+
+.multicolumn .multicolumn-card {
+  padding: 36px;
+  background-color: var(--color-background);
+  border-radius: 10px;
+  overflow: hidden;
+  height: 100%;
+  text-decoration: none;
+  display: block;
+  transition: 0.3s;
+}
+
+.multicolumn .multicolumn-card:focus,
+.multicolumn .multicolumn-card:hover {
+  --color-background: rgba(32, 40, 45, 1);
+  --color-foreground: rgba(255, 255, 255, 1);
+  --color-foreground-heading: rgba(255, 255, 255, 1);
+}
+
+.multicolumn .card-icon {
+  width: 70px;
+  height: 70px;
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.multicolumn .multicolumn-card:focus .card-icon,
+.multicolumn .multicolumn-card:hover .card-icon {
+  --color-foreground: rgba(32, 40, 45, 1);
+  --color-background: rgba(255, 255, 255, 1);
+}
+
+.multicolumn-card:focus .text-lists .text-item,
+.multicolumn-card:hover .text-lists .text-item {
+    --color-foreground: rgba(255, 255, 255, 1);
+}
+
+
+.multicolumn-card > .card-icon + .heading {
+  margin-block-start: 44px;
+}
+
+.multicolumn-card > .text {
+  margin-block-start: 24px;
+}
+
+.multicolumn-card > .text-lists {
+  margin-block-start: 32px;
+}
+
+.multicolumn-card > .text-lists > li + li {
+  margin-block-start: 18px;
+}
+
+.multicolumn-card .text-item {
+  display: flex;
+  gap: 4px;
+}
+
+.multicolumn-card .text-item svg {
+  min-width: 24px;
+  height: 24px;
+  display: flex;
+}
+
+@media (max-width: 1279px) {
+  .multicolumn .multicolumn-card {
+    padding: 36px 24px;
+  }
+}
+
+@media (max-width: 991px) {
+  .multi-col {
+    margin-block-start: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .multicolumn .multicolumn-card {
+    padding: 24px 16px;
+  }
+
+  .multicolumn-card > .card-icon + .heading {
+    margin-block-start: 32px;
+  }
+
+  .multicolumn.with-bg-color .multicolumn-inner {
+    margin-block-start: 40px;
+  }
+}

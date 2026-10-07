@@ -1,0 +1,53 @@
+.page-banner {
+  --height: 520px;
+  --color-overlay: linear-gradient(
+    184.15deg,
+    rgba(28, 37, 57, 0) -187.51%,
+    #1c2539 96.62%
+  );
+  --color-foreground: rgba(255, 255, 255, 1);
+  --color-foreground-heading: rgba(255, 255, 255, 1);
+  position: relative;
+  overflow: hidden;
+  height: var(--height);
+}
+
+.page-banner-content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-block-start: 20px;
+}
+
+.breadcrumb svg {
+  color: var(--color-foreground);
+  width: 12px;
+  height: 12px;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+}
+
+.breadcrumb a:not(.active),
+.breadcrumb li svg {
+  opacity: 0.75;
+}
+
+@media (max-width: 767px) {
+  .page-banner {
+    --height: 340px;
+  }
+}

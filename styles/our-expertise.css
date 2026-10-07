@@ -1,0 +1,107 @@
+.our-expertise {
+  --color-background: rgba(242, 242, 242, 1);
+  --color-foreground: rgba(93, 102, 111, 1);
+  --color-foreground-heading: rgba(28, 37, 57, 1);
+  --color-foreground-subheading: rgba(93, 102, 111, 1);
+  --color-background-subheading: rgba(255, 255, 255, 0);
+  --color-border-subheading-bg: rgba(93, 102, 111, 0.3);
+  overflow: hidden;
+  background-color: var(--color-background);
+}
+
+.our-expertise .section-headings-horizontal {
+  align-items: flex-end;
+}
+
+.our-expertise .swiper-nav-inner {
+  background: transparent;
+  gap: 16px;
+  padding: 0;
+}
+
+.our-expertise .swiper-button-next,
+.our-expertise .swiper-button-prev {
+  position: unset;
+}
+
+.our-expertise .swiper-nav-inner svg {
+  width: 16px;
+  height: 16px;
+}
+
+.our-expertise .swiper-nav-inner > * {
+  --size: 44px;
+  --color-border: transparent;
+  background-color: rgba(28, 37, 57, 1);
+  color: rgba(255, 255, 255, 1);
+}
+
+.our-expertise .swiper-nav-inner > *:focus,
+.our-expertise .swiper-nav-inner > *:hover {
+  --color-border: transparent;
+}
+
+.our-expertise .image-text-card {
+  --color-border: rgba(93, 102, 111, 0.3);
+  --color-background: rgba(255, 255, 255, 1);
+  background: var(--color-background);
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  height: 100%;
+}
+
+.our-expertise .swiper {
+  overflow: visible;
+}
+
+.our-expertise .swiper-slide:not(:last-child) .image-text-card {
+  border-right: none;
+}
+
+.our-expertise .swiper-slide {
+  height: auto;
+}
+
+.our-expertise .media-wrap {
+  height: auto;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.our-expertise .media-wrap img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.our-expertise .section-bottom {
+  display: flex;
+  margin-top: 40px;
+}
+
+@media (max-width: 767px) {
+  .our-expertise .media-wrap img {
+    height: 300px;
+  }
+
+  .our-expertise .section-headings-right {
+    width: 100% !important;
+    justify-content: flex-end;
+    display: flex;
+  }
+}
+
+@media (min-width: 768px) {
+  .our-expertise .image-text-card {
+    padding: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .our-expertise .image-text-card {
+    padding: 30px;
+  }
+
+  .our-expertise .media-wrap {
+    height: 100%;
+  }
+}

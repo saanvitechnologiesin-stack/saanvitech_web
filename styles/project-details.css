@@ -1,0 +1,103 @@
+.project-details-content {
+  margin-block-start: 60px;
+}
+
+.content-details-inner > .project-image-block,
+.content-details-inner > .text {
+  margin-block-start: 40px;
+}
+
+.project-details-content .project-challenge {
+  margin-block-start: 60px;
+  max-width: 548px;
+}
+
+.project-challenge .challenge-list {
+  margin-block-start: 34px;
+}
+
+.project-challenge .challenge-list > li + li {
+  margin-block-start: 32px;
+}
+
+.project-challenge .challenge-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.project-info-list {
+    margin-block-start: 30px;
+}
+
+.project-info-item {
+    --color-border: rgba(28, 37, 57, 0.3);
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    justify-content: space-between;
+    border-bottom: dotted var(--style-border-width) var(--color-border);
+    margin-block-end: 40px;
+    padding-block-end: 20px;
+}
+
+.project-info-item:last-child {
+    margin-block-end: 0;
+}
+
+.project-info-item .info-data {
+    text-align: end;
+}
+
+.project-sidebar {
+    padding-inline-start: 60px;
+}
+
+.project-sidebar > div + div {
+    margin-block-start: 40px;
+}
+
+.project-sidebar .icon-contact {
+    --color-background: rgba(255, 255, 255, 1);
+    min-width: 80px;
+    height: 80px;
+    background: var(--color-background);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    margin-block-start: 36px;
+}
+
+@media (max-width: 1366px) {
+    .project-sidebar {
+        padding-inline-start: 40px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .project-sidebar {
+        padding-inline-start: 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    .project-sidebar {
+        margin-block-start: 40px;
+        padding-inline-start: 0px;
+    }
+
+    .project-details-content .project-challenge {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .project-details-content {
+        margin-block-start: 40px;
+    }
+
+    .project-details-content .project-challenge {
+        margin-block-start: 40px;
+    }
+}

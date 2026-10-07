@@ -1,0 +1,204 @@
+.secvice-categories > li + li {
+  margin-block-start: 14px;
+}
+
+.secvice-category {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.secvice-category svg {
+  --size: 18px;
+  width: var(--size);
+  height: var(--size);
+  opacity: 0;
+  transition: 0.3s;
+  transform: translateX(-15px);
+}
+
+.secvice-category.active svg,
+.secvice-category:focus svg,
+.secvice-category:hover svg {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.service-contact {
+  position: relative;
+}
+
+.sidebar-widget.service-contact {
+  --color-foreground: rgba(255, 255, 255, 1);
+  --color-foreground-heading: rgba(255, 255, 255, 1);
+  --color-overlay: rgba(28, 37, 57, 0.8);
+  --padding: 60px 36px;
+  text-align: center;
+}
+
+.sidebar-widget.service-contact .contact-text {
+  margin-block-start: 30px;
+}
+
+.sidebar-widget.service-contact .contact-number {
+  display: inline-block;
+  margin-block-start: 24px;
+}
+
+.service-sidebar .icon-contact {
+  --color-background: rgba(255, 255, 255, 1);
+  min-width: 80px;
+  height: 80px;
+  background: var(--color-background);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  margin-block-start: 36px;
+}
+
+.service-sidebar .icon-contact svg {
+  min-width: 42px;
+  height: 42px;
+  display: flex;
+}
+
+.service-download .service-download {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-block-start: 24px;
+}
+
+.service-download .download-button {
+  margin-block-start: 24px;
+  display: block;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.service-details-content > .service-choose-us,
+.service-details-content > p.text,
+.service-details-content > .heading {
+  margin-block-start: 40px;
+}
+
+.service-details-content .choose-us-desc > .text-lists,
+.service-details-content .choose-us-desc > .heading + .text {
+  margin-block-start: 30px;
+}
+
+.service-details-content .choose-us-desc .text-lists .text-item svg {
+  --size: 24px;
+  min-width: var(--size);
+  width: var(--size);
+  height: var(--size);
+}
+
+.service-details-content .choose-us-desc .text-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.service-details-content .choose-us-desc > .text-item + .text-item {
+  margin-block-start: 18px;
+}
+
+.service-details-content .choose-us-img {
+  height: 100%;
+}
+
+.service-details-content .choose-us-img img {
+  object-fit: cover;
+  height: 100%;
+}
+
+.service-details-content .service-row {
+  align-items: center;
+}
+
+.service-details-content .service-row > * {
+  align-self: stretch;
+}
+
+.service-details-content .choose-us-desc {
+  padding-inline-start: 24px;
+}
+
+.service-faq {
+  margin-block-start: 40px;
+  display: block;
+}
+
+.service-faq > div + div {
+  margin-block-start: 30px;
+}
+
+.service-faq .accordion-block .accordion-opener svg {
+  transition: all 0.3s;
+}
+
+/* .service-faq .accordion-block.active .accordion-opener svg {
+  transform: rotate(-180deg);
+  transition: all 0.3s;
+} */
+
+.service-faq .accordion-block.active .accordion-opener {
+  --color-background: rgba(242, 242, 242, 1);
+  --color-foreground-heading: rgba(28, 37, 57, 1);
+}
+
+.service-contact-content a {
+  text-decoration: none;
+}
+
+@media (min-width: 992px) {
+  .service-sidebar {
+    padding-inline-end: 20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .service-sidebar {
+    padding-inline-end: 45px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .service-details-content .choose-us-desc {
+    padding-inline-start: 0;
+    margin-block-start: 40px;
+  }
+}
+
+@media (max-width: 991px) {
+  .service-details-content .choose-us-desc {
+    padding-inline-start: 24px;
+    margin-block-start: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .service-sidebar .icon-contact {
+    min-width: 60px;
+    height: 60px;
+  }
+
+  .service-sidebar .icon-contact svg {
+    min-width: 30px;
+    height: 30px;
+  }
+
+  .sidebar-widget.service-contact {
+    --padding: 30px 20px;
+  }
+
+  .service-details-content .choose-us-desc {
+    padding-inline-start: 0;
+    margin-block-start: 40px;
+  }
+}

@@ -1,0 +1,166 @@
+.section-contact-form {
+  overflow: hidden;
+}
+
+.section-contact-form .card-icon-text-horizontal {
+  margin-block-start: 40px;
+}
+
+.contact-form-headings .heading + .text {
+  margin-block-start: 15px;
+}
+
+.section-contact-form .contact-form {
+  margin-block-start: 32px;
+}
+
+.section-contact-form .contact-form-wrap {
+  --color-background: rgba(32, 40, 45, 1);
+  --color-foreground: rgba(242, 242, 242, 1);
+  --color-foreground-heading: rgba(255, 255, 255, 1);
+  --color-input-text: rgba(93, 102, 111, 1);
+  --color-input-background: rgba(255, 255, 255, 1);
+  --color-input-border: rgba(255, 255, 255, 1);
+  --color-input-hover-text: rgba(93, 102, 111, 1);
+  --color-input-hover-background: rgba(255, 255, 255, 1);
+  --color-input-hover-border: rgba(255, 255, 255, 1);
+  --color-secondary-button-hover-border: rgba(255, 255, 255, 0.3);
+  background-color: var(--color-background);
+}
+
+.section-contact-form .contact-box {
+  --padding: 60px;
+  box-shadow: 5px 8px 30px 4px rgba(23, 36, 38, 0.08);
+  padding: var(--padding);
+}
+
+.section-contact-form.without-box-shadow .contact-box {
+  box-shadow: none;
+  padding: 0;
+}
+
+@media (min-width: 992px) {
+  .section-contact-form .section-headings {
+    max-width: 593px;
+  }
+
+  .section-contact-form .card-icon-text-horizontal {
+    margin-block-start: 40px;
+    max-width: 442px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .section-contact-form .col-contact-form {
+    width: 520px;
+  }
+
+  .section-contact-form .col-contact-content {
+    width: calc(100% - 520px - 30px);
+  }
+}
+
+@media (max-width: 991px) {
+  .section-contact-form .contact-form-wrap {
+    margin-block-start: 30px;
+  }
+
+  .contact-us .contact-form-wrap {
+    padding: 32px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .section-contact-form .contact-box {
+    --padding: 40px 15px;
+  }
+
+  .section-contact-form .contact-form-wrap {
+    margin-block-start: 20px;
+  }
+}
+
+ /* Contact 2 */
+.contact-2 .contact-box {
+  margin-block-start: 60px;
+}
+
+.contact-2 .section-headings {
+  max-width: 840px;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+}
+
+.contact-2 .card-icon-text svg {
+  min-width: 28px;
+  width: 28px;
+  height: 28px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.contact-2 .contact-info-list .svg-wrapper {
+  --color-background: rgba(32, 40, 45, 1);
+  min-width: 60px;
+  width: 60px;
+  height: 60px;
+  background: var(--color-background);
+  border-radius: 6px;
+}
+
+.contact-info-list .content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contact-2 .card-icon-text .content > .heading {
+  opacity: 0.7;
+}
+
+.contact-2 .google-map {
+  --height: 300px;
+  border-radius: 12px;
+}
+
+.contact-2.section-padding {
+  --padding-bottom: 32px;
+}
+
+.contact-2 .contact-social {
+  margin-block-start: 50px;
+}
+
+.contact-2 .social-link {
+  background-color: #1c2539;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.contact-2 .social-link:focus,
+.contact-2 .social-link:hover {
+  background-color: #20325b;
+}
+
+.contact-2 .social-icons {
+  margin-block-start: 16px;
+  gap: 16px;
+}
+
+.contact-2 .card-icon-text .heading + .text {
+  margin-block-start: 3px;
+}
+
+.contact-2 .card-icon-text a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.contact-2 .card-icon-text a:focus,
+.contact-2 .card-icon-text a:hover {
+  opacity: 0.75;
+}
+
+.contact-us .contact-box {
+  background: transparent;
+  box-shadow: none;
+}

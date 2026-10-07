@@ -1,0 +1,144 @@
+.why-choose-us {
+  --color-background: rgba(242, 242, 242, 1);
+  --color-foreground: rgba(93, 102, 111, 1);
+  --color-foreground-heading: rgba(28, 37, 57, 1);
+  --color-foreground-subheading: rgba(93, 102, 111, 1);
+  --color-background-subheading: rgba(255, 255, 255, 0);
+  --color-border-subheading-bg: rgba(93, 102, 111, 0.3);
+  overflow: hidden;
+  background-color: var(--color-background);
+  position: relative;
+}
+
+.choose-media {
+  height: 100%;
+}
+
+.choose-media img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.choose-logo {
+  margin-block-start: 50px;
+}
+
+.choose-rotating-logo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-abs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.choose-rotating-logo .svg-wrapper {
+  --size: 170px;
+  min-width: var(--size);
+  width: var(--size);
+  height: var(--size);
+}
+
+.choose-rotating-logo .svg-wrapper svg {
+  min-width: inherit;
+  width: inherit;
+  height: inherit;
+}
+
+.choose-bottom {
+  --margin-block-start: 60px;
+  margin-block-start: var(--margin-block-start);
+  position: relative;
+}
+
+.choose-bottom-cards > * {
+  row-gap: 24px;
+}
+
+
+.why-choose-video .service-content-left .headings-width {
+  max-width: 750px;
+  margin-inline-start: 0;
+  padding-left: 34px;
+}
+
+.why-choose-video .multicolumn-card {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 24px;
+}
+
+.why-choose-video .service-list {
+  flex-direction: column;
+  gap: 30px;
+}
+
+.why-choose-video .video-frame {
+  object-fit: cover;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .choose-bottom {
+    --offset: 300px;
+  }
+
+  .choose-bottom-cards {
+    margin-inline-end: var(--offset);
+    padding-inline-end: 15px;
+  }
+
+  .choose-media-absolute {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: var(--offset);
+  }
+}
+
+@media (min-width: 1280px) {
+  .choose-us-content {
+    padding-inline-start: 40px;
+  }
+}
+
+@media (max-width: 991px) {
+  .choose-top > * {
+    row-gap: 40px;
+  }
+
+  .choose-logo {
+    display: flex;
+    justify-content: center;
+  }
+
+  
+  .why-choose-video .service-content-left .headings-width {
+    padding-left: 0;
+  }
+
+  .why-choose-video .service-list {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .choose-bottom {
+    --margin-block-start: 40px;
+  }
+
+  .choose-media-absolute {
+    margin-block-start: 40px;
+  }
+  
+  .why-choose-video .multicolumn-card {
+    padding: 16px;
+  }
+}

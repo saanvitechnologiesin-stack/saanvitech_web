@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "postId": 1,
+        "name": "Ralph Edwards",
+        "email": "ralph@email.com",
+        "image": "/img/blog/c1.jpg",
+        "content": "Our advanced energy storage solutions allow you to store excess energy generated from renewable sources like solar and wind. This enables a constant.",
+        "created_at": "2026-10-01T18:00:00Z",
+        "replies": [
+            {
+                "id": 1,
+                "name": "Sara Joseph",
+                "email": "sara@email.com",
+                "image": "/img/blog/c2.jpg",
+                "content": "Our advanced energy storage solutions allow you to store excess energy generated from renewable sources like solar and wind. This enables a constant.",
+                "created_at": "2026-11-01T18:05:00Z"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "postId": 1,
+        "name": "Ralph Edwards",
+        "email": "ralph@email.com",
+        "image": "/img/blog/c3.jpg",
+        "content": "Our advanced energy storage solutions allow you to store excess energy generated from renewable sources like solar and wind. This enables a constant.",
+        "created_at": "2026-10-01T18:00:00Z",
+        "replies": []
+    }
+]

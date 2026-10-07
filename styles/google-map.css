@@ -1,0 +1,18 @@
+.google-map {
+  --height: 700px;
+  overflow: hidden;
+  position: relative;
+  height: var(--height);
+}
+
+@media (max-width: 992px) {
+  .google-map {
+    --height: 500px;
+  }
+}
+
+@media (max-width: 767px) {
+  .google-map {
+    --height: 300px;
+  }
+}
