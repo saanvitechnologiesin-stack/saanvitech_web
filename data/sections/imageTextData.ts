@@ -1,5 +1,7 @@
 import { SectionProps } from "@/types/sectionProps";
-import Image1 from '@/public/img/image-text/img1.png';
+import ImageCollab from '@/public/img/image-text/pexels-canvastudio-3277806.jpg';
+import ImageStrategy from '@/public/img/image-text/pexels-tima-miroshnichenko-7567557.jpg';
+import ImageDeveloper from '@/public/img/image-text/pexels-djordje-petrovic-590080-2102416.jpg';
 
 export const ImageTextData: SectionProps = {
     wrapperCls: "mt-100",
@@ -13,12 +15,36 @@ export const ImageTextData: SectionProps = {
         type: "primary"
     },
     image: {
-        src: Image1.src,
-        width: 992,
-        height: 863,
-        alt: 'Image',
+        src: ImageDeveloper.src,
+        width: ImageDeveloper.width,
+        height: ImageDeveloper.height,
+        alt: 'Saanvi Technologies Team - Our Company',
         loading: 'lazy'
     },
+    imageList: [
+        {
+            src: ImageCollab.src,
+            width: ImageCollab.width,
+            height: ImageCollab.height,
+            alt: 'Team collaboration and software development',
+            loading: 'lazy'
+        },
+        {
+            src: ImageStrategy.src,
+            width: ImageStrategy.width,
+            height: ImageStrategy.height,
+            alt: 'Strategic consulting and financial planning',
+            loading: 'lazy'
+        },
+        {
+            src: ImageDeveloper.src,
+            width: ImageDeveloper.width,
+            height: ImageDeveloper.height,
+            alt: 'Software development and IT engineering at Saanvi Technologies',
+            cls: 'object-[center_center]',
+            loading: 'lazy'
+        }
+    ],
     textList: [
         {
             text: "Integrate a diverse range of ideas"

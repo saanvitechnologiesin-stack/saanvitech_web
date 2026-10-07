@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import "@/styles/header.css";
 import Logo from "./Logo";
-import LogoImage from "@/public/img/logo-white.png";
+import LogoImage from "@/public/img/logo-white.webp";
 import NavBar from "./menus/NavBar";
 import HeaderActions2 from "./HeaderActions2";
 import AdditionalDrawer from "./AdditionalDrawer";
@@ -24,12 +24,12 @@ const Header3 = () => {
             {/* Logo */}
             <Logo 
               src={LogoImage.src}
-              width={189}
-              height={32}
+              width={145}
+              height={50}
               url={pathname}
               cls="header-logo"
-              alt="Consulo logo"
-              ariaLabel="Consulo logo"
+              alt="Saanvi Technologies logo"
+              ariaLabel="Saanvi Technologies logo"
               loading="eager"
             />
 
