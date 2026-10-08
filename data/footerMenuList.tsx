@@ -36,24 +36,28 @@ export const QuickLink: MenuType[] = [
 
 export const Services: MenuType[] = [
     {
-        title: 'UI/UX Design',
-        path: '/projects'
+        title: 'Website Development',
+        path: '/services/website-development'
     },
     {
-        title: 'App Development',
-        path: '/projects'
+        title: 'Software Development',
+        path: '/services/software-development'
     },
     {
-        title: 'Digital Marketing',
-        path: '/services'
+        title: 'Mobile App Development',
+        path: '/services/mobile-app'
     },
     {
-        title: 'Web Development',
-        path: '/pricing-plan'
+        title: 'Contract Staffing',
+        path: '/services/contract-staffing'
     },
     {
-        title: 'Cyber Security',
-        path: '/projects/business-development'
+        title: 'C2H Staffing',
+        path: '/services/c2h-staffing'
+    },
+    {
+        title: 'Outsourcing',
+        path: '/services/outsourcing'
     }
 ];
 
