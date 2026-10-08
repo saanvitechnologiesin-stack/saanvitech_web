@@ -1,38 +1,22 @@
 export const FaqAccordion = [
     {
-        title: "What warranties do I have for installation?",
-        text: "Nor is there anyone who loves or pursues or desires to obtain pain of itself, because which toil and pain can procuresteady steady.The point of using is that it has a mores normal fact that a reader will be distracted by the readable content."
+        title: "What are the core values that drive Saanvi Technologies?",
+        text: "We are driven by a passion for excellence and innovation. Our core values include embracing fresh ideas (Innovation), adapting to industry trends (Modernization), long-term support (Endurance), honest and ethical practices (Integrity), exceeding expectations (Client Focus), and delivering what matters (Understanding)."
     },
     {
-        title: "How long does it take to build a new website?",
-        text: "Nor is there anyone who loves or pursues or desires to obtain pain of itself, because which toil and pain can procuresteady steady.The point of using is that it has a mores normal fact that a reader will be distracted by the readable content."
+        title: "What is the vision of Saanvi Technologies?",
+        text: "Our vision is to be the preferred global partner in delivering top-tier staffing solutions that empower organizations to build exceptional teams, and to create innovative software and scalable solutions that drive business success."
     },
     {
-        title: "What do you need to start making me a website?",
-        text: "Nor is there anyone who loves or pursues or desires to obtain pain of itself, because which toil and pain can procuresteady steady.The point of using is that it has a mores normal fact that a reader will be distracted by the readable content."
+        title: "What is your company's mission?",
+        text: "Our mission is to deliver exceptional staffing solutions, create innovative software for efficiency and growth, and provide strategic IT consultancy that empowers businesses to navigate technology complexities with confidence."
     },
     {
-        title: "How to soft launch your business?",
-        text: "Nor is there anyone who loves or pursues or desires to obtain pain of itself, because which toil and pain can procuresteady steady.The point of using is that it has a mores normal fact that a reader will be distracted by the readable content."
+        title: "Why should I choose Saanvi Technologies?",
+        text: "We bring diverse experience across IT consulting, development, and staffing (Comprehensive Expertise) and customize every solution to fit your unique business goals (Tailored Approach) to ensure maximum impact and efficiency."
     },
     {
-        title: "How does the trial work?",
-        text: "Nor is there anyone who loves or pursues or desires to obtain pain of itself, because which toil and pain can procuresteady steady.The point of using is that it has a mores normal fact that a reader will be distracted by the readable content."
-    },
-    {
-        title: "What Services Does Your IT Solutions Business Offer?",
-        text: "Nor is there anyone who loves or pursues or desires to obtain pain of itself, because which toil and pain can procuresteady steady.The point of using is that it has a mores normal fact that a reader will be distracted by the readable content."
-    },
-    {
-        title: "What types of financial challenges?",
-        text: "Nor is there anyone who loves or pursues or desires to obtain pain of itself, because which toil and pain can procuresteady steady.The point of using is that it has a mores normal fact that a reader will be distracted by the readable content."
-    },
-    {
-        title: "What are the payment methods?",
-        text: "Nor is there anyone who loves or pursues or desires to obtain pain of itself, because which toil and pain can procuresteady steady.The point of using is that it has a mores normal fact that a reader will be distracted by the readable content."
-    },
-    {
-        title: "How fast I get my order?",
-        text: "Nor is there anyone who loves or pursues or desires to obtain pain of itself, because which toil and pain can procuresteady steady.The point of using is that it has a mores normal fact that a reader will be distracted by the readable content."
+        title: "How does Saanvi Technologies ensure client satisfaction?",
+        text: "We prioritize your needs at every step through our Client-Centric Service, delivering responsive support, and we craft forward-thinking digital strategies that solve real business challenges (Innovative Solutions)."
     }
 ]
