@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
-import BreadcrumbBannerImage from '@/public/img/banner/page-banner.jpg';
+import BreadcrumbBannerImage from '@/public/img/banner/about_us_banner.jpg';
 import BreadcrumbBannerImageTablet from '@/public/img/banner/page-banner-991.jpg';
 import BreadcrumbBannerImageMobile from '@/public/img/banner/page-banner-575.jpg';
 
 import { ImageTextData } from '@/data/sections/imageTextData';
 import { ScrollingTextData } from '@/data/sections/scrollingTextData';
 import { WhyChooseUsGridBgData } from '@/data/sections/whyChooseUsGridBgData';
-import { TeamSliderData } from '@/data/sections/teamSliderData';
-import { TestimonialData } from '@/data/sections/testimonialData';
 import { Faq2Data } from '@/data/sections/faq2Data';
 
 import BreadcrumbBanner from "@/components/BreadcrumbBanner";
 import ImageText from '@/components/sections/ImageText';
 import ScrollingText from '@/components/sections/ScrollingText';
 import WhyChooseUsGrid from '@/components/sections/WhyChooseUsGrid';
-import TeamSlider from '@/components/sections/TeamSlider';
-import Testimonials from '@/components/sections/Testimonials';
 import Faq from '@/components/sections/Faq';
 
 
@@ -51,15 +47,6 @@ const About = () => {
 
             {/* Why Choose Us */}
             <WhyChooseUsGrid data={WhyChooseUsGridBgData} />
-
-            {/* Our Team */}
-            <TeamSlider 
-                data={TeamSliderData} 
-                pagination={true}
-            />
-
-            {/* Testimonials */}
-            <Testimonials data={TestimonialData} />
 
             {/* FAQ */}
             <Faq data={Faq2Data} />

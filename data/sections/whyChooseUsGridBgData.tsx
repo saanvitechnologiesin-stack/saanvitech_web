@@ -2,7 +2,7 @@ import { SectionProps } from "@/types/sectionProps";
 import WhyChooseUsBg from "@/public/img/why-choose-us/bg.jpg";
 import WhyChooseUsImage from "@/public/img/why-choose-us/1.jpg";
 import WhyChooseUsImageMobile from "@/public/img/why-choose-us/575.jpg";
-import PromoImage from "@/public/img/why-choose-us/2.jpg";
+import PromoImage from "@/public/img/why-choose-us/why_choose_us_promo.jpg";
 import Icons from "@/components/Icons";
 
 export const WhyChooseUsGridBgData: SectionProps = {
@@ -24,7 +24,7 @@ export const WhyChooseUsGridBgData: SectionProps = {
         alt: "Choose us image"
     },
     subheading: "Why Choose Us",
-    heading: "Supporting Growth on a Global Scale",
+    heading: "Driving Growth Through Innovation",
     text: "We provide dependable and tailored consulting services that help your business navigate challenges, seize opportunities.",
     button: {
         label: "More About Us",
@@ -33,23 +33,38 @@ export const WhyChooseUsGridBgData: SectionProps = {
     },
     rotatingLogo: {
         logo: <Icons.ChooseRotatingLogo />,
-        text: "25",
+        text: "5+",
     },
     promotions: [
         {
-            icon: <Icons.Mission />,
-            title: "Our Mission",
-            text: "Our mission is push engage boundaries, enga audiences, and driv engage.",
-        },
-        {
             icon: <Icons.Vision />,
             title: "Our Vision",
-            text: "Our mission is push engage boundaries, enga audiences, and driv engage.",
+            text: "To be the preferred global partner in delivering top-tier staffing solutions that empower organizations to build exceptional teams. Through our expertise in software development, we aim to create innovative and scalable solutions that drive business success.",
         },
         {
-            icon: <Icons.Awards />,
-            title: "Our Awards",
-            text: "Our mission is push engage boundaries, enga audiences, and driv engage.",
+            icon: <Icons.Mission />,
+            title: "Our Mission",
+            text: "Our mission is to deliver exceptional staffing solutions that help organizations build high-performing teams. We are dedicated to creating innovative software that drives efficiency and growth for our clients. Through our IT consultancy services, we aim to provide strategic guidance.",
+        },
+        {
+            icon: <Icons.Consulting />,
+            title: "COMPREHENSIVE EXPERTISE",
+            text: "Our team brings diverse experience across IT consulting, development, and staffing to deliver complete solutions.",
+        },
+        {
+            icon: <Icons.Development />,
+            title: "INNOVATIVE SOLUTIONS",
+            text: "We craft forward-thinking digital strategies that solve real business challenges and drive measurable growth.",
+        },
+        {
+            icon: <Icons.Strategy />,
+            title: "TAILORED APPROACH",
+            text: "We customize every solution to fit your unique business goals, ensuring maximum impact and efficiency.",
+        },
+        {
+            icon: <Icons.Clients />,
+            title: "CLIENT-CENTRIC SERVICE",
+            text: "We prioritize your needs at every step, delivering responsive support and solutions aligned with your vision.",
         },
     ],
     promoImage: {
