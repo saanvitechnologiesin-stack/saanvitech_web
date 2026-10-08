@@ -1,18 +1,19 @@
 'use client';
 
+import { useEffect, useRef } from "react";
 import "@/styles/multicolumn.css";
 import Image from "next/image";
 import Subheading from "../Subheading";
 import Heading from "../Heading";
-import PrimaryButton from "../buttons/PrimaryButton";
-import SecondaryButton from "../buttons/SecondaryButton";
+import Text from "../Text";
 import ServiceList from "@/data/services.json";
 import CardService from "../CardService";
 import { SectionProps } from "@/types/sectionProps";
 
 const OurServices = ({ data }: { data: SectionProps }) => {
     const serviceList = ServiceList;
-    if(serviceList.length == 0) return null;
+    const containerRef = useRef<HTMLDivElement>(null);
+    const trackRef = useRef<HTMLDivElement>(null);
 
     const {
         wrapperCls,
@@ -20,80 +21,113 @@ const OurServices = ({ data }: { data: SectionProps }) => {
         backgroundImage,
         subheading,
         heading,
-        button
+        text,
     } = data || {};
 
-    return (
-        <div className={`multicolumn ${wrapperCls}`}>
-            {backgroundImage &&
-                <div className="media media-bg">
-                    <Image
-                        src={backgroundImage.src}
-                        width={backgroundImage.width}
-                        height={backgroundImage.height}
-                        loading={backgroundImage.loading}
-                        alt={backgroundImage.alt ? backgroundImage.alt : 'bg image'}
-                    />
-                </div>
+    useEffect(() => {
+        let animationFrameId: number;
+
+        const handleScroll = () => {
+            if (!containerRef.current || !trackRef.current) return;
+
+            if (window.innerWidth <= 768) {
+                trackRef.current.style.transform = "none";
+                return;
             }
 
-            <div className={container}>
-                <div className="multicolumn-header section-headings">
-                    {subheading && 
-                        <Subheading 
-                            title={subheading}
-                            cls="text-20"
-                            aos="fade-up"
-                        />
-                    }
+            const rect = containerRef.current.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const containerHeight = rect.height;
+            const scrollDistance = containerHeight - windowHeight;
 
-                    {heading && 
-                        <Heading 
-                            title={heading}
-                            cls="text-50"
-                            aos="fade-up"
+            if (scrollDistance <= 0) return;
+
+            const currentScroll = -rect.top;
+            const rawProgress = currentScroll / scrollDistance;
+            const clampedProgress = Math.min(Math.max(rawProgress, 0), 1);
+
+            const trackWidth = trackRef.current.scrollWidth;
+            const viewportWidth = window.innerWidth;
+            const maxTranslate = Math.max(0, trackWidth - viewportWidth + 80);
+            const translateX = clampedProgress * maxTranslate;
+
+            trackRef.current.style.transform = `translate3d(-${translateX}px, 0, 0)`;
+        };
+
+        const onScroll = () => {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = requestAnimationFrame(handleScroll);
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll, { passive: true });
+        handleScroll();
+
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, [serviceList.length]);
+
+    if (!serviceList || serviceList.length === 0) return null;
+
+    return (
+        <div ref={containerRef} className={`services-scroll-container ${wrapperCls}`}>
+            <div className="services-sticky-viewport">
+                {backgroundImage && (
+                    <div className="media media-bg">
+                        <Image
+                            src={backgroundImage.src}
+                            width={backgroundImage.width}
+                            height={backgroundImage.height}
+                            loading={backgroundImage.loading}
+                            alt={backgroundImage.alt ? backgroundImage.alt : 'bg image'}
                         />
-                    }
+                    </div>
+                )}
+
+                <div className={`${container ? container : 'container'} services-content-wrap`}>
+                    <div className="multicolumn-header section-headings">
+                        {subheading && (
+                            <Subheading 
+                                title={subheading}
+                                cls="text-20"
+                            />
+                        )}
+
+                        {heading && (
+                            <Heading 
+                                title={heading}
+                                cls="text-50"
+                            />
+                        )}
+
+                        {text && (
+                            <Text
+                                text={text}
+                                cls="text-18"
+                            />
+                        )}
+                    </div>
                 </div>
 
-                <div className="multicolumn-inner">
-                    <div className="grid lg:grid-cols-3 lg:gap-1">
-                        {serviceList.slice(0, 3).map((service) => (
+                {/* Horizontal Sliding Cards Track */}
+                <div className="services-horizontal-viewport">
+                    <div ref={trackRef} className="services-horizontal-track">
+                        {serviceList.map((service, index) => (
                             <div 
-                                className="col-span-1 multi-col" 
-                                data-aos="fade-up" 
-                                key={`servicel-card-${service.id}`}
+                                className="services-horizontal-card-item" 
+                                key={`service-card-scroll-${service.id || index}`}
                             >
                                 <CardService data={service} />
                             </div>
                         ))}
                     </div>
                 </div>
-
-                {button && 
-                    <div className="section-headings text-center">
-                        <div className="buttons" data-aos="fade-up">
-                            {button.type == 'primary' &&
-                                <PrimaryButton 
-                                    label={button.label}
-                                    href={button.href}
-                                    ariaLabel={button.label}
-                                />
-                            }
-
-                            {button.type == 'secondary' &&
-                                <SecondaryButton 
-                                    label={button.label}
-                                    href={button.href}
-                                    ariaLabel={button.label}
-                                />
-                            }
-                        </div>
-                    </div>
-                }
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default OurServices;

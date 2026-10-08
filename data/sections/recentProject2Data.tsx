@@ -8,7 +8,7 @@ export const RecentProject2Data: SectionProps = {
     container: "container-fluid",
     link: "/projects",
     subheading: "Recent Projects",
-    heading: "Explore the Recent Works We Have Done!",
+    heading: "Smart Digital Solutions Tailored For growth",
     text: "The solar solution company specializes in providing innovative, eco-friendly energy systems harness the power, reducing carbon footprints and energy for clients worldwide.",        
     imageList: [
         {

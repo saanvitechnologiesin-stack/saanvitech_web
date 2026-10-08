@@ -79,6 +79,38 @@
   position: relative;
 }
 
+.project-content .text-lists {
+  margin-block-start: 24px;
+}
+
+.project-content .text-lists .text-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #f2f2f2 !important;
+  --color-foreground: #f2f2f2 !important;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.project-content .text-lists .text-item span {
+  color: #f2f2f2 !important;
+}
+
+.project-content .text-lists .text-item svg {
+  min-width: 20px;
+  width: 20px;
+  height: 20px;
+  color: #ffffff !important;
+  fill: currentColor !important;
+  flex-shrink: 0;
+}
+
+.project-content .text-lists .text-item:not(:first-child) {
+  margin-block-start: 14px;
+}
+
 .project-grid .card-project img {
   transition: all 0.3s;
 }

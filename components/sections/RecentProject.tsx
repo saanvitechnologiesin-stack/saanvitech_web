@@ -141,6 +141,21 @@ const RecentProject = ({ data }: {data: SectionProps}) => {
                         />
                     }
 
+                    {block?.textList &&
+                        <ul className="text-lists list-unstyled">
+                            {block.textList.map((item: any, index: number) => (
+                                <li
+                                    className="text-item text text-16 fw-500"
+                                    data-aos="fade-up"
+                                    key={`project-point-${index}`}
+                                >
+                                    <Icons.Check />
+                                    <span>{typeof item === 'string' ? item : item.text || item.title}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    }
+
                     {block?.button &&
                         <div
                             className="project-button buttons"

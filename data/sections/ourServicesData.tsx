@@ -2,7 +2,7 @@ import { SectionProps } from "@/types/sectionProps";
 import BackgroundImage from '@/public/img/contact/contact-bg.jpg';
 
 export const OurServicesData: SectionProps = {
-    wrapperCls: "mt-100 section-padding",
+    wrapperCls: "section-padding",
     container: "container",
     backgroundImage: {
         src: BackgroundImage.src,
@@ -12,10 +12,6 @@ export const OurServicesData: SectionProps = {
         loading: "lazy"
     },
     subheading: "What We Offer",
-    heading: "Explore our expertise in scalable & innovative technology",
-    button: {
-        label: "All Services",
-        href: "/services",
-        type: "primary"
-    },
+    heading: "Service We Provide",
+    text: "We strive to deliver innovative web, mobile, and software solutions that are perfectly suited for projects of any size, tailored to meet your unique development and consultancy needs",
 }

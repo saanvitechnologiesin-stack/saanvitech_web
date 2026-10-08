@@ -25,6 +25,10 @@
   max-width: 772px;
 }
 
+.hero-slider .content-box .buttons {
+  margin-block-start: 90px;
+}
+
 .slider-card-4 .content-box {
   max-width: 1000px;
 }

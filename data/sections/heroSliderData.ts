@@ -1,11 +1,10 @@
 export const HeroSlidesData = [
     {
-      subheading: "welcome to Saanvi Technologies",
-      heading: "Business Growth Made Simple",
-      text: "Transform your business with expert consultancy services our team of seasoned consultants unparalleled. Transform your business.",
+      heading: "Software Development Company & Staff Augmentation",
+      text: "Saanvi Technologies specializes in data-driven direct marketing, delivering innovative solutions for consumer marketing data and high-quality sales leads tailored to your needs.",
       button: {
-          label: "Free Consultation",
-          href: "/contact-us",
+          label: "Learn More",
+          href: "/about-us",
           type: "secondary"
       },
       image: "/img/pexels-jack-sparrow-5918384.jpg",
@@ -13,12 +12,11 @@ export const HeroSlidesData = [
       imageMobile: "/img/slider/hero-office-575.jpg"
     },
     {
-      subheading: "welcome to Saanvi Technologies",
-      heading: "Innovative Technology & Consulting",
-      text: "Transform your business with expert consultancy services our team of seasoned consultants unparalleled. Transform your business.",
+      heading: "Software Development Company & Staff Augmentation",
+      text: "Saanvi Technologies specializes in data-driven direct marketing, delivering innovative solutions for consumer marketing data and high-quality sales leads tailored to your needs.",
       button: {
-          label: "Free Consultation",
-          href: "/contact-us",
+          label: "Learn More",
+          href: "/about-us",
           type: "secondary"
       },
       image: "/img/slider/pexels-karola-g-7876708.jpg",

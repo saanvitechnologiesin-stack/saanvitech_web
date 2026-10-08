@@ -52,11 +52,13 @@
   max-height: 130px;
   width: auto;
   min-width: 150px;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  filter: grayscale(100%) opacity(0.75);
+  transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
 }
 
 .running-content .content-link:hover img {
-  transform: scale(1.06);
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.08);
 }
 
 .running-content.has-large-text .image-logo {
