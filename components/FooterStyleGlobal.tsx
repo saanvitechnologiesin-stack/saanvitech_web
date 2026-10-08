@@ -1,4 +1,3 @@
-import FooterBgImage from "@/public/img/footer/footer-bg-large.jpg";
 import FooterTop from "./FooterTop";
 import FooterBottom from "./FooterBottom";
 
@@ -8,10 +7,7 @@ interface FooterProps {
 
 const FooterStyleGlobal = ({ container }: FooterProps) => {
     return (
-        <div
-            className="footer-main bg-contain"
-            style={{ backgroundImage: `url(${FooterBgImage.src})` }}
-        >
+        <div className="footer-main">
             <FooterTop container={container} />
             <FooterBottom container={container} />
         </div>

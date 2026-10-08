@@ -15,7 +15,7 @@ const Footer = () => {
 
     if(pathname == '/' || pathname == '/services') container = 'container';
 
-    if(pathname == '/' || pathname == '/services') {
+    if(pathname == '/services') {
         showFooterStyle1 = true;
     } else {
         showFooterStyleGlobal = true;

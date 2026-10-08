@@ -25,10 +25,7 @@ const FooterStyle1 = ({ container }: FooterProps) => {
                 text="Need help with a project, have a question about our work? have a question about our work? We're here to help you."
             />
 
-            <div
-                className="footer-main bg-contain"
-                style={{ backgroundImage: `url(${FooterBgImage.src})` }}
-            >
+            <div className="footer-main">
                 <FooterTop container={container} />
                 <FooterBottom container={container} />
             </div></>
