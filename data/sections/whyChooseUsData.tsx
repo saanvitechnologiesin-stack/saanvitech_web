@@ -13,7 +13,7 @@ export const WhyChooseUsData: SectionProps = {
         alt: "Why Choose Us"
     },
     subheading: "Why Choose Us",
-    heading: "Supporting Growth on a Global Scale",
+    heading: "Driving Growth Through Innovation",
     text: "The solar solution company specializes in providing innovative, eco-friendly energy systems that harness the power, reducing carbon footprints and energy for clients worldwide.",
     button: {
         label: "Discover More",
