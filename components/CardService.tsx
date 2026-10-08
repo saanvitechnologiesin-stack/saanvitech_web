@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { ServiceDataType } from "@/types/service";
 import Icons from "./Icons";
 import parser from "html-react-parser";
+import PrimaryButton from "./buttons/PrimaryButton";
 
 const CardService = ({ data }: ServiceDataType) => {
     const { 
@@ -13,11 +13,7 @@ const CardService = ({ data }: ServiceDataType) => {
     } = data || {};
 
     return (        
-        <Link
-            className="multicolumn-card"
-            href={`/services/${slug}`}
-            aria-label="View Service Details"
-        >
+        <div className="multicolumn-card">
             {icon && <div className="card-icon icon-40">{parser(icon)}</div>}
 
             {title && <h2 className="heading text-28">{title}</h2>}
@@ -34,7 +30,17 @@ const CardService = ({ data }: ServiceDataType) => {
                     ))}
                 </ul>
             }
-        </Link>
+
+            {slug && (
+                <div className="card-service-button">
+                    <PrimaryButton 
+                        label="Explore"
+                        href={`/services/${slug}`}
+                        ariaLabel={`Explore ${title || 'Service'}`}
+                    />
+                </div>
+            )}
+        </div>
     )
 }
 

@@ -1,19 +1,16 @@
-.text-lists .text-item {
+.image-text .text-lists .text-item {
   --color-foreground: rgba(28, 37, 57, 1);
-}
-
-.text-lists .text-item {
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-.text-lists .text-item svg {
+.image-text .text-lists .text-item svg {
   min-width: 28px;
   height: 28px;
 }
 
-.text-lists .text-item:not(:first-child) {
+.image-text .text-lists .text-item:not(:first-child) {
   margin-block-start: 18px;
 }
 

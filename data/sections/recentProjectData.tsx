@@ -6,10 +6,9 @@ import Image3 from "@/public/img/project/pexels-thecoachspace-2977547.jpg";
 export const RecentProjectData: SectionProps = {
     wrapperCls: "mt-100",
     container: "container",
-    link: "/projects",
-    subheading: "Recent Projects",
-    heading: "Explore the Recent Works We Have Done!",
-    text: "The solar solution company specializes in providing innovative, eco-friendly energy systems harness the power, reducing carbon footprints and energy for clients worldwide.",        
+    link: "/projects",  
+    heading: "Smart Digital Solutions Tailored For growth",
+    text: "We’re dedicated to solving your most pressing business challenges. Our expert team offers strategic insights and hands-on support to propel your success. Whether you’re looking to overcome obstacles or achieve ambitious goals, we’re here to guide you every step of the way.",        
     imageList: [
         {
             src: Image1.src,
@@ -34,8 +33,13 @@ export const RecentProjectData: SectionProps = {
         },
     ],
     block: {
-        heading: "Unlocking New Opportunities for Sustainable Growth",
-        text: "The solar solution company specializes in providing innovative, eco-friendly energy systems harness the power.",
+        heading: "5+ Years Experience",
+        textList: [
+            { text: "We have Leading Edge Technology" },
+            { text: "High Standard Candidate" },
+            { text: "We have Professional Developers" },
+            { text: "Specialist In Mobile & Web Development" }
+        ],
         button: {
             label: "View All Details",
             href: "/projects",

@@ -28,13 +28,44 @@
   color: var(--color-primary-hover);
 }
 
+.menu-link-main {
+  padding: 37.5px 20px;
+  position: relative;
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary-hover, #f28749) 0%,
+    var(--color-primary-hover, #f28749) 50%,
+    var(--color-foreground, rgba(28, 37, 57, 1)) 50%,
+    var(--color-foreground, rgba(28, 37, 57, 1)) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-item:focus > .menu-link-main,
+.nav-item:hover > .menu-link-main,
+.menu-link-main:hover {
+  background-position: 0 0;
+}
+
 .menu-link-main > svg {
   position: relative;
   top: 1px;
+  color: var(--color-foreground, rgba(28, 37, 57, 1));
+  -webkit-text-fill-color: initial;
+  transition: color 0.35s ease, transform 0.3s ease;
 }
 
-.menu-link-main {
-  padding: 37.5px 20px;
+.nav-item:focus > .menu-link-main > svg,
+.nav-item:hover > .menu-link-main > svg,
+.menu-link-main:hover > svg {
+  color: var(--color-primary-hover, #f28749);
 }
 
 .nav-item {

@@ -25,6 +25,7 @@ export interface SectionProps {
         heading?: string;
         headingSup?: string;
         text?: string;
+        textList?: { text: string }[] | string[] | any;
         button?: ButtonProps;
         button2?: ButtonProps;
     };
