@@ -1,20 +1,32 @@
-interface MenuType {
+export interface MenuType {
   title: string;
   path: string;
 }
 
 export const QuickLink: MenuType[] = [
     {
+        title: 'Home',
+        path: '/'
+    },
+    {
         title: 'About Us',
         path: '/about-us'
     },
     {
-        title: 'Our Team',
-        path: '/teams'
+        title: 'Services',
+        path: '/services'
     },
     {
-        title: 'Pricing Plans',
-        path: '/pricing-plan'
+        title: 'Product',
+        path: '/projects'
+    },
+    {
+        title: 'Technologies',
+        path: '/services'
+    },
+    {
+        title: 'Career',
+        path: '/career'
     },
     {
         title: 'Contact Us',
@@ -66,16 +78,16 @@ export const Information: MenuType[] = [
 
 export const MenuContact: MenuType[] = [
     {
-        title: 'consulo@yourcompany.com',
-        path: 'mailto:consulo@yourcompany.com'
+        title: 'chinmaya@saanvitechin.com',
+        path: 'mailto:chinmaya@saanvitechin.com'
     },
     {
-        title: '+1 (437) 555-0198',
-        path: 'tel:+1 (437) 555-0198'
+        title: 'info@saanvitechin.com',
+        path: 'mailto:info@saanvitechin.com'
     },
     {
-        title: '123 Maple Avenue, Toronto, ON M5H 2N2, Canada',
-        path: '#'
+        title: '+91 98445 60390',
+        path: 'tel:+919844560390'
     }
 ];
 
@@ -85,11 +97,12 @@ export const MenuPolicies: MenuType[] = [
         path: '/privacy-policy'
     },
     {
-        title: 'FAQ',
-        path: '/faq'
+        title: 'Terms & Conditions',
+        path: '/terms-condition'
     },
     {
-        title: 'Contact',
+        title: 'Contact Us',
         path: '/contact-us'
     }
 ];
+

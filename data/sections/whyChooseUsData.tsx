@@ -1,5 +1,5 @@
 import { SectionProps } from "@/types/sectionProps";
-import WhyChooseUsImage from "@/public/img/promotion/1.jpg";
+import WhyChooseUsImage from "@/public/img/why-choose-us/1.jpg";
 import Icons from "@/components/Icons";
 
 export const WhyChooseUsData: SectionProps = {
@@ -7,10 +7,10 @@ export const WhyChooseUsData: SectionProps = {
     container: "container",
     image: {
         src: WhyChooseUsImage.src,
-        width: 1000,
-        height: 1469,
+        width: WhyChooseUsImage.width || 1000,
+        height: WhyChooseUsImage.height || 1469,
         loading: "lazy",
-        alt: "Promotion image"
+        alt: "Why Choose Us"
     },
     subheading: "Why Choose Us",
     heading: "Supporting Growth on a Global Scale",

@@ -4,8 +4,8 @@ import { ScrollingTextData } from '@/data/sections/scrollingTextData';
 import { OurServicesData } from '@/data/sections/ourServicesData';
 import { RecentProjectData } from '@/data/sections/recentProjectData';
 import { WhyChooseUsData } from '@/data/sections/whyChooseUsData';
-import { TeamSliderData } from '@/data/sections/teamSliderData';
-import { TestimonialData } from '@/data/sections/testimonialData';
+import { MeetCeoData } from '@/data/sections/meetCeoData';
+import { MeetPartnersData } from '@/data/sections/meetPartnersData';
 
 import HeroSlider from '@/components/sections/HeroSlider';
 import ImageText from '@/components/sections/ImageText';
@@ -13,8 +13,8 @@ import ScrollingText from '@/components/sections/ScrollingText';
 import OurServices from '@/components/sections/OurServices';
 import RecentProject from '@/components/sections/RecentProject';
 import WhyChooseUs from '@/components/sections/WhyChooseUs';
-import TeamSlider from '@/components/sections/TeamSlider';
-import Testimonials from '@/components/sections/Testimonials';
+import MeetCeo from '@/components/sections/MeetCeo';
+import MeetPartners from '@/components/sections/MeetPartners';
 
 
 const Home = () => {
@@ -42,14 +42,11 @@ const Home = () => {
       {/* Why Choose Us */}
       <WhyChooseUs data={WhyChooseUsData} />
 
-      {/* Our Team */}
-      <TeamSlider 
-        data={TeamSliderData} 
-        pagination={true}
-      />
+      {/* Meet Our CEO */}
+      <MeetCeo data={MeetCeoData} />
 
-      {/* Testimonials */}
-      <Testimonials data={TestimonialData} />
+      {/* Meet Our Partners - Moving Banner */}
+      <MeetPartners data={MeetPartnersData} />
     </>
   );
 }

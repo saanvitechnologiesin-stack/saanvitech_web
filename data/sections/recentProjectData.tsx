@@ -1,7 +1,7 @@
 import { SectionProps } from "@/types/sectionProps";
-import Image1 from "@/public/img/project/1.jpg";
-import Image2 from "@/public/img/project/2.jpg";
-import Image3 from "@/public/img/project/3.jpg";
+import Image1 from "@/public/img/project/pexels-cottonbro-6804068.jpg";
+import Image2 from "@/public/img/project/pexels-gustavo-fring-4872028.jpg";
+import Image3 from "@/public/img/project/pexels-thecoachspace-2977547.jpg";
 
 export const RecentProjectData: SectionProps = {
     wrapperCls: "mt-100",
@@ -13,24 +13,24 @@ export const RecentProjectData: SectionProps = {
     imageList: [
         {
             src: Image1.src,
-            width: 1000,
-            height: 595,
+            width: Image1.width || 1000,
+            height: Image1.height || 595,
             loading: "lazy",
-            alt: "Large image"
+            alt: "Recent Project - Team Collaboration and Planning"
         },
         {
             src: Image2.src,
-            width: 500,
-            height: 385,
+            width: Image2.width || 500,
+            height: Image2.height || 385,
             loading: "lazy",
-            alt: "Small image"
+            alt: "Recent Project - Technical Architecture Discussion"
         },
         {
             src: Image3.src,
-            width: 500,
-            height: 385,
+            width: Image3.width || 500,
+            height: Image3.height || 385,
             loading: "lazy",
-            alt: "Small image"
+            alt: "Recent Project - Business Strategy & Development"
         },
     ],
     block: {

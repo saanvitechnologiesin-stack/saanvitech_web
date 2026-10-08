@@ -1,6 +1,5 @@
 import Logo from "./Logo";
 import LogoImage from "@/public/img/logo-white.webp";
-import Social from "./Social";
 
 const FooterBrand = () => {
     return (
@@ -19,16 +18,11 @@ const FooterBrand = () => {
                 ariaLabel="Saanvi Technologies logo" 
                 loading="lazy"
             />
-            <p className="text text-16">
-                Each demo built with Teba will look different. You can customize almost anything in the appearance of your website with only a few
+            <p className="text text-16 footer-brand-desc">
+                Saanvi Technologies delivers innovative digital solutions tailored to empower businesses with cutting-edge technology and expert-driven services.
             </p>
-            <Social 
-                wrapperCls="social-icons"
-                aos="fade-up"
-                aosAnchor=".footer-top"
-            />
         </div>
     )
 }
 
-export default FooterBrand;
+export default FooterBrand;
