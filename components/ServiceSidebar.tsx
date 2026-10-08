@@ -4,7 +4,6 @@ import SidebarPhoneImage from "@/public/img/service/secvice-contact.jpg";
 
 import SidebarCategories from "./SidebarCategories";
 import SidebarPhone from "./SidebarPhone";
-import SidebarPdfDownload from "./SidebarPdfDownload";
 import DrawerOpener from "./DrawerOpener";
 
 
@@ -45,11 +44,6 @@ const ServiceSidebar = ({ slug }: {slug?: string;}) => {
                         loading: "lazy",
                         alt: "image"
                     }}
-                />
-                
-                <SidebarPdfDownload 
-                    heading="Download Our Brochures"
-                    text="Business is a marketing discipline focused on growing visibility organ (non-paid) technic required."
                 />
             </aside>
         </div>
