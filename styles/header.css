@@ -1,6 +1,6 @@
 .header-1 {
   --header-radius: 0;
-  --color-background: rgba(255, 255, 255, 0.92);
+  --color-background: #ffffff;
   --color-foreground: rgba(28, 37, 57, 1);
   --color-primary-hover: #f28749;
   --color-border: rgba(0, 0, 0, 0.08);
@@ -49,7 +49,7 @@
 
 .header-1.header-floating:hover,
 .header-1.header-sticky.scrolled-past-header {
-  --color-background: rgba(255, 255, 255, 0.98);
+  --color-background: #ffffff;
   --color-foreground: rgba(28, 37, 57, 1);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   border-bottom: var(--style-border-width) solid rgba(0, 0, 0, 0.06);

@@ -4,7 +4,6 @@ import SidebarPhoneImage from "@/public/img/service/secvice-contact.jpg";
 
 import SidebarCategories from "./SidebarCategories";
 import SidebarPhone from "./SidebarPhone";
-import SidebarPdfDownload from "./SidebarPdfDownload";
 import DrawerOpener from "./DrawerOpener";
 
 
@@ -37,7 +36,7 @@ const ServiceSidebar = ({ slug }: {slug?: string;}) => {
                 <SidebarPhone 
                     heading="Contact with us <br/> for any advice"
                     text="Need help? Talk to an expert"
-                    phone="+12345.6789.333"
+                    phone="+91 98445 60390"
                     image={{
                         src: SidebarPhoneImage.src,                      
                         width: 1000,
@@ -45,11 +44,6 @@ const ServiceSidebar = ({ slug }: {slug?: string;}) => {
                         loading: "lazy",
                         alt: "image"
                     }}
-                />
-                
-                <SidebarPdfDownload 
-                    heading="Download Our Brochures"
-                    text="Business is a marketing discipline focused on growing visibility organ (non-paid) technic required."
                 />
             </aside>
         </div>

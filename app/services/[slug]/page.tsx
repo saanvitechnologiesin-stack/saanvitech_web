@@ -10,8 +10,12 @@ import BreadcrumbBanner from "@/components/BreadcrumbBanner";
 import ServiceDetails from '@/components/sections/ServiceDetails';
 
 const PAGE_TITLE: string = 'Service Details';
-export const metadata: Metadata = {
-  title: PAGE_TITLE,
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const service = ServiceList.find((s: ServiceProps) => s.slug === slug);
+    return {
+        title: service ? `${service.title} - Saanvi Technologies` : 'Service Details',
+    };
 }
 
 const Page = async ({ params }: {params: Promise<{slug: string}>}) => {
@@ -22,10 +26,12 @@ const Page = async ({ params }: {params: Promise<{slug: string}>}) => {
         (service: ServiceProps) => service.slug === slug
     );
 
+    const pageTitle: string = service?.title || PAGE_TITLE;
+
     return (
         <>
             <BreadcrumbBanner 
-                title={PAGE_TITLE}
+                title={pageTitle}
                 image={{
                     src: BreadcrumbBannerImage.src,
                     srcMobile: BreadcrumbBannerImageTablet.src,
@@ -33,7 +39,7 @@ const Page = async ({ params }: {params: Promise<{slug: string}>}) => {
                     width: 1920,
                     height: 520,
                     cls: "media media-bg",
-                    alt: "Banner Image",
+                    alt: `${pageTitle} Banner`,
                     loading: "eager"
                 }}
             />
