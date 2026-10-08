@@ -1,6 +1,18 @@
 .running-content .content-inner {
   overflow: hidden;
+  position: relative;
+  width: 100%;
   background-color: var(--color-background, rgba(255, 255, 255, 0));
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.running-content .section-headings {
+  margin-block-end: 20px;
+}
+
+.running-content .section-headings .heading {
+  margin-block-end: 0;
 }
 
 .running-content-bg {
@@ -15,23 +27,10 @@
 .running-content .content-lists {
   display: flex;
   align-items: center;
-  justify-content: center;
   white-space: nowrap;
-  gap: 80px;
-}
-
-.running-content .content-lists:hover {
-  animation-play-state: paused;
-}
-
-.running-content .content-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex-wrap: nowrap;
+  gap: 70px;
+  width: max-content;
   flex-shrink: 0;
-  gap: 80px;
 }
 
 .running-content .content-link {
@@ -39,15 +38,25 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .running-animation {
   will-change: transform;
-  animation: scroll 20s linear infinite;
+  animation: seamless-scroll 60s linear infinite;
 }
 
 .running-content .content-link img {
   object-fit: contain;
+  height: 120px;
+  max-height: 130px;
+  width: auto;
+  min-width: 150px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.running-content .content-link:hover img {
+  transform: scale(1.06);
 }
 
 .running-content.has-large-text .image-logo {
@@ -87,30 +96,40 @@
   --color-foreground-heading: rgba(255, 255, 255, 1);
 }
 
-@keyframes scroll {
-  from {
+@keyframes seamless-scroll {
+  0% {
     transform: translateX(0);
   }
-  to {
-    transform: translateX(-100%);
+  100% {
+    transform: translateX(-50%);
   }
 }
 
 @media (max-width: 991px) {
-  .running-content .content-item,
   .running-content .content-lists {
-    gap: 60px;
+    gap: 50px;
+  }
+  
+  .running-content .content-link img {
+    height: 90px;
+    max-height: 100px;
+    min-width: 120px;
   }
 }
 
 @media (max-width: 767px) {
-  .running-content .content-item,
   .running-content .content-lists {
-    gap: 48px;
+    gap: 40px;
+  }
+  
+  .running-content .content-link img {
+    height: 75px;
+    max-height: 85px;
+    min-width: 100px;
   }
 
   .running-animation {
-    animation: scroll 5s linear infinite;
+    animation: seamless-scroll 50s linear infinite;
   }
     
   .running-content.has-large-text .image-logo {

@@ -11,14 +11,14 @@ import ScrollTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: {
-    template: '%s',
-    default: 'Consulo Creative Business Consulting Template',
+    template: '%s | Saanvi Technologies',
+    default: 'Saanvi Technologies',
   },
-  description: "Consulo is a creative business consulting template designed for corporate entities and professional businesses.",
+  description: "Saanvi Technologies delivers innovative digital solutions tailored to empower businesses with cutting-edge technology and expert-driven services.",
   openGraph: {
-    title: 'Consulo Creative Business Consulting Template',
-    description: 'A versatile HTML template designed for corporate entities and professional businesses.',
-    url: 'https://themeforest.net/user/spreethemes/portfolio',
+    title: 'Saanvi Technologies',
+    description: 'Saanvi Technologies delivers innovative digital solutions tailored to empower businesses with cutting-edge technology and expert-driven services.',
+    url: 'https://saanvitechin.com',
     type: 'website',
   },
 };
