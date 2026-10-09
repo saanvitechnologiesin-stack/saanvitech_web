@@ -69,7 +69,7 @@ const HeroSlider2 = ({ wrapperCls, slides }: HeroSliderType) => {
                       )}
 
                       {slide.heading && (
-                        <Heading title={slide.heading} cls="text-90 fw-700" />
+                        <Heading title={slide.heading} cls="text-80 fw-700" />
                       )}
 
                       {slide.text && <Text text={slide.text} cls="text-18" />}

@@ -37,7 +37,7 @@ const HeroBanner = ({ data }: { data: SectionProps }) => {
                             {heading && 
                                 <Heading 
                                     title={heading}
-                                    cls="text-90"
+                                    cls="text-80"
                                     aos="fade-up"
                                     aosDelay="100"
                                 />

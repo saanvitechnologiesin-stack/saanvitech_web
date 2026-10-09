@@ -22,7 +22,7 @@ const Projects = ({
                 <div className="grid grid-cols-12 sm:gap-1 product-grid">
                     {ProjectList.map((project, index) => (
                         <div 
-                            className="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3" data-aos="fade-up" 
+                            className="col-span-12 sm:col-span-6 lg:col-span-4" data-aos="fade-up" 
                             data-aos-delay={`${index + 1}00`} 
                             key={`project-list-${index}`}
                         >
@@ -31,7 +31,7 @@ const Projects = ({
                     ))}
                 </div>
                 
-                <Pagination />
+                {ProjectList.length > 6 && <Pagination />}
             </div>
         </div>
     )
