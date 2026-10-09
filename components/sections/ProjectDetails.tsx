@@ -32,36 +32,35 @@ const ProjectDetails = ({
     return (
         <div className="page-project-details mt-100 mb-100">
             <div className={container}>
-                {image &&
-                    <div className="project-media radius18" data-aos="fade-up">
-                        <Image 
-                            src={image}
-                            width={1400} 
-                            height={637} 
-                            loading="lazy" 
-                            alt="Image"
-                        />
-                    </div>
-                }
+                <div className="grid grid-cols-12 lg:gap-1">
+                    <div className="col-span-12 lg:col-span-7">
+                        <div className="project-details-content">
+                            {image &&
+                                <div className="details-media radius18" data-aos="fade-up">
+                                    <Image 
+                                        src={image}
+                                        width={1000} 
+                                        height={596} 
+                                        loading="lazy" 
+                                        alt={title || "Product Image"}
+                                    />
+                                </div>
+                            }
 
-                <div className="project-details-content">
-                    <div className="grid grid-cols-12 lg:gap-1">
-                        <div className="lg:col-span-7 col-span-12">
-                            <div className="content-details-inner">
-                                {title &&
-                                    <h2 className="heading text-50" data-aos="fade-up">
-                                        {title}
-                                    </h2>
-                                }
+                            {title &&
+                                <h2 className="heading text-40 lg:text-50" data-aos="fade-up">
+                                    {title}
+                                </h2>
+                            }
 
-                                {content && <>{parse(content)}</>}
-                            </div>
+                            {content && <>{parse(content)}</>}
                         </div>
+                    </div>
 
-                        <div className="lg:col-span-5 col-span-12">
-                            <div className="project-sidebar">
+                    <div className="col-span-12 lg:col-span-5">
+                        <div className="project-sidebar">
                                 <div className="sidebar-widget project-info radius18" data-aos="fade-up">
-                                   <h2 className="heading text-24">Project Information</h2>
+                                   <h2 className="heading text-24">Product Information</h2>
                                    <ul className="project-info-list list-unstyled">
                                         {client &&
                                             <ProjectBlock 
@@ -111,7 +110,7 @@ const ProjectDetails = ({
                                 <SidebarPhone 
                                     heading="Contact with us <br/> for any advice"
                                     text="Need help? Talk to an expert"
-                                    phone="+12345.6789.333"
+                                    phone="+91 98445 60390"
                                     image={{
                                         src: SidebarPhoneImage.src,                      
                                         width: 1000,
@@ -125,7 +124,6 @@ const ProjectDetails = ({
                     </div>
                 </div>
             </div>
-        </div>
     )
 }
 
