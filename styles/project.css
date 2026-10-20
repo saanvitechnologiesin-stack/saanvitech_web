@@ -97,3 +97,44 @@ project-slider .swiper-slide {
     overflow: visible;
   }
 }
+
+/* Page Projects Header */
+.page-projects .section-headings {
+  margin-block-end: 48px;
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.page-projects .section-headings .heading + .text {
+  margin-block-start: 16px;
+  line-height: 1.65;
+  color: var(--color-foreground-subheading, #5d666f);
+}
+
+@media (max-width: 767px) {
+  .page-projects .section-headings {
+    margin-block-end: 32px;
+    padding-inline: 12px;
+  }
+}
+
+/* Single Project Centering */
+.single-project-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.single-project-wrapper {
+  width: 100%;
+  max-width: 480px;
+  margin-inline: auto;
+}
+
+@media (max-width: 575px) {
+  .single-project-wrapper {
+    max-width: 100%;
+    padding-inline: 16px;
+  }
+}

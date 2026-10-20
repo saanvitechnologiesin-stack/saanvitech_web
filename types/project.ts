@@ -11,6 +11,7 @@ export interface ProjectType {
     content?: string;
     image?: string;
     shortDesc?:string;
+    mockup_image?: string;
 }
 
 export interface ProjectDataType {
