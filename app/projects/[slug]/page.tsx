@@ -9,9 +9,13 @@ import { notFound } from 'next/navigation';
 import BreadcrumbBanner from "@/components/BreadcrumbBanner";
 import ProjectDetails from '@/components/sections/ProjectDetails';
 
-const PAGE_TITLE: string = 'Project Details';
-export const metadata: Metadata = {
-  title: PAGE_TITLE,
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const project = Projects.find((p) => p.slug === slug);
+    return {
+        title: project ? `${project.title} - Saanvi Technologies` : 'Product Details',
+        description: project?.shortDesc || 'Saanvi Technologies enterprise software products.',
+    };
 }
 
 const Page = async ({ params }: {params: Promise<{slug: string}>}) => {
@@ -24,7 +28,7 @@ const Page = async ({ params }: {params: Promise<{slug: string}>}) => {
     return (
         <>
             <BreadcrumbBanner 
-                title={PAGE_TITLE}
+                title={project?.title || 'Product Details'}
                 image={{
                     src: BreadcrumbBannerImage.src,
                     srcMobile: BreadcrumbBannerImageTablet.src,

@@ -6,21 +6,21 @@ export const ContactData: SectionProps = {
     container: "container",
     subheading: "Contact Us",
     heading: "Let's Build an Awesome Project Together",
-    text: "Each demo built with Teba will look different. You can customize almost anything in the appearance of your website with only a few clicks. Each demo built with Teba will look different.",
+    text: "Reach out to Saanvi Technologies for software development, IT consulting, and staffing solutions. We look forward to partnering with you.",
     promotions: [
         {
             icon: <Icons.ThumbsUp />,
-            title: "350+ Projects Done",
-            text: "From banking and insurance to wealth the management and security on there",
+            title: "Head Office Address",
+            text: "Anugraha, H No 3/68, Main Road, NH66, Saligrama - 576225, Brahmavara Taluk, Udupi District",
         },
         {
             icon: <Icons.Support />,
-            title: "500+ Happy Clients",
-            text: "From banking and insurance to wealth the management and security on there",
+            title: "Get in Touch",
+            text: "Phone: +91 98445 60390 | Email: info@saanvitechin.com / chinmaya@saanvitechin.com",
         },
     ],
     block: {
         heading: "Make an Appointment",
-        text: "Feel free to contact with us, we don't spam your email",
+        text: "Feel free to contact us anytime. We respond promptly.",
     },
 }

@@ -7,7 +7,7 @@ import BreadcrumbBanner from "@/components/BreadcrumbBanner";
 import Projects from '@/components/sections/Projects';
 
 
-const PAGE_TITLE: string = 'Our Projects';
+const PAGE_TITLE: string = 'Our Products';
 export const metadata: Metadata = {
   title: PAGE_TITLE,
 }
