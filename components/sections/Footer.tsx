@@ -8,6 +8,10 @@ import FooterStyleGlobal from "../FooterStyleGlobal";
 const Footer = () => {
     const pathname = usePathname();
 
+    if (pathname?.startsWith('/admin')) {
+        return null;
+    }
+
     let container: string = 'container-fluid';
     if (pathname === '/' || pathname === '/services') container = 'container';
 

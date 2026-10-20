@@ -8,22 +8,27 @@
 }
 
 .project-details-content .project-challenge {
-  margin-block-start: 60px;
-  max-width: 548px;
+  margin-block-start: 50px;
+  max-width: 100%;
 }
 
 .project-challenge .challenge-list {
-  margin-block-start: 34px;
+  margin-block-start: 28px;
 }
 
 .project-challenge .challenge-list > li + li {
-  margin-block-start: 32px;
+  margin-block-start: 20px;
 }
 
 .project-challenge .challenge-item {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
+}
+
+.project-challenge .challenge-item svg {
+  flex-shrink: 0;
+  margin-top: 3px;
 }
 
 .project-info-list {
@@ -101,3 +106,75 @@
         margin-block-start: 40px;
     }
 }
+
+/* ==========================================================================
+   Mobile Image Preview
+   ========================================================================== */
+.project-mobile-preview {
+    margin-block-start: 48px;
+    margin-block-end: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.project-mobile-preview .mobile-mockup-img {
+    max-width: 360px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 15px 30px rgba(15, 23, 42, 0.08));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-mobile-preview .mobile-mockup-img:hover {
+    transform: translateY(-6px);
+}
+
+@media (max-width: 767px) {
+    .project-mobile-preview {
+        margin-block-start: 36px;
+    }
+
+    .project-mobile-preview .mobile-mockup-img {
+        max-width: 280px;
+    }
+}
+
+/* ==========================================================================
+   Sidebar Mockup Image
+   ========================================================================== */
+.sidebar-widget.project-sidebar-mockup {
+    padding: 0;
+    background: #ffffff;
+    border: 1px solid rgba(28, 37, 57, 0.08);
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.sidebar-widget.project-sidebar-mockup:hover {
+    border-color: rgba(28, 37, 57, 0.16);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+}
+
+.sidebar-widget.project-sidebar-mockup .sidebar-mockup-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transform: scale(1.2);
+    transform-origin: center center;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-widget.project-sidebar-mockup:hover .sidebar-mockup-img {
+    transform: scale(1.26);
+}
+

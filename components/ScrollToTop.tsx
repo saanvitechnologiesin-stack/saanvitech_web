@@ -1,10 +1,16 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Icons from "@/components/Icons";
 
 const ScrollTop: React.FC = () => {
+  const pathname = usePathname();
   const buttonRef = useRef<HTMLDivElement | null>(null);
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   useEffect(() => {
     const handleScroll = () => {

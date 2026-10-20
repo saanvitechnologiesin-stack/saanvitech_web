@@ -3,11 +3,9 @@ import "@/styles/service-details.css";
 import "@/styles/project-details.css";
 import Image from "next/image";
 import parse from 'html-react-parser';
-import { formatDate } from "@/utils/formatDate";
 import SidebarPhoneImage from "@/public/img/service/secvice-contact.jpg";
 
 import { ProjectType } from "@/types/project";
-import ProjectBlock from "../ProjectBlock";
 import SidebarPhone from "../SidebarPhone";
 
 const ProjectDetails = ({
@@ -21,12 +19,7 @@ const ProjectDetails = ({
         title,
         image,
         content,
-        category,
-        client,
-        owner,
-        starting_date,
-        ending_date,
-        website
+        mockup_image
     } = data || {};
 
     return (
@@ -60,53 +53,18 @@ const ProjectDetails = ({
 
                         <div className="lg:col-span-5 col-span-12">
                             <div className="project-sidebar">
-                                <div className="sidebar-widget project-info radius18" data-aos="fade-up">
-                                   <h2 className="heading text-24">Project Information</h2>
-                                   <ul className="project-info-list list-unstyled">
-                                        {client &&
-                                            <ProjectBlock 
-                                                title="Client"
-                                                text={client}
-                                            />
-                                        }
-                                        
-                                        {starting_date &&
-                                            <ProjectBlock 
-                                                title="Start Date"
-                                                text={formatDate(starting_date)}
-                                            />
-                                        }
-                                        
-                                        {ending_date &&
-                                            <ProjectBlock 
-                                                title="End Date"
-                                                text={formatDate(ending_date)}
-                                            />
-                                        }
-
-                                        {owner &&
-                                            <ProjectBlock 
-                                                title="Owner"
-                                                text={owner}
-                                            />
-                                        }
-
-                                        {category &&
-                                            <ProjectBlock 
-                                                title="Category"
-                                                text={category}
-                                            />
-                                        }
-
-                                        {website &&
-                                            <ProjectBlock 
-                                                title="Website"
-                                                text={website}
-                                            />
-                                        }
-                                   </ul>
-                                </div>
-
+                                {mockup_image && (
+                                    <div className="sidebar-widget project-sidebar-mockup radius18" data-aos="fade-up">
+                                        <Image
+                                            src={mockup_image}
+                                            width={1920}
+                                            height={1080}
+                                            alt="Web Dashboard Mockup"
+                                            className="sidebar-mockup-img"
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                )}
 
                                 <SidebarPhone 
                                     heading="Contact with us <br/> for any advice"

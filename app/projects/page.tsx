@@ -34,6 +34,8 @@ const PageProjects = () => {
             <Projects 
                 wrapperCls="mt-100 mb-100"
                 container="container-fluid"
+                heading="Featured Solutions We've Built"
+                text="We design and deliver software solutions tailored to specific industries and challenges. From construction management tools to business automation platforms, our products are built to perform — and scale with you."
             />
         </>
     )

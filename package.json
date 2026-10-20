@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "set-admin": "node scripts/set-admin.js"
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
@@ -15,6 +16,7 @@
     "html-react-parser": "^5.2.6",
     "next": "16.0.7",
     "nodemailer": "^7.0.6",
+    "pg": "^8.23.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "swiper": "^12.0.2",
@@ -25,6 +27,7 @@
     "@tailwindcss/postcss": "^4",
     "@types/aos": "^3.0.7",
     "@types/node": "^20",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",

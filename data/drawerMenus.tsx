@@ -17,7 +17,7 @@ export const MenuService = {
         },
         {
             title: "Professional Services",
-            path: "/projects/business-development"
+            path: "/projects/construction-project-management"
         }
     ]
 }
