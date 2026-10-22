@@ -81,7 +81,7 @@ const ContactSection = ({ data }: { data: SectionProps }) => {
                                 {subheading &&
                                     <Subheading 
                                         title={subheading}
-                                        cls="text-20"
+                                        cls="text-16"
                                         aos="fade-up"
                                     />
                                 }
@@ -89,7 +89,7 @@ const ContactSection = ({ data }: { data: SectionProps }) => {
                                 {heading &&
                                     <Heading 
                                         title={heading}
-                                        cls="text-50"
+                                        cls="text-32"
                                         aos="fade-up"
                                     />
                                 }
@@ -97,7 +97,7 @@ const ContactSection = ({ data }: { data: SectionProps }) => {
                                 {text &&
                                     <Text 
                                         text={text}
-                                        cls="text-18"
+                                        cls="text-16"
                                         aos="fade-up"
                                     />
                                 }
@@ -115,13 +115,13 @@ const ContactSection = ({ data }: { data: SectionProps }) => {
 
                                         <div className="content">
                                             {item.title &&
-                                                <h2 className="heading text-24 fw-700" data-aos="fade-up">
+                                                <h2 className="heading text-18 fw-700" data-aos="fade-up">
                                                     {item.title}
                                                 </h2>
                                             }
 
                                             {item.text &&
-                                                <p className="text text-16" data-aos="fade-up">
+                                                <p className="text text-14" data-aos="fade-up">
                                                     {item.text}
                                                 </p>
                                             }
@@ -136,13 +136,13 @@ const ContactSection = ({ data }: { data: SectionProps }) => {
                                 {block &&
                                     <div className="contact-form-headings">
                                         {block.heading &&
-                                            <h2 className="heading text-32" data-aos="fade-up">
+                                            <h2 className="heading text-24" data-aos="fade-up">
                                                 {block.heading}
                                             </h2>
                                         }
 
                                         {block.text &&
-                                            <p className="text text-16" data-aos="fade-up">
+                                            <p className="text text-14" data-aos="fade-up">
                                                 {block.text}
                                             </p>
                                         }
@@ -154,7 +154,7 @@ const ContactSection = ({ data }: { data: SectionProps }) => {
                                     onSubmitHandler={handleSubmit}
                                 >
                                     <TextField 
-                                        cls="text-16"
+                                        cls="text-14"
                                         id="ContactForm-name"
                                         label="Your Name"
                                         type="text"
@@ -164,27 +164,37 @@ const ContactSection = ({ data }: { data: SectionProps }) => {
                                     />
 
                                     <TextField 
-                                        cls="text-16"
+                                        cls="text-14"
                                         id="ContactForm-email"
                                         label="Your Email"
                                         type="email"
                                         placeholder="Email Here*"
                                         name="email"
+                                        required={true}
+                                    />
+
+                                    <TextField 
+                                        cls="text-14"
+                                        id="ContactForm-phone"
+                                        label="Phone Number"
+                                        type="tel"
+                                        placeholder="Phone Number (Optional)"
+                                        name="phone"
                                         required={false}
                                     />
 
                                     <TextField 
-                                        cls="text-16"
+                                        cls="text-14"
                                         id="ContactForm-service"
                                         label="Service Type"
                                         type="text"
-                                        placeholder="Service Type"
+                                        placeholder="Service Type (e.g. Software, Web, Staffing, CPM)"
                                         name="service"
                                         required={false}
                                     />
 
                                     <TextArea 
-                                        cls="text-16"
+                                        cls="text-14"
                                         id="ContactForm-body"
                                         label="Your Comment"
                                         placeholder="Your Comment*"

@@ -3,15 +3,15 @@
 }
 
 .section-contact-form .card-icon-text-horizontal {
-  margin-block-start: 40px;
+  margin-block-start: 28px;
 }
 
 .contact-form-headings .heading + .text {
-  margin-block-start: 15px;
+  margin-block-start: 10px;
 }
 
 .section-contact-form .contact-form {
-  margin-block-start: 32px;
+  margin-block-start: 24px;
 }
 
 .section-contact-form .contact-form-wrap {
@@ -45,7 +45,7 @@
   }
 
   .section-contact-form .card-icon-text-horizontal {
-    margin-block-start: 40px;
+    margin-block-start: 28px;
     max-width: 442px;
   }
 }

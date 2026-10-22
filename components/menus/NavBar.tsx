@@ -1,5 +1,5 @@
 import Logo from "../Logo";
-import LogoImage from "@/public/img/logo.png";
+import LogoImage from "@/public/img/logo-white.webp";
 import "@/styles/navigation.css";
 import Menus from "../../data/mainMenuList";
 import Icons from "../Icons";
@@ -22,12 +22,12 @@ const NavBar = () => {
         <div className="lg:hidden header-nav-headings">
           <Logo 
             src={LogoImage.src}
-            width={189}
-            height={32}
+            width={145}
+            height={50}
             url="/"
             cls="header-logo"
-            alt="Consulo logo"
-            ariaLabel="Consulo logo"
+            alt="Saanvi Technologies logo"
+            ariaLabel="Saanvi Technologies logo"
             loading="lazy"
           />
           <DrawerOpener

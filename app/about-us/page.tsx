@@ -17,22 +17,22 @@ import Faq from '@/components/sections/Faq';
 
 const PAGE_TITLE: string = 'About Us';
 export const metadata: Metadata = {
-  title: PAGE_TITLE,
+    title: PAGE_TITLE,
 }
 
 
 const About = () => {
-    return(
+    return (
         <>
             {/* Breadcrumb Banner */}
-            <BreadcrumbBanner 
+            <BreadcrumbBanner
                 title={PAGE_TITLE}
                 image={{
                     src: BreadcrumbBannerImage.src,
                     srcMobile: BreadcrumbBannerImageTablet.src,
                     srcTablet: BreadcrumbBannerImageMobile.src,
                     width: 1920,
-                    height: 520,
+                    height: 420,
                     cls: "media media-bg",
                     alt: "Banner Image",
                     loading: "eager"

@@ -32,14 +32,41 @@ export async function GET(req: NextRequest) {
 
     // Backend Search & Filtering via PostgreSQL
     const q = url.searchParams.get("q") || "";
-    const locationsParam = url.searchParams.get("locations");
-    const typesParam = url.searchParams.get("types");
-    const experiencesParam = url.searchParams.get("experiences");
     const sortBy = (url.searchParams.get("sort") === "oldest" ? "oldest" : "newest") as "newest" | "oldest";
 
-    const locations = locationsParam ? locationsParam.split(",").map(s => s.trim()).filter(Boolean) : undefined;
-    const types = typesParam ? typesParam.split(",").map(s => s.trim()).filter(Boolean) : undefined;
-    const experiences = experiencesParam ? experiencesParam.split(",").map(s => s.trim()).filter(Boolean) : undefined;
+    const filterOptions = await getCareerFilterOptions();
+    const knownLocations = filterOptions.locations;
+    const knownTypes = filterOptions.types;
+    const knownExperiences = filterOptions.experiences;
+
+    const parseFilterParam = (paramKey: string, knownList: string[]): string[] | undefined => {
+      const allVals = url.searchParams.getAll(paramKey).map(s => s.trim()).filter(Boolean);
+      if (allVals.length === 0) return undefined;
+
+      const result: string[] = [];
+      for (const val of allVals) {
+        if (knownList.includes(val)) {
+          result.push(val);
+        } else if (val.includes("|")) {
+          result.push(...val.split("|").map(s => s.trim()).filter(Boolean));
+        } else if (val.includes(",")) {
+          const parts = val.split(",").map(s => s.trim()).filter(Boolean);
+          const anyPartKnown = parts.some(p => knownList.includes(p));
+          if (anyPartKnown) {
+            result.push(...parts);
+          } else {
+            result.push(val);
+          }
+        } else {
+          result.push(val);
+        }
+      }
+      return result.length > 0 ? Array.from(new Set(result)) : undefined;
+    };
+
+    const locations = parseFilterParam("locations", knownLocations);
+    const types = parseFilterParam("types", knownTypes);
+    const experiences = parseFilterParam("experiences", knownExperiences);
 
     const { careers, total } = await searchCareers({
       includeInactive: false,
@@ -49,8 +76,6 @@ export async function GET(req: NextRequest) {
       experiences,
       sortBy,
     });
-
-    const filterOptions = await getCareerFilterOptions();
 
     return NextResponse.json({
       success: true,

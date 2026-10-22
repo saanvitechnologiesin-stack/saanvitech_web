@@ -2,7 +2,7 @@
   --header-radius: 0;
   --color-background: #ffffff;
   --color-foreground: rgba(28, 37, 57, 1);
-  --color-primary-hover: #f28749;
+  --color-primary-hover: #f98e55;
   --color-border: rgba(0, 0, 0, 0.08);
   --style-border-width: 1px;
   background: var(--color-background);
@@ -167,9 +167,9 @@ sticky-header[data-sticky-type="always"] {
 
 .header-1 .button--secondary:hover {
   --color-secondary-button-hover-text: rgba(255, 255, 255, 1);
-  --color-secondary-button-hover-background: #f28749;
-  --color-secondary-button-hover-border: #f28749;
-  --color-secondary-button-hover-icon: #f28749;
+  --color-secondary-button-hover-background: #f98e55;
+  --color-secondary-button-hover-border: #f98e55;
+  --color-secondary-button-hover-icon: #f98e55;
   --color-secondary-button-hover-icon-background: rgba(255, 255, 255, 1);
 }
 

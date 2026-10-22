@@ -1,15 +1,14 @@
 .page-banner {
-  --height: 520px;
-  --color-overlay: linear-gradient(
-    184.15deg,
-    rgba(28, 37, 57, 0) -187.51%,
-    #1c2539 96.62%
-  );
+  --height: 320px;
+  --color-overlay: linear-gradient(184.15deg,
+      rgba(28, 37, 57, 0) -187.51%,
+      #1c2539 96.62%);
   --color-foreground: rgba(255, 255, 255, 1);
   --color-foreground-heading: rgba(255, 255, 255, 1);
   position: relative;
   overflow: hidden;
   height: var(--height);
+  margin-block-start: var(--header-height, 98px);
 }
 
 .page-banner-content {
@@ -28,7 +27,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  margin-block-start: 20px;
+  margin-block-start: 12px;
 }
 
 .breadcrumb svg {
@@ -39,6 +38,7 @@
 
 .breadcrumb a {
   text-decoration: none;
+  font-size: 15px;
 }
 
 .breadcrumb a:not(.active),
@@ -46,8 +46,16 @@
   opacity: 0.75;
 }
 
+@media (max-width: 991px) {
+  .page-banner {
+    --height: 260px;
+    margin-block-start: var(--header-height, 75px);
+  }
+}
+
 @media (max-width: 767px) {
   .page-banner {
-    --height: 340px;
+    --height: 260px;
+    margin-block-start: var(--header-height, 70px);
   }
 }

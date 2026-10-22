@@ -54,7 +54,7 @@ const ServiceDetails = ({
                             }
                             
                             {title &&
-                                <h2 className="heading text-50" data-aos="fade-up">
+                                <h2 className="heading text-40" data-aos="fade-up">
                                     {title}
                                 </h2>
                             }

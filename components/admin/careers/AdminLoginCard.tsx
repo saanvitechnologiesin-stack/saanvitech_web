@@ -112,8 +112,8 @@ export const AdminLoginCard: React.FC<AdminLoginCardProps> = ({
                 boxSizing: "border-box",
               }}
               onFocus={e => {
-                e.currentTarget.style.borderColor = "#2271b1";
-                e.currentTarget.style.boxShadow = "0 0 0 1px #2271b1";
+                e.currentTarget.style.borderColor = "#f98e55";
+                e.currentTarget.style.boxShadow = "0 0 0 1px #f98e55";
               }}
               onBlur={e => {
                 e.currentTarget.style.borderColor = "#8c8f94";
@@ -154,8 +154,8 @@ export const AdminLoginCard: React.FC<AdminLoginCardProps> = ({
                   boxSizing: "border-box",
                 }}
                 onFocus={e => {
-                  e.currentTarget.style.borderColor = "#2271b1";
-                  e.currentTarget.style.boxShadow = "0 0 0 1px #2271b1";
+                  e.currentTarget.style.borderColor = "#f98e55";
+                  e.currentTarget.style.boxShadow = "0 0 0 1px #f98e55";
                 }}
                 onBlur={e => {
                   e.currentTarget.style.borderColor = "#8c8f94";
@@ -175,7 +175,7 @@ export const AdminLoginCard: React.FC<AdminLoginCardProps> = ({
                   border: "none",
                   cursor: "pointer",
                   padding: "4px",
-                  color: "#2271b1",
+                  color: "#093d64",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -222,7 +222,7 @@ export const AdminLoginCard: React.FC<AdminLoginCardProps> = ({
                   maxWidth: "14px",
                   margin: "0",
                   padding: "0",
-                  accentColor: "#2271b1", 
+                  accentColor: "#f98e55", 
                   cursor: "pointer",
                   verticalAlign: "middle",
                   flexShrink: 0,
@@ -234,27 +234,33 @@ export const AdminLoginCard: React.FC<AdminLoginCardProps> = ({
             <button
               type="submit"
               style={{
-                background: "#2271b1",
-                borderColor: "#2271b1",
+                background: "#093d64",
+                borderColor: "#093d64",
                 borderWidth: "1px",
                 borderStyle: "solid",
                 color: "#ffffff",
                 borderRadius: "4px",
-                padding: "0 14px",
-                height: "32px",
-                minHeight: "32px",
+                padding: "0 16px",
+                height: "34px",
+                minHeight: "34px",
                 fontSize: "13px",
                 fontFamily: 'var(--font-button--family), var(--font-heading--family), "Poppins", sans-serif',
                 fontWeight: "600",
                 cursor: "pointer",
-                lineHeight: "30px",
-                transition: "background 0.15s ease",
+                lineHeight: "32px",
+                transition: "all 0.15s ease",
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
               }}
-              onMouseEnter={e => (e.currentTarget.style.background = "#135e96")}
-              onMouseLeave={e => (e.currentTarget.style.background = "#2271b1")}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = "#f98e55";
+                e.currentTarget.style.borderColor = "#f98e55";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = "#093d64";
+                e.currentTarget.style.borderColor = "#093d64";
+              }}
             >
               Log In
             </button>
@@ -267,9 +273,15 @@ export const AdminLoginCard: React.FC<AdminLoginCardProps> = ({
         <div style={{ marginBottom: "12px" }}>
           <a
             href="/"
-            style={{ color: "#2271b1", textDecoration: "none", fontSize: "13px" }}
-            onMouseEnter={e => (e.currentTarget.style.textDecoration = "underline")}
-            onMouseLeave={e => (e.currentTarget.style.textDecoration = "none")}
+            style={{ color: "#093d64", textDecoration: "none", fontSize: "13px" }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = "#f98e55";
+              e.currentTarget.style.textDecoration = "underline";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = "#093d64";
+              e.currentTarget.style.textDecoration = "none";
+            }}
           >
             ← Go to Home Page
           </a>

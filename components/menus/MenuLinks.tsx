@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import Icons from "../Icons";
 import { MenuType } from "@/types/menu";
+import { usePathname } from "next/navigation";
 
 export const LinkHeading = ({ title, path }: MenuType) => {
     return(
@@ -12,15 +15,24 @@ export const LinkHeading = ({ title, path }: MenuType) => {
 }
 
 export const ParentLink = ({ title, path, dropdown }: MenuType) => {
+    const pathname = usePathname();
+    
+    // Check if the current route matches the menu path
+    const isActive = path === "/" 
+        ? pathname === "/" 
+        : pathname === path || 
+          (path && pathname.startsWith(`${path}/`)) || 
+          (path === "/career" && pathname.startsWith("/careers"));
+
     return(
         <>
             {dropdown ? (
-                <Link className="menu-link menu-link-main menu-accrodion" href={path}>
+                <Link className={`menu-link menu-link-main menu-accrodion ${isActive ? "is-active" : ""}`} href={path}>
                     {title}
                     <Icons.CaretDown />
                 </Link>
             ) : (
-                <Link className="menu-link menu-link-main" href={path}>
+                <Link className={`menu-link menu-link-main ${isActive ? "is-active" : ""}`} href={path}>
                     {title}
                 </Link>
             )}
@@ -29,15 +41,18 @@ export const ParentLink = ({ title, path, dropdown }: MenuType) => {
 }
 
 export const ChildLink = ({ title, path, dropdown }: MenuType) => {
+    const pathname = usePathname();
+    const isActive = pathname === path || (path !== "/" && path && pathname.startsWith(`${path}/`));
+
     return(
         <>
             {dropdown ? (
-                <Link className="menu-link menu-accrodion" href={path}>
+                <Link className={`menu-link menu-accrodion ${isActive ? "is-active" : ""}`} href={path}>
                     {title}
                     <Icons.CaretDown />
                 </Link>
             ) : (
-                <Link className="menu-link" href={path}>
+                <Link className={`menu-link ${isActive ? "is-active" : ""}`} href={path}>
                     {title}
                 </Link>
             )}

@@ -604,7 +604,7 @@ export const CareerModal: React.FC<CareerModalProps> = ({
                   borderRadius: "8px", 
                   fontSize: "13px",
                   fontWeight: "600",
-                  background: "#2563eb",
+                  background: "#f98e55",
                   color: "#ffffff",
                   border: "none",
                   cursor: "pointer"

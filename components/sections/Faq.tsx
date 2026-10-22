@@ -27,27 +27,27 @@ const Faq = ({ data }: { data: SectionProps }) => {
                 <div className="grid grid-cols-2 lg:gap-1 faq-row">
                     <div className="lg:col-span-1 col-span-2">
                         <div className="section-headings">
-                            {subheading && 
-                                <Subheading 
+                            {subheading &&
+                                <Subheading
                                     title={subheading}
                                     cls="text-20"
                                     aos="fade-up"
                                 />
                             }
 
-                            {heading && 
-                                <Heading 
+                            {heading &&
+                                <Heading
                                     title={heading}
-                                    cls="text-50"
+                                    cls="text-40"
                                     aos="fade-up"
                                     aosDelay="50"
                                 />
                             }
 
-                            {text && 
-                                <Text 
+                            {text &&
+                                <Text
                                     text={text}
-                                    cls="text-18"
+                                    cls="text-16"
                                     aos="fade-up"
                                     aosDelay="80"
                                 />
@@ -56,7 +56,7 @@ const Faq = ({ data }: { data: SectionProps }) => {
                             {button &&
                                 <div className="buttons" data-aos="fade-up" data-aos-delay="100">
                                     {button.type == 'primary' &&
-                                        <PrimaryButton 
+                                        <PrimaryButton
                                             label={button.label}
                                             href={button.href}
                                             ariaLabel={button.label}
@@ -64,7 +64,7 @@ const Faq = ({ data }: { data: SectionProps }) => {
                                     }
 
                                     {button.type == 'secondary' &&
-                                        <SecondaryButton 
+                                        <SecondaryButton
                                             label={button.label}
                                             href={button.href}
                                             ariaLabel={button.label}
@@ -74,12 +74,12 @@ const Faq = ({ data }: { data: SectionProps }) => {
                             }
 
                             <div className="image-absolute" data-aos="zoom-in">
-                                <Image 
+                                <Image
                                     src={BackgroundImage.src}
-                                    width={104} 
-                                    height={180} 
-                                    loading="lazy" 
-                                    alt="Image" 
+                                    width={104}
+                                    height={180}
+                                    loading="lazy"
+                                    alt="Image"
                                 />
                             </div>
                         </div>
@@ -90,7 +90,7 @@ const Faq = ({ data }: { data: SectionProps }) => {
                     </div>
                 </div>
             </div>
-      </div>
+        </div>
     )
 }
 

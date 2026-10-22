@@ -35,7 +35,7 @@ const MeetCeo = ({ data }: { data: MeetCeoDataType }) => {
                     {heading &&
                         <Heading 
                             title={heading}
-                            cls="text-50"
+                            cls="text-40"
                             aos="fade-up"
                         />
                     }

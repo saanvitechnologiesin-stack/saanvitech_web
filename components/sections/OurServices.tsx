@@ -99,7 +99,7 @@ const OurServices = ({ data }: { data: SectionProps }) => {
                         {heading && (
                             <Heading 
                                 title={heading}
-                                cls="text-50"
+                                cls="text-40"
                             />
                         )}
 

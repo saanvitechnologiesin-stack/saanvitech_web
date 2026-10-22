@@ -119,8 +119,8 @@
 }
 
 .filter-clear-btn:hover {
-  color: #2563eb;
-  background: #eff6ff;
+  color: #f98e55;
+  background: rgba(249, 142, 85, 0.08);
 }
 
 /* Accordion Sections */
@@ -167,11 +167,11 @@
 }
 
 .filter-accordion-header:hover .filter-accordion-title {
-  color: #2563eb;
+  color: #f98e55;
 }
 
 .filter-accordion-header:hover .filter-accordion-toggle {
-  color: #2563eb;
+  color: #f98e55;
 }
 
 .filter-accordion-body {
@@ -209,9 +209,9 @@
 }
 
 .filter-search-input:focus {
-  border-color: #2563eb;
+  border-color: #f98e55;
   background: #ffffff;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 2px rgba(249, 142, 85, 0.15);
 }
 
 .filter-options-list {
@@ -242,8 +242,8 @@
 }
 
 .filter-checkbox-label.active {
-  background: #eff6ff;
-  color: #1e40af;
+  background: rgba(249, 142, 85, 0.08);
+  color: #093d64;
   font-weight: 500;
 }
 
@@ -263,7 +263,7 @@
 .filter-checkbox-left input[type="checkbox"] {
   width: 15px;
   height: 15px;
-  accent-color: #2563eb;
+  accent-color: #f98e55;
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -309,31 +309,31 @@
 }
 
 .careers-sort-select:focus {
-  border-color: #2563eb;
+  border-color: #f98e55;
 }
 
 .careers-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
 }
 
 .job-card {
   background: #ffffff;
-  border: 1px solid rgba(28, 37, 57, 0.09);
-  border-radius: 18px;
-  padding: 28px 32px;
+  border: 1px solid rgba(28, 37, 57, 0.08);
+  border-radius: 12px;
+  padding: 18px 22px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+  gap: 12px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .job-card:hover {
-  border-color: #1c2539;
-  box-shadow: 0 12px 32px rgba(28, 37, 57, 0.08);
-  transform: translateY(-2px);
+  border-color: #f98e55;
+  box-shadow: 0 8px 24px rgba(249, 142, 85, 0.08);
+  transform: translateY(-1px);
 }
 
 .job-card-header {
@@ -341,20 +341,20 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
+  gap: 14px;
 }
 
 .job-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
+  gap: 6px;
+  margin-top: 6px;
 }
 
 .job-badge {
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 13px;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 12px;
   font-weight: 500;
   background: #f1f5f9;
   color: #334155;
@@ -365,8 +365,8 @@
 }
 
 .job-badge.badge-dept {
-  background: rgba(37, 99, 235, 0.08);
-  color: #2563eb;
+  background: rgba(9, 61, 100, 0.08);
+  color: #093d64;
 }
 
 .job-badge.badge-type {
@@ -381,7 +381,7 @@
 }
 
 .btn-apply {
-  background: #1c2539;
+  background: #093d64;
   color: #ffffff;
   padding: 10px 24px;
   border-radius: 10px;
@@ -396,7 +396,7 @@
 }
 
 .btn-apply:hover {
-  background: #2b3956;
+  background: #f98e55;
   transform: translateY(-1px);
 }
 
@@ -413,8 +413,9 @@
 }
 
 .btn-details:hover {
-  background: #f8fafc;
-  border-color: #1c2539;
+  background: rgba(249, 142, 85, 0.08);
+  border-color: #f98e55;
+  color: #f98e55;
 }
 
 /* ==========================================================================
@@ -495,9 +496,9 @@
   width: 42px;
   height: 42px;
   border-radius: 10px;
-  background: #eff6ff;
-  color: #2563eb;
-  border: 1px solid #dbeafe;
+  background: rgba(249, 142, 85, 0.1);
+  color: #f98e55;
+  border: 1px solid rgba(249, 142, 85, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -706,7 +707,7 @@
 .add-array-item-btn {
   border: 1px dashed #cbd5e1;
   background: #ffffff;
-  color: #2563eb;
+  color: #f98e55;
   padding: 8px 14px;
   border-radius: 8px;
   font-size: 12px;
@@ -719,9 +720,9 @@
 }
 
 .add-array-item-btn:hover {
-  background: #eff6ff;
-  border-color: #93c5fd;
-  color: #1d4ed8;
+  background: rgba(249, 142, 85, 0.08);
+  border-color: #f98e55;
+  color: #f98e55;
 }
 
 /* Suggestion Chips */
@@ -749,9 +750,9 @@
 }
 
 .benefit-chip:hover {
-  background: #eff6ff;
-  border-color: #bfdbfe;
-  color: #2563eb;
+  background: rgba(249, 142, 85, 0.08);
+  border-color: #f98e55;
+  color: #f98e55;
 }
 
 .benefit-chip.added {
@@ -820,8 +821,8 @@
 .career-form-input:focus,
 .career-form-textarea:focus,
 .career-form-select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  border-color: #f98e55;
+  box-shadow: 0 0 0 3px rgba(249, 142, 85, 0.15);
 }
 
 /* ==========================================================================
@@ -994,8 +995,8 @@
 }
 
 .status-tab-btn.active {
-  color: #2563eb;
-  border-bottom-color: #2563eb;
+  color: #f98e55;
+  border-bottom-color: #f98e55;
 }
 
 .status-tab-badge {
@@ -1008,8 +1009,8 @@
 }
 
 .status-tab-btn.active .status-tab-badge {
-  background: #eff6ff;
-  color: #2563eb;
+  background: rgba(249, 142, 85, 0.12);
+  color: #f98e55;
 }
 
 /* Status Badges */
@@ -1173,8 +1174,8 @@
 }
 
 .page-btn.active {
-  background: #2563eb;
-  border-color: #2563eb;
+  background: #f98e55;
+  border-color: #f98e55;
   color: #ffffff;
   font-weight: 600;
 }
@@ -1243,8 +1244,8 @@
 }
 
 .saas-status-select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+  border-color: #f98e55;
+  box-shadow: 0 0 0 2px rgba(249, 142, 85, 0.15);
 }
 
 .status-dot {
@@ -1280,13 +1281,13 @@
   width: 58px;
   height: 58px;
   border-radius: 14px;
-  background: #eff6ff;
-  color: #2563eb;
+  background: rgba(249, 142, 85, 0.1);
+  color: #f98e55;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
-  border: 1px solid #dbeafe;
+  border: 1px solid rgba(249, 142, 85, 0.2);
 }
 
 .saas-empty-title {
@@ -1347,7 +1348,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #2563eb;
+  background: #093d64;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -1497,8 +1498,8 @@
 }
 
 .filter-clear-btn:hover {
-  color: #2563eb;
-  background: #eff6ff;
+  color: #f98e55;
+  background: rgba(249, 142, 85, 0.08);
 }
 
 /* Accordion Item */
@@ -1525,7 +1526,7 @@
 }
 
 .filter-accordion-header:hover .filter-accordion-title {
-  color: #2563eb;
+  color: #f98e55;
 }
 
 .filter-accordion-title {
@@ -1603,9 +1604,9 @@
 }
 
 .filter-search-input:focus {
-  border-color: #2563eb;
+  border-color: #f98e55;
   background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(249, 142, 85, 0.15);
 }
 
 .filter-search-input::placeholder {
@@ -1666,7 +1667,7 @@
   width: 15px;
   height: 15px;
   border-radius: 4px;
-  accent-color: #2563eb;
+  accent-color: #f98e55;
   cursor: pointer;
   margin: 0;
 }
@@ -1739,20 +1740,20 @@
 }
 
 .careers-sort-select:focus {
-  border-color: #2563eb;
+  border-color: #f98e55;
   background: #ffffff;
 }
 
 /* Inline Job Details Expansion */
 .job-expand-toggle-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: #f1f5f9;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f8fafc;
   border: 1px solid #cbd5e1;
-  color: #1e293b;
-  font-size: 22px;
-  font-weight: 700;
+  color: #475569;
+  font-size: 18px;
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1764,20 +1765,20 @@
 }
 
 .job-expand-toggle-btn:hover {
-  background: #e2e8f0;
+  background: #f1f5f9;
   border-color: #94a3b8;
   color: #0f172a;
 }
 
 .job-expand-toggle-btn.expanded {
-  background: #1c2539;
-  border-color: #1c2539;
+  background: #093d64;
+  border-color: #093d64;
   color: #ffffff;
 }
 
 .job-expand-toggle-btn.expanded:hover {
-  background: #334155;
-  border-color: #334155;
+  background: #f98e55;
+  border-color: #f98e55;
 }
 
 .job-card-expanded {
@@ -1853,8 +1854,8 @@
 }
 
 .resume-upload-zone:hover {
-  border-color: #2563eb;
-  background: #eff6ff;
+  border-color: #f98e55;
+  background: rgba(249, 142, 85, 0.04);
 }
 
 .resume-file-selected {

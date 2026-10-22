@@ -47,7 +47,7 @@ const Accordion = ({
                     key={`faq-${index}`}
                 >
                     <div 
-                        className="accordion-opener heading text-24" 
+                        className="accordion-opener heading text-18" 
                         onClick={() => toggleAccordion(index)}
                     >
                         {item.title}
@@ -62,7 +62,7 @@ const Accordion = ({
                         className="accordion-content"
                         style={{ maxHeight: activeIndex === index ? undefined : 0 }}
                     >
-                        <div className="accordion-content-inner text text-18">
+                        <div className="accordion-content-inner text text-16">
                             {item.text}
                         </div>
                     </div>

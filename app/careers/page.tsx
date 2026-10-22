@@ -103,10 +103,16 @@ export default function CareersPage() {
     locations: string[];
     types: string[];
     experiences: string[];
+    counts?: {
+      locations: Record<string, number>;
+      types: Record<string, number>;
+      experiences: Record<string, number>;
+    };
   }>({
     locations: [],
     types: [],
     experiences: [],
+    counts: { locations: {}, types: {}, experiences: {} },
   });
 
   // Backend Search & Filtering via /api/careers
@@ -118,9 +124,9 @@ export default function CareersPage() {
       try {
         const params = new URLSearchParams();
         if (debouncedSearch.trim()) params.set("q", debouncedSearch.trim());
-        if (selectedLocations.length > 0) params.set("locations", selectedLocations.join(","));
-        if (selectedJobTypes.length > 0) params.set("types", selectedJobTypes.join(","));
-        if (selectedExperiences.length > 0) params.set("experiences", selectedExperiences.join(","));
+        selectedLocations.forEach(loc => params.append("locations", loc));
+        selectedJobTypes.forEach(t => params.append("types", t));
+        selectedExperiences.forEach(exp => params.append("experiences", exp));
         params.set("sort", sortBy);
 
         const res = await fetch(`/api/careers?${params.toString()}`);
@@ -157,8 +163,8 @@ export default function CareersPage() {
   const experiencesList = availableFilterOptions.experiences.length > 0
     ? availableFilterOptions.experiences
     : Array.from(
-        new Set(careers.map(c => c.experience).filter((exp): exp is string => Boolean(exp)))
-      ).sort();
+      new Set(careers.map(c => c.experience).filter((exp): exp is string => Boolean(exp)))
+    ).sort();
 
   const locationsList = allLocations.filter(loc =>
     loc.toLowerCase().includes(locationSearch.toLowerCase().trim())
@@ -287,15 +293,6 @@ export default function CareersPage() {
       />
 
       <div className="careers-page container" style={{ maxWidth: "1280px" }}>
-        {/* Hero Pitch */}
-        <div className="careers-hero" data-aos="fade-up">
-          <h2 className="heading text-44" style={{ marginBottom: "16px" }}>
-            Join Our Mission to Build the Future of Technology
-          </h2>
-          <p className="text text-18" style={{ color: "#64748b", lineHeight: 1.7 }}>
-            At Saanvi Technologies, we engineer high-performance software solutions, construction management platforms, and intelligent business tools. We are looking for passionate problem solvers, engineers, and thinkers to grow with us.
-          </p>
-        </div>
 
 
         {/* 2-Column Careers Layout: Left Accordion Filter Sidebar + Right Job Listings */}
@@ -348,7 +345,7 @@ export default function CareersPage() {
 
                   <div className="filter-options-list">
                     {locationsList.map(loc => {
-                      const count = careers.filter(c => c.location === loc).length;
+                      const count = availableFilterOptions.counts?.locations?.[loc] ?? careers.filter(c => c.location === loc).length;
                       const isChecked = selectedLocations.includes(loc);
                       return (
                         <label key={loc} className="filter-checkbox-label">
@@ -393,7 +390,7 @@ export default function CareersPage() {
                 <div className="filter-accordion-body">
                   <div className="filter-options-list">
                     {jobTypesList.map(type => {
-                      const count = careers.filter(c => c.type === type).length;
+                      const count = availableFilterOptions.counts?.types?.[type] ?? careers.filter(c => c.type === type).length;
                       const isChecked = selectedJobTypes.includes(type);
                       return (
                         <label key={type} className="filter-checkbox-label">
@@ -437,7 +434,7 @@ export default function CareersPage() {
                 <div className="filter-accordion-body">
                   <div className="filter-options-list">
                     {experiencesList.map(exp => {
-                      const count = careers.filter(c => c.experience === exp).length;
+                      const count = availableFilterOptions.counts?.experiences?.[exp] ?? careers.filter(c => c.experience === exp).length;
                       const isChecked = selectedExperiences.includes(exp);
                       return (
                         <label key={exp} className="filter-checkbox-label">
@@ -550,16 +547,16 @@ export default function CareersPage() {
                     <div key={jobKey} className="job-card" data-aos="fade-up" data-aos-delay={`${(idx % 4) + 1}00`}>
                       <div className="job-card-header">
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <h3 style={{ fontSize: "22px", fontWeight: "700", color: "#1c2539", margin: "0 0 6px" }}>
+                          <h3 style={{ fontSize: "17px", fontWeight: "600", color: "#1c2539", margin: "0 0 5px", lineHeight: 1.35, letterSpacing: "-0.01em" }}>
                             {job.title}
                           </h3>
-                          <p style={{ fontSize: "15px", color: "#475569", margin: "0 0 10px", lineHeight: 1.6 }}>
+                          <p style={{ fontSize: "13.5px", color: "#475569", margin: "0 0 8px", lineHeight: 1.5 }}>
                             {job.overview}
                           </p>
 
                           <div className="job-badges">
-                            <span className="job-badge">{job.department}</span>
-                            <span className="job-badge">{job.type}</span>
+                            <span className="job-badge badge-dept">{job.department}</span>
+                            <span className="job-badge badge-type">{job.type}</span>
                             <span className="job-badge">{job.location}</span>
                             {job.experience && (
                               <span className="job-badge">{job.experience}</span>

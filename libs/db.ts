@@ -84,6 +84,20 @@ export async function initDb(): Promise<void> {
       );
     `);
 
+    // 4. Contact / Appointment Inquiries Table
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS contact_inquiries (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        phone VARCHAR(50),
+        service VARCHAR(255),
+        message TEXT NOT NULL,
+        status VARCHAR(50) DEFAULT 'new',
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
     // Seed default admin user if empty
     const adminCountRes = await client.query('SELECT COUNT(*) FROM admin_users');
     const defaultEmail = (process.env.ADMIN_DEFAULT_EMAIL || 'admin@saanvitech.com').toLowerCase().trim();
@@ -183,8 +197,8 @@ export async function getAllCareers(includeInactive = false): Promise<CareerType
   await initDb();
   const client = await getPool().connect();
   try {
-    const query = includeInactive 
-      ? 'SELECT * FROM careers ORDER BY created_at DESC' 
+    const query = includeInactive
+      ? 'SELECT * FROM careers ORDER BY created_at DESC'
       : "SELECT * FROM careers WHERE is_active = true AND (status = 'published' OR status IS NULL) ORDER BY created_at DESC";
     const res = await client.query(query);
     return res.rows.map(r => ({
@@ -266,19 +280,44 @@ export async function getCareerFilterOptions(): Promise<{
   locations: string[];
   types: string[];
   experiences: string[];
+  counts: {
+    locations: Record<string, number>;
+    types: Record<string, number>;
+    experiences: Record<string, number>;
+  };
 }> {
   await initDb();
   const client = await getPool().connect();
   try {
     const res = await client.query(
-      "SELECT DISTINCT location, type, experience FROM careers WHERE is_active = true AND (status = 'published' OR status IS NULL)"
+      "SELECT location, type, experience FROM careers WHERE is_active = true AND (status = 'published' OR status IS NULL)"
     );
     const locations = Array.from(new Set(res.rows.map(r => r.location).filter(Boolean))).sort();
     const types = Array.from(new Set(res.rows.map(r => r.type).filter(Boolean))).sort();
     const experiences = Array.from(
       new Set(res.rows.map(r => r.experience).filter((exp): exp is string => Boolean(exp)))
     ).sort();
-    return { locations, types, experiences };
+
+    const locationCounts: Record<string, number> = {};
+    const typeCounts: Record<string, number> = {};
+    const experienceCounts: Record<string, number> = {};
+
+    res.rows.forEach(r => {
+      if (r.location) locationCounts[r.location] = (locationCounts[r.location] || 0) + 1;
+      if (r.type) typeCounts[r.type] = (typeCounts[r.type] || 0) + 1;
+      if (r.experience) experienceCounts[r.experience] = (experienceCounts[r.experience] || 0) + 1;
+    });
+
+    return {
+      locations,
+      types,
+      experiences,
+      counts: {
+        locations: locationCounts,
+        types: typeCounts,
+        experiences: experienceCounts,
+      },
+    };
   } finally {
     client.release();
   }
@@ -365,7 +404,7 @@ export async function updateCareer(id: number | string, data: Partial<CareerType
     if (data.responsibilities !== undefined) { fields.push(`responsibilities = $${index++}`); values.push(data.responsibilities); }
     if (data.requirements !== undefined) { fields.push(`requirements = $${index++}`); values.push(data.requirements); }
     if (data.benefits !== undefined) { fields.push(`benefits = $${index++}`); values.push(data.benefits); }
-    
+
     if (data.status !== undefined) {
       fields.push(`status = $${index++}`);
       values.push(data.status);
@@ -374,9 +413,9 @@ export async function updateCareer(id: number | string, data: Partial<CareerType
         values.push(data.status === 'published');
       }
     }
-    if (data.is_active !== undefined) { 
-      fields.push(`is_active = $${index++}`); 
-      values.push(data.is_active); 
+    if (data.is_active !== undefined) {
+      fields.push(`is_active = $${index++}`);
+      values.push(data.is_active);
       if (data.status === undefined) {
         fields.push(`status = $${index++}`);
         values.push(data.is_active ? 'published' : 'draft');
@@ -593,3 +632,76 @@ export async function getExistingApplication(
   }
 }
 
+/* ==========================================================================
+   Contact / Appointment Inquiries (Pure PostgreSQL)
+   ========================================================================== */
+
+export interface ContactInquiryInput {
+  name: string;
+  email: string;
+  phone?: string;
+  service?: string;
+  message: string;
+}
+
+export interface ContactInquiryType extends ContactInquiryInput {
+  id: number;
+  status: string;
+  created_at: string;
+}
+
+export async function saveContactInquiry(
+  data: ContactInquiryInput
+): Promise<ContactInquiryType> {
+  await initDb();
+  const client = await getPool().connect();
+  try {
+    const res = await client.query(
+      `INSERT INTO contact_inquiries (name, email, phone, service, message)
+       VALUES ($1, $2, $3, $4, $5)
+       RETURNING *`,
+      [
+        data.name.trim(),
+        data.email.trim(),
+        data.phone ? data.phone.trim() : null,
+        data.service ? data.service.trim() : null,
+        data.message.trim(),
+      ]
+    );
+    const row = res.rows[0];
+    return {
+      id: row.id,
+      name: row.name,
+      email: row.email,
+      phone: row.phone,
+      service: row.service,
+      message: row.message,
+      status: row.status,
+      created_at: row.created_at,
+    };
+  } finally {
+    client.release();
+  }
+}
+
+export async function getAllContactInquiries(): Promise<ContactInquiryType[]> {
+  await initDb();
+  const client = await getPool().connect();
+  try {
+    const res = await client.query(
+      `SELECT * FROM contact_inquiries ORDER BY created_at DESC`
+    );
+    return res.rows.map((row) => ({
+      id: row.id,
+      name: row.name,
+      email: row.email,
+      phone: row.phone,
+      service: row.service,
+      message: row.message,
+      status: row.status,
+      created_at: row.created_at,
+    }));
+  } finally {
+    client.release();
+  }
+}

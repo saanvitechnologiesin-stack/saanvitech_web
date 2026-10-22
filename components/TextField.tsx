@@ -12,7 +12,7 @@ const TextField = ({
     aos,
     aosAnchor,
 }: InputType) => {
-    const requiredAttribute = required ? {'reuired': 'true'} : null;
+    const requiredAttribute = required ? { required: true } : {};
     const isAos = aos ? { 'data-aos': `${aos}` } : null;
     const isAosAnchor = aosAnchor ? { 'data-aos-anchor': `${aosAnchor}` } : null;
     const conditionalAttributes = {...isAos, ...isAosAnchor};
