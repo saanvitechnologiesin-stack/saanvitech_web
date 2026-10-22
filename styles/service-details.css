@@ -202,3 +202,44 @@
     margin-block-start: 40px;
   }
 }
+
+/* Service Details Typography Scaling */
+.service-details-content .heading.text-40 {
+  font-size: 32px;
+  line-height: 1.25;
+}
+
+.service-details-content .heading.text-36 {
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+.service-details-content .heading.text-30 {
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.service-details-content .text.text-18,
+.service-details-content p.text {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.sidebar-widget.service-contact .heading.text-36 {
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+@media (max-width: 767px) {
+  .service-details-content .heading.text-40 {
+    font-size: 26px;
+  }
+
+  .service-details-content .heading.text-36 {
+    font-size: 22px;
+  }
+
+  .service-details-content .heading.text-30 {
+    font-size: 18px;
+  }
+}

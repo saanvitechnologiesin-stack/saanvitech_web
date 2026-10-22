@@ -1,7 +1,7 @@
 import Icons from "./Icons";
 import Link from "next/link";
 import Logo from "./Logo";
-import LogoImage from "@/public/img/logo.png";
+import LogoImage from "@/public/img/logo-white.webp";
 import { MenuService, MenuContact } from "@/data/drawerMenus";
 import DrawerOpener from "./DrawerOpener";
 
@@ -11,12 +11,12 @@ const AdditionalDrawer = () => {
             <div className="drawer-headings">
                 <Logo 
                     src={LogoImage.src}
-                    width={189}
-                    height={32}
+                    width={145}
+                    height={50}
                     url="/"
                     cls="header-logo"
-                    alt="Consulo logo"
-                    ariaLabel="Consulo logo" 
+                    alt="Saanvi Technologies logo"
+                    ariaLabel="Saanvi Technologies logo" 
                     loading="lazy"
                 />
 

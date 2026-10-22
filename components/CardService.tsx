@@ -16,14 +16,14 @@ const CardService = ({ data }: ServiceDataType) => {
         <div className="multicolumn-card">
             {icon && <div className="card-icon icon-40">{parser(icon)}</div>}
 
-            {title && <h2 className="heading text-28">{title}</h2>}
+            {title && <h2 className="heading text-20">{title}</h2>}
 
-            {description && <div className="text text-16">{description}</div>}
+            {description && <div className="text text-15">{description}</div>}
 
             {list &&
                 <ul className="text-lists list-unstyled">
                     {list.map((item, index) => (                        
-                        <li className="text-item text text-16 fw-500" key={`service-${index}`}>
+                        <li className="text-item text text-15 fw-500" key={`service-${index}`}>
                             <Icons.Plus />
                             {item.title}
                         </li>

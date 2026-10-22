@@ -41,7 +41,7 @@ const WhyChooseUs = ({ data }: { data: SectionProps }) => {
                                 {heading &&
                                     <Heading 
                                         title={heading}
-                                        cls="text-50"
+                                        cls="text-40"
                                         aos="fade-right"
                                         aosDelay="200"
                                     />

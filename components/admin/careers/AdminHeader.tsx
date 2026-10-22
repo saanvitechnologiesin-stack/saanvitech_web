@@ -73,7 +73,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
           onClick={onOpenNewModal} 
           className="btn-apply" 
           style={{ 
-            background: "#2563eb", 
+            background: "#f98e55", 
             padding: "8px 16px", 
             height: "38px", 
             borderRadius: "8px", 
@@ -152,7 +152,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
                   <div className="profile-menu-name" style={{ color: "#0f172a", fontWeight: "600", fontSize: "14px" }}>
                     {adminName || "Saanvi Admin"}
                   </div>
-                  <span style={{ background: "#eff6ff", color: "#2563eb", padding: "1px 6px", borderRadius: "999px", fontSize: "10px", fontWeight: "700" }}>
+                  <span style={{ background: "rgba(249, 142, 85, 0.12)", color: "#f98e55", padding: "1px 6px", borderRadius: "999px", fontSize: "10px", fontWeight: "700" }}>
                     Admin
                   </span>
                 </div>

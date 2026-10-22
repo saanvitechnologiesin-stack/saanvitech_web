@@ -26,7 +26,7 @@ export const AdminStatCards: React.FC<AdminStatCardsProps> = ({
         onClick={() => onSelectTab?.("all")}
         style={{ cursor: "pointer" }}
       >
-        <div className="saas-stat-icon" style={{ background: "#eff6ff", color: "#2563eb" }}>
+        <div className="saas-stat-icon" style={{ background: "rgba(249, 142, 85, 0.12)", color: "#f98e55" }}>
           <BriefcaseIcon size={22} />
         </div>
         <div>

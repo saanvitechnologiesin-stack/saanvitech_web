@@ -3,7 +3,7 @@ footer {
 }
 
 .footer-main {
-  --color-background: #f4f6f8;
+  --color-background: #e8eaec;
   --color-foreground: #475569;
   --color-foreground-heading: #0f172a;
   --color-primary-hover: #ea580c;
@@ -13,9 +13,15 @@ footer {
 }
 
 .footer-logo {
-  max-width: 188px;
+  max-width: 135px;
   display: flex;
   text-decoration: none;
+}
+
+.footer-logo img {
+  width: auto;
+  max-height: 44px;
+  object-fit: contain;
 }
 
 .footer-brand-desc {
@@ -53,7 +59,7 @@ footer {
   font-size: 18px;
 }
 
-.widget-heading + * {
+.widget-heading+* {
   margin-block-start: 22px;
 }
 
@@ -178,14 +184,14 @@ footer {
 }
 
 .footer-bottom {
-  --color-background: #edf1f5;
+  --color-background: #0f172a;
   background: var(--color-background);
-  padding: 18px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer-copyright {
-  color: #64748b;
+  color: #94a3b8;
   font-size: 14px;
 }
 
@@ -197,7 +203,7 @@ footer {
     align-items: start;
   }
 
-  .footer-custom-row > * {
+  .footer-custom-row>* {
     width: 100%;
   }
 }
@@ -212,7 +218,7 @@ footer {
 
 @media (max-width: 1279px) {
   .footer-logo {
-    max-width: 160px;
+    max-width: 125px;
   }
 }
 
@@ -249,7 +255,6 @@ footer {
   }
 
   .footer-logo {
-    max-width: 150px;
+    max-width: 115px;
   }
 }
-

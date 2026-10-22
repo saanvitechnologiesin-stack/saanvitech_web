@@ -110,24 +110,30 @@
 
 
 .multicolumn-card > .card-icon + .heading {
-  margin-block-start: 44px;
+  margin-block-start: 28px;
+  font-size: 20px;
+  line-height: 1.35;
 }
 
 .multicolumn-card > .text {
-  margin-block-start: 24px;
+  margin-block-start: 16px;
+  font-size: 14.5px;
+  line-height: 1.6;
 }
 
 .multicolumn-card > .text-lists {
-  margin-block-start: 32px;
+  margin-block-start: 20px;
 }
 
 .multicolumn-card > .text-lists > li + li {
-  margin-block-start: 18px;
+  margin-block-start: 12px;
 }
 
 .multicolumn-card .text-item {
   display: flex;
-  gap: 4px;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
 }
 
 .multicolumn-card .text-item svg {

@@ -10,8 +10,8 @@ const FooterBrand = () => {
         >
             <Logo 
                 src={LogoImage.src}
-                width={189}
-                height={65}
+                width={135}
+                height={46}
                 url="/"
                 cls="footer-logo"
                 alt="Saanvi Technologies logo"

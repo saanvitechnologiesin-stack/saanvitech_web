@@ -80,7 +80,7 @@ export const ApplicationsTable: React.FC<ApplicationsTableProps> = ({
                       {app.name}
                     </div>
                     <div style={{ fontSize: "12px", color: "#64748b", marginTop: "2px" }}>
-                      <a href={`mailto:${app.email}`} style={{ color: "#2563eb", textDecoration: "none" }}>
+                      <a href={`mailto:${app.email}`} style={{ color: "#093d64", textDecoration: "none" }}>
                         {app.email}
                       </a>
                     </div>
@@ -107,7 +107,7 @@ export const ApplicationsTable: React.FC<ApplicationsTableProps> = ({
                           fontSize: "12px",
                           padding: "5px 10px",
                           textDecoration: "none",
-                          color: "#2563eb",
+                          color: "#093d64",
                         }}
                       >
                         <FileTextIcon size={14} />

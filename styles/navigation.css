@@ -33,8 +33,8 @@
   position: relative;
   background-image: linear-gradient(
     to right,
-    var(--color-primary-hover, #f28749) 0%,
-    var(--color-primary-hover, #f28749) 50%,
+    var(--color-primary-hover, #f98e55) 0%,
+    var(--color-primary-hover, #f98e55) 50%,
     var(--color-foreground, rgba(28, 37, 57, 1)) 50%,
     var(--color-foreground, rgba(28, 37, 57, 1)) 100%
   );
@@ -50,22 +50,30 @@
 
 .nav-item:focus > .menu-link-main,
 .nav-item:hover > .menu-link-main,
-.menu-link-main:hover {
+.menu-link-main:hover,
+.menu-link-main.is-active {
   background-position: 0 0;
 }
 
-.menu-link-main > svg {
-  position: relative;
-  top: 1px;
-  color: var(--color-foreground, rgba(28, 37, 57, 1));
-  -webkit-text-fill-color: initial;
-  transition: color 0.35s ease, transform 0.3s ease;
+.menu-link-main.is-active {
+  color: var(--color-primary-hover, #f98e55) !important;
+  -webkit-text-fill-color: var(--color-primary-hover, #f98e55) !important;
+  font-weight: 600;
 }
 
-.nav-item:focus > .menu-link-main > svg,
-.nav-item:hover > .menu-link-main > svg,
-.menu-link-main:hover > svg {
-  color: var(--color-primary-hover, #f28749);
+.menu-link-main.is-active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  background: var(--color-primary-hover, #f98e55);
+  border-radius: 3px 3px 0 0;
+}
+
+.menu-link-main.is-active > svg {
+  color: var(--color-primary-hover, #f98e55) !important;
 }
 
 .nav-item {
@@ -334,6 +342,14 @@
 
   .header-menu > .nav-item .menu-link-main {
     border-top: 1px solid rgba(0, 0, 0, 0.15);
+  }
+
+  .header-menu > .nav-item .menu-link-main.is-active {
+    background-color: rgba(242, 135, 73, 0.08) !important;
+  }
+
+  .menu-link-main.is-active::after {
+    display: none;
   }
 
   .menu-link {

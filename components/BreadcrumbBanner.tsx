@@ -6,7 +6,8 @@ import { BreadcrumbType } from "@/types/breadcrumb";
 
 const BreadcrumbBanner = ({
     title,
-    image
+    image,
+    titleCls
 }: BreadcrumbType) => {
     return (
         <div className="page-banner overlay">            
@@ -15,7 +16,7 @@ const BreadcrumbBanner = ({
             <div className="page-banner-content">
                 <div className="container text-center">
                     <h1 
-                        className="heading text-80 fw-700" 
+                        className={`heading ${titleCls || 'text-40'} fw-700`} 
                         data-aos="fade-up"
                     >
                         {title}
@@ -28,7 +29,7 @@ const BreadcrumbBanner = ({
                         <li>
                             <Link
                                 href="/"
-                                className="text text-18"
+                                className="text text-16"
                                 aria-label="Home Page"
                             >
                                 Home
@@ -36,7 +37,7 @@ const BreadcrumbBanner = ({
                         </li>
                         <li><Icons.ChevronRight /></li>
                         <li>
-                            <a role="link" aria-disabled="true" className="text text-18 active">
+                            <a role="link" aria-disabled="true" className="text text-16 active">
                                 {title}
                             </a>
                         </li>

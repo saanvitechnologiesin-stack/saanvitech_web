@@ -46,6 +46,8 @@
 }
 
 :root {
+  --header-height: 98px;
+
   /* Typography */
   --font-body--style: normal;
   --font-body--weight: 400;
@@ -441,6 +443,11 @@ h6,
   line-height: 1.2;
 }
 
+.text-40 {
+  font-size: 40px;
+  line-height: 1.25;
+}
+
 .text-36 {
   font-size: 36px;
   line-height: 1.2;
@@ -578,6 +585,10 @@ h6,
     font-size: 40px;
   }
 
+  .text-40 {
+    font-size: 34px;
+  }
+
   .text-180 {
     font-size: 80px;
   }
@@ -604,6 +615,10 @@ h6,
 
   .text-50 {
     font-size: 38px;
+  }
+
+  .text-40 {
+    font-size: 30px;
   }
 
   .text-36 {

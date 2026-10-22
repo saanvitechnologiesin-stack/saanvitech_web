@@ -15,6 +15,15 @@ export const metadata: Metadata = {
     default: 'Saanvi Technologies',
   },
   description: "Saanvi Technologies delivers innovative digital solutions tailored to empower businesses with cutting-edge technology and expert-driven services.",
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/icon.png' },
+    ],
+  },
   openGraph: {
     title: 'Saanvi Technologies',
     description: 'Saanvi Technologies delivers innovative digital solutions tailored to empower businesses with cutting-edge technology and expert-driven services.',

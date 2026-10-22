@@ -19,6 +19,7 @@ const Contact = () => {
             {/* Breadcrumb Banner */}
             <BreadcrumbBanner 
                 title={PAGE_TITLE}
+                titleCls="text-32"
                 image={{
                     src: BreadcrumbBannerImage.src,
                     srcMobile: BreadcrumbBannerImageTablet.src,

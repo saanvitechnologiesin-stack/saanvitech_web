@@ -7,8 +7,8 @@ const MapSection = () => {
         <div className="google-map">
             <div className="iframe-wrapper">
                 <iframe
-                    src="https://maps.google.com/maps?q=Saligrama+Main+Road+NH66+Brahmavara+Taluk+Udupi+District+Karnataka+576225&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                    title="Head Office Location - Saligrama, Udupi"
+                    src="https://maps.google.com/maps?q=13.587500,74.696332&hl=en&z=16&output=embed"
+                    title="Office Location - Saanvi Technologies"
                     width="1920"
                     height="600"
                     style={{ border: 0 }}
