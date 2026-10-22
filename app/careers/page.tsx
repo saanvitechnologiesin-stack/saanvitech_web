@@ -83,6 +83,11 @@ export default function CareersPage() {
     }, 6000);
   };
 
+  // Set document.title on mount
+  useEffect(() => {
+    document.title = PAGE_TITLE;
+  }, []);
+
   // Debounce search input so backend isn't called on every keystroke
   const [debouncedSearch, setDebouncedSearch] = useState<string>("");
 

@@ -19,7 +19,7 @@ const Menus: MenuItem[] = [
         path: '/projects'
     },
     {
-        title: 'Career',
+        title: 'Careers',
         path: '/career'
     },
     {

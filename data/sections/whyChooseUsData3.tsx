@@ -14,7 +14,7 @@ export const WhyChooseUsData3: SectionProps = {
     },
     subheading: "Why Choose Us",
     heading: "Excellence You Can Trust",
-    text: "The solar solution company specializes in providing innovative, eco-friendly energy systems that harness the power, reducing carbon footprints and energy for clients worldwide.",
+    text: "Saanvi Technologies specializes in engineering intelligent, scalable software systems and tailored digital solutions that empower modern enterprises to streamline operations, accelerate digital transformation, and achieve sustainable growth worldwide.",
     button: {
         label: "Discover More",
         href: "/about-us",
@@ -23,13 +23,13 @@ export const WhyChooseUsData3: SectionProps = {
     promotions: [
         {
             icon: <Icons.Winning />,
-            title: "99% Winning <br />Guarantee",
-            text: "The solar solution company specializes innovative.",
+            title: "99% Success <br />Track Record",
+            text: "Delivering high-performance, robust, and secure enterprise solutions that consistently exceed client expectations.",
         },
         {
             icon: <Icons.Support />,
-            title: "Full Time <br />Support",
-            text: "The solar solution company specializes innovative.",
+            title: "Full Time <br />Dedicated Support",
+            text: "Round-the-clock technical support, proactive system monitoring, and seamless maintenance for uninterrupted operations.",
         },
     ],
     counterData: [

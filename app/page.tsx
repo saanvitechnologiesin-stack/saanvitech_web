@@ -5,7 +5,6 @@ import { OurServicesData } from '@/data/sections/ourServicesData';
 import { RecentProjectData } from '@/data/sections/recentProjectData';
 import { WhyChooseUsData } from '@/data/sections/whyChooseUsData';
 import { MeetCeoData } from '@/data/sections/meetCeoData';
-import { MeetPartnersData } from '@/data/sections/meetPartnersData';
 
 import HeroSlider from '@/components/sections/HeroSlider';
 import ImageText from '@/components/sections/ImageText';
@@ -14,7 +13,7 @@ import OurServices from '@/components/sections/OurServices';
 import RecentProject from '@/components/sections/RecentProject';
 import WhyChooseUs from '@/components/sections/WhyChooseUs';
 import MeetCeo from '@/components/sections/MeetCeo';
-import MeetPartners from '@/components/sections/MeetPartners';
+import CareerSpotlight from '@/components/sections/CareerSpotlight';
 
 
 const Home = () => {
@@ -45,8 +44,8 @@ const Home = () => {
       {/* Meet Our CEO */}
       <MeetCeo data={MeetCeoData} />
 
-      {/* Meet Our Partners - Moving Banner */}
-      <MeetPartners data={MeetPartnersData} />
+      {/* Career Spotlight Banner */}
+      <CareerSpotlight />
     </>
   );
 }

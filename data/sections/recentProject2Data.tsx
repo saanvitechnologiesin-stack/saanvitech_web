@@ -9,7 +9,7 @@ export const RecentProject2Data: SectionProps = {
     link: "/projects",
     subheading: "Recent Projects",
     heading: "Smart Digital Solutions Tailored For growth",
-    text: "The solar solution company specializes in providing innovative, eco-friendly energy systems harness the power, reducing carbon footprints and energy for clients worldwide.",        
+    text: "Saanvi Technologies specializes in delivering innovative, high-performance IT solutions and scalable software systems, driving digital transformation and sustainable growth for clients worldwide.",        
     imageList: [
         {
             src: Image1.src,
@@ -35,7 +35,7 @@ export const RecentProject2Data: SectionProps = {
     ],
     block: {
         heading: "Unlocking New Opportunities for Sustainable Growth",
-        text: "The solar solution company specializes in providing innovative, eco-friendly energy systems harness the power.",
+        text: "Saanvi Technologies specializes in engineering bespoke software systems and intelligent platforms that empower global enterprises.",
         button: {
             label: "View All Details",
             href: "/projects",

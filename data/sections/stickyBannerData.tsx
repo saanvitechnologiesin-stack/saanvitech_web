@@ -7,7 +7,7 @@ export const StickyBannerData: SectionProps = {
     wrapperCls: "mt-100",
     container: "container",
     heading: "Explore the Recent Works We Have Done!",
-    text: "The solar solution company specializes in providing innovative, eco-friendly energy systems harness the power, reducing carbon footprints and energy for clients worldwide.",
+    text: "Saanvi Technologies specializes in delivering innovative, high-performance IT solutions and scalable software systems, driving digital transformation and sustainable growth for clients worldwide.",
     blockList: [
         {
             subheading: "Investment Idea",
