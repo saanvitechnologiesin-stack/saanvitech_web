@@ -7,7 +7,7 @@ export const AboutData: SectionProps = {
     container: "container-fluid",
     subheading: "Questions",
     heading: "Our story, our mission that make us different",
-    text: "The solar solution company specializes in providing innovative, eco-friendly energy systems harness the power, reducing carbon footprints and energy for clients worldwide.",
+    text: "Saanvi Technologies specializes in delivering innovative, high-performance IT solutions and scalable software systems, driving digital transformation and sustainable growth for clients worldwide.",
     button: {
         label: "Learn More About Us",
         href: "/about-us",

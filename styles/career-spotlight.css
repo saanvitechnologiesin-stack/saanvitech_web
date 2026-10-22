@@ -1,0 +1,234 @@
+/* ==========================================================================
+   Career Spotlight Section (Matches Website Theme & Reference Design)
+   ========================================================================== */
+
+.career-spotlight-section {
+  position: relative;
+  overflow: visible;
+}
+
+.career-spotlight-card {
+  --color-foreground-subheading: #0d1624;
+  --color-border-subheading-bg: rgba(242, 135, 73, 0.35);
+  --color-background-subheading: #ffffff;
+
+  position: relative;
+  background: radial-gradient(circle at 85% 40%, rgba(2, 132, 199, 0.15) 0%, transparent 45%),
+              radial-gradient(circle at 15% 85%, rgba(242, 135, 73, 0.1) 0%, transparent 40%),
+              #0d131f;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 60px 50px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -10px rgba(13, 19, 31, 0.3),
+              0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+@media (min-width: 1200px) {
+  .career-spotlight-card {
+    padding: 70px 65px;
+  }
+}
+
+@media (max-width: 991px) {
+  .career-spotlight-card {
+    padding: 45px 24px;
+    border-radius: 20px;
+  }
+}
+
+/* Subtle decorative organic glow at the bottom (resembling the reference plant/stem glow) */
+.career-spotlight-card::after {
+  content: "";
+  position: absolute;
+  bottom: -60px;
+  left: 45%;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+/* Left Content Column */
+.career-spotlight-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+}
+
+.career-spotlight-content .subheading.subheading-bg {
+  color: var(--color-foreground-subheading);
+  background-color: var(--color-background-subheading);
+  border: 1px solid var(--color-border-subheading-bg);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.career-spotlight-heading {
+  color: #ffffff !important;
+  font-size: clamp(32px, 3.8vw, 50px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 22px;
+  letter-spacing: -0.02em;
+}
+
+.career-spotlight-heading .highlight-strong {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.career-spotlight-desc {
+  color: #94a3b8 !important;
+  font-size: 16.5px;
+  line-height: 1.75;
+  margin-bottom: 20px;
+  max-width: 620px;
+}
+
+.career-spotlight-prompt {
+  color: #f1f5f9 !important;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+/* Button Styling matching website's Primary Button system */
+.career-spotlight-actions .button--primary-spotlight {
+  --color-primary-button-text: #0d131f;
+  --color-primary-button-background: #ffffff;
+  --color-primary-button-border: #ffffff;
+  --color-primary-button-icon: #ffffff;
+  --color-primary-button-icon-background: #0d131f;
+
+  --color-primary-button-hover-text: #ffffff;
+  --color-primary-button-hover-background: #f28749;
+  --color-primary-button-hover-border: #f28749;
+  --color-primary-button-hover-icon: #f28749;
+  --color-primary-button-hover-icon-background: #ffffff;
+
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 600;
+  height: 52px;
+  padding: 0 28px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Right Visual Column */
+.career-spotlight-visual-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.career-spotlight-photo-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.career-spotlight-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  /* Seamless dark background blend */
+  border-radius: 20px;
+  mask-image: radial-gradient(ellipse 96% 96% at 50% 50%, black 82%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 96% 96% at 50% 50%, black 82%, transparent 100%);
+  transition: transform 0.4s ease;
+}
+
+.career-spotlight-visual-area:hover .career-spotlight-photo {
+  transform: scale(1.02);
+}
+
+/* Minimalist floating tech doodles inspired by reference */
+.floating-doodle {
+  position: absolute;
+  color: #e2e8f0;
+  opacity: 0.72;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.doodle-chat {
+  top: 15px;
+  left: 36%;
+  animation: doodleFloat1 5s ease-in-out infinite;
+}
+
+.doodle-terminal {
+  top: 60px;
+  right: 12px;
+  animation: doodleFloat2 6s ease-in-out infinite 0.5s;
+}
+
+.doodle-canvas {
+  top: 100px;
+  left: 10px;
+  animation: doodleFloat1 7s ease-in-out infinite 1s;
+}
+
+.doodle-vector {
+  bottom: 38%;
+  left: 0px;
+  animation: doodleFloat2 6.5s ease-in-out infinite 1.5s;
+}
+
+.doodle-ruler {
+  bottom: 34%;
+  right: 8px;
+  animation: doodleFloat1 5.5s ease-in-out infinite 0.8s;
+}
+
+@keyframes doodleFloat1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(4deg);
+  }
+}
+
+@keyframes doodleFloat2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(-4deg);
+  }
+}
+
+@media (max-width: 991px) {
+  .career-spotlight-content {
+    text-align: center;
+    align-items: center;
+    margin-bottom: 36px;
+  }
+  .career-spotlight-desc {
+    max-width: 100%;
+  }
+  .career-spotlight-visual-area {
+    max-width: 380px;
+  }
+}
