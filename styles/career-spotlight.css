@@ -89,15 +89,15 @@
 
 .career-spotlight-desc {
   color: #94a3b8 !important;
-  font-size: 16.5px;
-  line-height: 1.75;
+  font-size: 15px;
+  line-height: 1.6;
   margin-bottom: 20px;
   max-width: 620px;
 }
 
 .career-spotlight-prompt {
   color: #f1f5f9 !important;
-  font-size: 16px;
+  font-size: 14.5px;
   font-weight: 600;
   margin-bottom: 28px;
 }
@@ -230,5 +230,15 @@
   }
   .career-spotlight-visual-area {
     max-width: 380px;
+  }
+}
+
+@media (max-width: 767px) {
+  .career-spotlight-desc {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+  }
+  .career-spotlight-prompt {
+    font-size: 14.5px !important;
   }
 }

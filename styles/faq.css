@@ -185,6 +185,28 @@
 }
 
 @media (max-width: 767px) {
+  .faq .heading.text-40 {
+    font-size: 26px !important;
+    line-height: 1.25 !important;
+  }
+
+  .faq .accordion-opener {
+    font-size: 15.5px !important;
+    padding: 14px 16px !important;
+  }
+
+  .faq .accordion-content-inner {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+    padding: 12px 16px 16px !important;
+  }
+
+  .faq .button {
+    font-size: 14.5px !important;
+    height: 46px !important;
+    padding: 0 20px !important;
+  }
+
   .image-absolute img {
     max-width: 90px;
     height: auto;

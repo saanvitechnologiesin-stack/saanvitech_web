@@ -484,13 +484,13 @@ h6,
 }
 
 .text-18 {
-  font-size: 18px;
-  line-height: 1.55;
+  font-size: 15.5px;
+  line-height: 1.6;
 }
 
 .text-16 {
-  font-size: 16px;
-  line-height: 1.62;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 .text-14 {
@@ -650,7 +650,13 @@ h6,
   }
 
   .text-18 {
-    font-size: 16px;
+    font-size: 15.5px;
+    line-height: 1.55;
+  }
+
+  .text-16 {
+    font-size: 14.5px;
+    line-height: 1.55;
   }
 }
 

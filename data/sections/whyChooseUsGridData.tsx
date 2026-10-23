@@ -9,7 +9,7 @@ export const WhyChooseUsGridData: SectionProps = {
     container: "container",
     image: {
         src: WhyChooseUsImage.src,
-        srcMobile: WhyChooseUsImageMobile.src,
+        srcMobile: WhyChooseUsImage.src,
         width: 1000,
         height: 742,
         loading: "lazy",
