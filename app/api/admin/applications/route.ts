@@ -6,6 +6,7 @@ import {
 } from "@/libs/db";
 import { verifySessionToken } from "@/libs/auth";
 import { ApplicationStatus } from "@/types/career";
+import { cleanupOldResumes } from "@/libs/storage";
 
 export const dynamic = 'force-dynamic';
 
@@ -34,6 +35,12 @@ export async function GET(req: NextRequest) {
     }
 
     const applications = await getAllCareerApplications();
+
+    // Background retention check: purge any resumes older than 30 days
+    try {
+      cleanupOldResumes(30);
+    } catch (e) {}
+
     return NextResponse.json({
       success: true,
       applications,

@@ -9,6 +9,10 @@ const TextField = ({
     placeholder,
     name,
     required,
+    maxLength,
+    pattern,
+    inputMode,
+    onInput,
     aos,
     aosAnchor,
 }: InputType) => {
@@ -28,6 +32,10 @@ const TextField = ({
                 type={type}
                 placeholder={placeholder}
                 name={name}
+                maxLength={maxLength}
+                pattern={pattern}
+                inputMode={inputMode}
+                onInput={onInput}
                 {...requiredAttribute}
             />
         </div>

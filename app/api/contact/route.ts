@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import path from "path";
+import fs from "fs";
 import { saveContactInquiry } from "@/libs/db";
 
 /**
@@ -12,16 +14,15 @@ function getRecipientEmails(): string[] {
     process.env.APPOINTMENT_NOTIFICATION_EMAILS ||
     process.env.CONTACT_NOTIFICATION_EMAILS ||
     process.env.EMAIL_USER ||
-    "info@saanvitechin.com,chinmaya@saanvitechin.com";
+    "";
+
+  if (!envRecipients) return [];
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  const emails = envRecipients
+  return envRecipients
     .split(/[,;]+/)
     .map((e) => e.trim())
     .filter((e) => emailRegex.test(e));
-
-  return emails.length > 0 ? emails : ["info@saanvitechin.com"];
 }
 
 export async function POST(req: NextRequest) {
@@ -43,7 +44,11 @@ export async function POST(req: NextRequest) {
 
     const cleanName = name.trim();
     const cleanEmail = email.trim();
-    const cleanPhone = phone && typeof phone === "string" ? phone.trim() : "";
+    const rawPhone = phone && typeof phone === "string" ? phone.trim() : "";
+    const cleanPhone = rawPhone ? rawPhone.replace(/\D/g, "").slice(0, 10) : "";
+    if (rawPhone && cleanPhone.length !== 10) {
+      return NextResponse.json({ error: "Please enter a valid 10-digit mobile number." }, { status: 400 });
+    }
     const cleanService = service && typeof service === "string" ? service.trim() : "General Consultation / Service";
     const cleanMessage = message.trim();
 
@@ -86,6 +91,9 @@ export async function POST(req: NextRequest) {
           auth: { user, pass },
         });
 
+        const logoPath = path.join(process.cwd(), "public", "img", "logo-white.png");
+        const hasLogo = fs.existsSync(logoPath);
+
         const html = `
           <!DOCTYPE html>
           <html>
@@ -97,12 +105,23 @@ export async function POST(req: NextRequest) {
           <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f8; margin: 0; padding: 24px; color: #1e293b;">
             <div style="max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
               
-              <!-- Header -->
-              <div style="background: linear-gradient(135deg, #0b1f3a 0%, #1e3a8a 100%); padding: 28px 24px; color: #ffffff;">
-                <h1 style="margin: 0 0 6px 0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px;">
+              <!-- Top Brand Gradient Accent Bar -->
+              <div style="height: 4px; background: linear-gradient(90deg, #093d64 0%, #2563eb 50%, #f98e55 100%);"></div>
+
+              <!-- Header with Crisp White Background (Perfect Logo Contrast) -->
+              <div style="background: #ffffff; padding: 26px 24px 18px; border-bottom: 1px solid #f1f5f9;">
+                ${hasLogo ? `
+                  <div style="margin-bottom: 16px;">
+                    <img src="cid:saanvi-logo" alt="Saanvi Technologies" width="145" style="display: block; width: 145px; height: auto; border: 0;" />
+                  </div>
+                ` : ''}
+                <div style="display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #093d64; background: rgba(9, 61, 100, 0.08); padding: 3px 8px; border-radius: 6px; margin-bottom: 8px;">
+                  Website Inquiry
+                </div>
+                <h1 style="margin: 0 0 4px 0; font-size: 20px; font-weight: 700; color: #0f172a; letter-spacing: -0.3px;">
                   New Appointment Request
                 </h1>
-                <p style="margin: 0; font-size: 14px; opacity: 0.85;">
+                <p style="margin: 0; font-size: 13px; color: #64748b;">
                   Received via Saanvi Technologies Website Contact Form
                 </p>
               </div>
@@ -126,7 +145,7 @@ export async function POST(req: NextRequest) {
                     <tr style="border-bottom: 1px solid #f1f5f9;">
                       <td style="padding: 12px 8px; font-weight: 600; color: #64748b;">Phone Number</td>
                       <td style="padding: 12px 8px; color: #0f172a;">
-                        ${cleanPhone ? `<a href="tel:${cleanPhone}" style="color: #2563eb; text-decoration: none;">${cleanPhone}</a>` : '<span style="color: #94a3b8; font-style: italic;">Not provided</span>'}
+                        ${cleanPhone ? `<a href="tel:${cleanPhone}" style="color: #2563eb; text-decoration: none;">+91 ${cleanPhone}</a>` : '<span style="color: #94a3b8; font-style: italic;">Not provided</span>'}
                       </td>
                     </tr>
                     <tr style="border-bottom: 1px solid #f1f5f9;">
@@ -178,6 +197,15 @@ export async function POST(req: NextRequest) {
           subject: `[New Appointment Request] ${cleanName} - ${cleanService}`,
           text: `New Appointment / Contact Form Message\n\nName: ${cleanName}\nEmail: ${cleanEmail}\nPhone: ${cleanPhone || "N/A"}\nService: ${cleanService}\nDate: ${formattedDate}\n\nMessage:\n${cleanMessage}`,
           html: html,
+          attachments: hasLogo
+            ? [
+                {
+                  filename: "logo-white.png",
+                  path: logoPath,
+                  cid: "saanvi-logo",
+                },
+              ]
+            : [],
         };
 
         await transporter.sendMail(mailOptions);
