@@ -30,11 +30,6 @@ const OurServices = ({ data }: { data: SectionProps }) => {
         const handleScroll = () => {
             if (!containerRef.current || !trackRef.current) return;
 
-            if (window.innerWidth <= 768) {
-                trackRef.current.style.transform = "none";
-                return;
-            }
-
             const rect = containerRef.current.getBoundingClientRect();
             const windowHeight = window.innerHeight;
             const containerHeight = rect.height;
@@ -46,9 +41,16 @@ const OurServices = ({ data }: { data: SectionProps }) => {
             const rawProgress = currentScroll / scrollDistance;
             const clampedProgress = Math.min(Math.max(rawProgress, 0), 1);
 
-            const trackWidth = trackRef.current.scrollWidth;
             const viewportWidth = window.innerWidth;
-            const maxTranslate = Math.max(0, trackWidth - viewportWidth + 80);
+            const isMobile = viewportWidth <= 768;
+            
+            // Initial left offset of the track relative to the viewport
+            const initialLeft = isMobile ? 16 : Math.max(32, (viewportWidth - 1280) / 2 + 32);
+            const trackWidth = trackRef.current.scrollWidth;
+            const endMargin = isMobile ? 16 : 32;
+
+            // When progress is 1, the right edge of the last card should sit flush with the screen's right edge (with endMargin)
+            const maxTranslate = Math.max(0, initialLeft + trackWidth - viewportWidth + endMargin);
             const translateX = clampedProgress * maxTranslate;
 
             trackRef.current.style.transform = `translate3d(-${translateX}px, 0, 0)`;
