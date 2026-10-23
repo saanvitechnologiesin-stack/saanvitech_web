@@ -7,6 +7,10 @@ export interface InputType {
     placeholder: string;
     name: string;
     required?: boolean;
+    maxLength?: number;
+    pattern?: string;
+    inputMode?: any;
+    onInput?: (e: React.FormEvent<HTMLInputElement>) => void;
     aos?: string;
     aosAnchor?: string;
 }

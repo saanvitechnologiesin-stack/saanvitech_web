@@ -161,7 +161,7 @@ export default function AdminCareersPage() {
   const handleLogout = async () => {
     try {
       await fetch("/api/admin/auth", { method: "DELETE" });
-    } catch {}
+    } catch { }
     sessionStorage.removeItem("saanvi_admin_token");
     setIsAuthenticated(false);
     setToken("");
@@ -548,8 +548,8 @@ export default function AdminCareersPage() {
               gap: "8px",
               background: "transparent",
               border: "none",
-              borderBottom: activeAdminView === "jobs" ? "2px solid #0284c7" : "2px solid transparent",
-              color: activeAdminView === "jobs" ? "#0284c7" : "#64748b",
+              borderBottom: activeAdminView === "jobs" ? "2px solid #022d42ff" : "2px solid transparent",
+              color: activeAdminView === "jobs" ? "#003955ff" : "#64748b",
               cursor: "pointer",
               transition: "all 0.15s ease",
               marginBottom: "-1px"
@@ -559,7 +559,7 @@ export default function AdminCareersPage() {
             <span>Job Postings</span>
             <span style={{
               background: activeAdminView === "jobs" ? "#e0f2fe" : "#f1f5f9",
-              color: activeAdminView === "jobs" ? "#0284c7" : "#64748b",
+              color: activeAdminView === "jobs" ? "#002b40ff" : "#64748b",
               fontSize: "12px",
               fontWeight: 700,
               padding: "2px 7px",
@@ -583,8 +583,8 @@ export default function AdminCareersPage() {
               gap: "8px",
               background: "transparent",
               border: "none",
-              borderBottom: activeAdminView === "applications" ? "2px solid #0284c7" : "2px solid transparent",
-              color: activeAdminView === "applications" ? "#0284c7" : "#64748b",
+              borderBottom: activeAdminView === "applications" ? "2px solid #01344dff" : "2px solid transparent",
+              color: activeAdminView === "applications" ? "#002b41ff" : "#64748b",
               cursor: "pointer",
               transition: "all 0.15s ease",
               marginBottom: "-1px"
@@ -594,7 +594,7 @@ export default function AdminCareersPage() {
             <span>Candidate Applications</span>
             <span style={{
               background: activeAdminView === "applications" ? "#e0f2fe" : "#f1f5f9",
-              color: activeAdminView === "applications" ? "#0284c7" : "#64748b",
+              color: activeAdminView === "applications" ? "#025a87ff" : "#64748b",
               fontSize: "12px",
               fontWeight: 700,
               padding: "2px 7px",
@@ -604,7 +604,7 @@ export default function AdminCareersPage() {
             </span>
             {appNewCount > 0 && (
               <span style={{
-                background: "#0284c7",
+                background: "#014a6eff",
                 color: "#ffffff",
                 fontSize: "11px",
                 fontWeight: 700,
@@ -621,252 +621,252 @@ export default function AdminCareersPage() {
           <>
             {/* 2. FOUR RESPONSIVE STATISTIC CARDS */}
             <AdminStatCards
-          totalCount={totalCount}
-          publishedCount={publishedCount}
-          draftCount={draftCount}
-          pausedCount={pausedCount}
-          activeStatusTab={activeStatusTab}
-          onSelectTab={tab => {
-            setActiveStatusTab(tab);
-            setCurrentPage(1);
-          }}
-        />
+              totalCount={totalCount}
+              publishedCount={publishedCount}
+              draftCount={draftCount}
+              pausedCount={pausedCount}
+              activeStatusTab={activeStatusTab}
+              onSelectTab={tab => {
+                setActiveStatusTab(tab);
+                setCurrentPage(1);
+              }}
+            />
 
-        {/* 3. JOB POSTINGS DIRECTORY */}
-        <section className="saas-table-card" aria-label="Job Postings Directory">
-          {/* Status Tabs */}
-          <div className="status-tabs-container">
-            <button
-              onClick={() => { setActiveStatusTab("all"); setCurrentPage(1); }}
-              className={`status-tab-btn ${activeStatusTab === "all" ? "active" : ""}`}
-            >
-              <span>All Roles</span>
-              <span className="status-tab-badge">{totalCount}</span>
-            </button>
-
-            <button
-              onClick={() => { setActiveStatusTab("published"); setCurrentPage(1); }}
-              className={`status-tab-btn ${activeStatusTab === "published" ? "active" : ""}`}
-            >
-              <span>Published</span>
-              <span className="status-tab-badge">{publishedCount}</span>
-            </button>
-
-            <button
-              onClick={() => { setActiveStatusTab("draft"); setCurrentPage(1); }}
-              className={`status-tab-btn ${activeStatusTab === "draft" ? "active" : ""}`}
-            >
-              <span>Drafts</span>
-              <span className="status-tab-badge">{draftCount}</span>
-            </button>
-
-            <button
-              onClick={() => { setActiveStatusTab("paused"); setCurrentPage(1); }}
-              className={`status-tab-btn ${activeStatusTab === "paused" ? "active" : ""}`}
-            >
-              <span>Paused</span>
-              <span className="status-tab-badge">{pausedCount}</span>
-            </button>
-          </div>
-
-          {/* Directory Toolbar: Search & Department Filter */}
-          <div style={{ padding: "16px 20px", borderBottom: "1px solid #f1f5f9", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "14px" }}>
-            <div>
-              <h2 style={{ fontSize: "16px", fontWeight: "600", margin: "0 0 2px", color: "#0f172a" }}>
-                Job Postings Directory
-              </h2>
-              <span style={{ fontSize: "13px", color: "#64748b" }}>
-                Showing {filteredCareers.length} of {careers.length} total positions
-              </span>
-            </div>
-
-            <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}>
-              {/* Search Input */}
-              <div style={{ position: "relative", minWidth: "240px" }}>
-                <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#94a3b8", display: "flex", alignItems: "center" }}>
-                  <SearchIcon size={14} />
-                </span>
-                <input
-                  type="text"
-                  placeholder="Search by title, location, type..."
-                  value={searchQuery}
-                  onChange={e => { setSearchQuery(e.target.value); setCurrentPage(1); }}
-                  style={{
-                    width: "100%",
-                    height: "36px",
-                    minHeight: "36px",
-                    padding: "4px 10px 4px 32px",
-                    fontSize: "13px",
-                    color: "#1e293b",
-                    border: "1px solid #e2e8f0",
-                    borderRadius: "8px",
-                    outline: "none",
-                    background: "#f8fafc",
-                    boxSizing: "border-box",
-                  }}
-                />
-              </div>
-
-              {/* Department Filter */}
-              <select
-                value={filterDepartment}
-                onChange={e => { setFilterDepartment(e.target.value); setCurrentPage(1); }}
-                style={{
-                  height: "36px",
-                  minHeight: "36px",
-                  padding: "4px 12px",
-                  fontSize: "13px",
-                  color: "#1e293b",
-                  border: "1px solid #e2e8f0",
-                  borderRadius: "8px",
-                  outline: "none",
-                  background: "#f8fafc",
-                  cursor: "pointer",
-                  boxSizing: "border-box",
-                }}
-              >
-                {departments.map(dept => (
-                  <option key={dept} value={dept}>{dept === "All" ? "All Departments" : dept}</option>
-                ))}
-              </select>
-
-              {(searchQuery || filterDepartment !== "All" || activeStatusTab !== "all") && (
+            {/* 3. JOB POSTINGS DIRECTORY */}
+            <section className="saas-table-card" aria-label="Job Postings Directory">
+              {/* Status Tabs */}
+              <div className="status-tabs-container">
                 <button
-                  onClick={clearFilters}
-                  style={{
-                    height: "36px",
-                    minHeight: "36px",
-                    padding: "0 12px",
-                    fontSize: "12px",
-                    fontWeight: "500",
-                    color: "#475569",
-                    background: "#f1f5f9",
-                    border: "1px solid #e2e8f0",
-                    borderRadius: "8px",
-                    cursor: "pointer",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "5px",
-                  }}
+                  onClick={() => { setActiveStatusTab("all"); setCurrentPage(1); }}
+                  className={`status-tab-btn ${activeStatusTab === "all" ? "active" : ""}`}
                 >
-                  <CloseIcon size={12} />
-                  <span>Reset Filters</span>
+                  <span>All Roles</span>
+                  <span className="status-tab-badge">{totalCount}</span>
                 </button>
-              )}
-            </div>
-          </div>
 
-          {/* Directory Content Area */}
-          {loading ? (
-            <div style={{ padding: "60px 20px", textAlign: "center", color: "#64748b", fontSize: "14px" }}>
-              Loading job postings...
-            </div>
-          ) : careers.length === 0 ? (
-            /* Empty State: No jobs in portal */
-            <div className="saas-empty-state">
-              <div className="saas-empty-icon">
-                <BriefcaseIcon size={28} />
-              </div>
-              <h3 className="saas-empty-title">No job openings yet</h3>
-              <p className="saas-empty-desc">
-                Get started by creating your first job opening to attract qualified candidates to Saanvi Technologies.
-              </p>
-              <button 
-                onClick={openNewModal} 
-                className="btn-apply" 
-                style={{ 
-                  display: "inline-flex", 
-                  alignItems: "center", 
-                  gap: "6px", 
-                  margin: "0 auto",
-                  background: "#2563eb",
-                  padding: "10px 20px",
-                  borderRadius: "8px",
-                  fontWeight: "600",
-                  fontSize: "14px"
-                }}
-              >
-                <PlusIcon size={16} />
-                <span>Create Your First Job</span>
-              </button>
-            </div>
-          ) : filteredCareers.length === 0 ? (
-            /* Filter Empty State */
-            <div className="saas-empty-state">
-              <div className="saas-empty-icon" style={{ background: "#f1f5f9", color: "#64748b", borderColor: "#e2e8f0" }}>
-                <SearchIcon size={24} />
-              </div>
-              <h3 className="saas-empty-title">No matching job positions</h3>
-              <p className="saas-empty-desc">
-                No roles match your active filters {searchQuery && `for "${searchQuery}"`}. Try adjusting your search query, department, or status tab.
-              </p>
-              <button 
-                onClick={clearFilters}
-                className="admin-action-btn"
-                style={{ padding: "8px 16px", fontSize: "13px", fontWeight: "600" }}
-              >
-                Clear All Filters
-              </button>
-            </div>
-          ) : (
-            <>
-              {/* Responsive Table & Cards */}
-              <JobTable
-                careers={paginatedCareers}
-                onEdit={openEditModal}
-                onDelete={openDeleteJobModal}
-              />
+                <button
+                  onClick={() => { setActiveStatusTab("published"); setCurrentPage(1); }}
+                  className={`status-tab-btn ${activeStatusTab === "published" ? "active" : ""}`}
+                >
+                  <span>Published</span>
+                  <span className="status-tab-badge">{publishedCount}</span>
+                </button>
 
-              {/* PAGINATION BAR */}
-              <div className="saas-pagination">
-                <div style={{ fontSize: "13px", color: "#64748b" }}>
-                  Showing{" "}
-                  <strong>{(safeCurrentPage - 1) * itemsPerPage + 1}</strong> to{" "}
-                  <strong>{Math.min(safeCurrentPage * itemsPerPage, filteredCareers.length)}</strong> of{" "}
-                  <strong>{filteredCareers.length}</strong> positions
+                <button
+                  onClick={() => { setActiveStatusTab("draft"); setCurrentPage(1); }}
+                  className={`status-tab-btn ${activeStatusTab === "draft" ? "active" : ""}`}
+                >
+                  <span>Drafts</span>
+                  <span className="status-tab-badge">{draftCount}</span>
+                </button>
+
+                <button
+                  onClick={() => { setActiveStatusTab("paused"); setCurrentPage(1); }}
+                  className={`status-tab-btn ${activeStatusTab === "paused" ? "active" : ""}`}
+                >
+                  <span>Paused</span>
+                  <span className="status-tab-badge">{pausedCount}</span>
+                </button>
+              </div>
+
+              {/* Directory Toolbar: Search & Department Filter */}
+              <div style={{ padding: "16px 20px", borderBottom: "1px solid #f1f5f9", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "14px" }}>
+                <div>
+                  <h2 style={{ fontSize: "16px", fontWeight: "600", margin: "0 0 2px", color: "#0f172a" }}>
+                    Job Postings Directory
+                  </h2>
+                  <span style={{ fontSize: "13px", color: "#64748b" }}>
+                    Showing {filteredCareers.length} of {careers.length} total positions
+                  </span>
                 </div>
 
-                <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-                  <button
-                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                    disabled={safeCurrentPage === 1}
-                    className="page-btn"
-                    title="Previous page"
-                    aria-label="Previous page"
-                  >
-                    <ChevronLeftIcon size={14} />
-                  </button>
+                <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}>
+                  {/* Search Input */}
+                  <div style={{ position: "relative", minWidth: "240px" }}>
+                    <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#94a3b8", display: "flex", alignItems: "center" }}>
+                      <SearchIcon size={14} />
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="Search by title, location, type..."
+                      value={searchQuery}
+                      onChange={e => { setSearchQuery(e.target.value); setCurrentPage(1); }}
+                      style={{
+                        width: "100%",
+                        height: "36px",
+                        minHeight: "36px",
+                        padding: "4px 10px 4px 32px",
+                        fontSize: "13px",
+                        color: "#1e293b",
+                        border: "1px solid #e2e8f0",
+                        borderRadius: "8px",
+                        outline: "none",
+                        background: "#f8fafc",
+                        boxSizing: "border-box",
+                      }}
+                    />
+                  </div>
 
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNum => (
+                  {/* Department Filter */}
+                  <select
+                    value={filterDepartment}
+                    onChange={e => { setFilterDepartment(e.target.value); setCurrentPage(1); }}
+                    style={{
+                      height: "36px",
+                      minHeight: "36px",
+                      padding: "4px 12px",
+                      fontSize: "13px",
+                      color: "#1e293b",
+                      border: "1px solid #e2e8f0",
+                      borderRadius: "8px",
+                      outline: "none",
+                      background: "#f8fafc",
+                      cursor: "pointer",
+                      boxSizing: "border-box",
+                    }}
+                  >
+                    {departments.map(dept => (
+                      <option key={dept} value={dept}>{dept === "All" ? "All Departments" : dept}</option>
+                    ))}
+                  </select>
+
+                  {(searchQuery || filterDepartment !== "All" || activeStatusTab !== "all") && (
                     <button
-                      key={pageNum}
-                      onClick={() => setCurrentPage(pageNum)}
-                      className={`page-btn ${pageNum === safeCurrentPage ? "active" : ""}`}
+                      onClick={clearFilters}
+                      style={{
+                        height: "36px",
+                        minHeight: "36px",
+                        padding: "0 12px",
+                        fontSize: "12px",
+                        fontWeight: "500",
+                        color: "#475569",
+                        background: "#f1f5f9",
+                        border: "1px solid #e2e8f0",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "5px",
+                      }}
                     >
-                      {pageNum}
+                      <CloseIcon size={12} />
+                      <span>Reset Filters</span>
                     </button>
-                  ))}
-
-                  <button
-                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                    disabled={safeCurrentPage === totalPages}
-                    className="page-btn"
-                    title="Next page"
-                    aria-label="Next page"
-                  >
-                    <ChevronRightIcon size={14} />
-                  </button>
+                  )}
                 </div>
               </div>
-            </>
-          )}
-        </section>
+
+              {/* Directory Content Area */}
+              {loading ? (
+                <div style={{ padding: "60px 20px", textAlign: "center", color: "#64748b", fontSize: "14px" }}>
+                  Loading job postings...
+                </div>
+              ) : careers.length === 0 ? (
+                /* Empty State: No jobs in portal */
+                <div className="saas-empty-state">
+                  <div className="saas-empty-icon">
+                    <BriefcaseIcon size={28} />
+                  </div>
+                  <h3 className="saas-empty-title">No job openings yet</h3>
+                  <p className="saas-empty-desc">
+                    Get started by creating your first job opening to attract qualified candidates to Saanvi Technologies.
+                  </p>
+                  <button
+                    onClick={openNewModal}
+                    className="btn-apply"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      margin: "0 auto",
+                      background: "#2563eb",
+                      padding: "10px 20px",
+                      borderRadius: "8px",
+                      fontWeight: "600",
+                      fontSize: "14px"
+                    }}
+                  >
+                    <PlusIcon size={16} />
+                    <span>Create Your First Job</span>
+                  </button>
+                </div>
+              ) : filteredCareers.length === 0 ? (
+                /* Filter Empty State */
+                <div className="saas-empty-state">
+                  <div className="saas-empty-icon" style={{ background: "#f1f5f9", color: "#64748b", borderColor: "#e2e8f0" }}>
+                    <SearchIcon size={24} />
+                  </div>
+                  <h3 className="saas-empty-title">No matching job positions</h3>
+                  <p className="saas-empty-desc">
+                    No roles match your active filters {searchQuery && `for "${searchQuery}"`}. Try adjusting your search query, department, or status tab.
+                  </p>
+                  <button
+                    onClick={clearFilters}
+                    className="admin-action-btn"
+                    style={{ padding: "8px 16px", fontSize: "13px", fontWeight: "600" }}
+                  >
+                    Clear All Filters
+                  </button>
+                </div>
+              ) : (
+                <>
+                  {/* Responsive Table & Cards */}
+                  <JobTable
+                    careers={paginatedCareers}
+                    onEdit={openEditModal}
+                    onDelete={openDeleteJobModal}
+                  />
+
+                  {/* PAGINATION BAR */}
+                  <div className="saas-pagination">
+                    <div style={{ fontSize: "13px", color: "#64748b" }}>
+                      Showing{" "}
+                      <strong>{(safeCurrentPage - 1) * itemsPerPage + 1}</strong> to{" "}
+                      <strong>{Math.min(safeCurrentPage * itemsPerPage, filteredCareers.length)}</strong> of{" "}
+                      <strong>{filteredCareers.length}</strong> positions
+                    </div>
+
+                    <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+                      <button
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        disabled={safeCurrentPage === 1}
+                        className="page-btn"
+                        title="Previous page"
+                        aria-label="Previous page"
+                      >
+                        <ChevronLeftIcon size={14} />
+                      </button>
+
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map(pageNum => (
+                        <button
+                          key={pageNum}
+                          onClick={() => setCurrentPage(pageNum)}
+                          className={`page-btn ${pageNum === safeCurrentPage ? "active" : ""}`}
+                        >
+                          {pageNum}
+                        </button>
+                      ))}
+
+                      <button
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        disabled={safeCurrentPage === totalPages}
+                        className="page-btn"
+                        title="Next page"
+                        aria-label="Next page"
+                      >
+                        <ChevronRightIcon size={14} />
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
+            </section>
           </>
         ) : (
           <>
             {/* 2. APPLICATIONS STATISTIC CARDS */}
             <section className="admin-stats-grid" aria-label="Candidate Applications Overview">
-              <div 
+              <div
                 className="saas-stat-card"
                 onClick={() => { setAppStatusFilter("all"); setAppCurrentPage(1); }}
                 style={{ cursor: "pointer" }}
@@ -881,12 +881,12 @@ export default function AdminCareersPage() {
                 </div>
               </div>
 
-              <div 
+              <div
                 className="saas-stat-card"
                 onClick={() => { setAppStatusFilter("new"); setAppCurrentPage(1); }}
                 style={{ cursor: "pointer" }}
               >
-                <div className="saas-stat-icon" style={{ background: "#f0f9ff", color: "#0284c7" }}>
+                <div className="saas-stat-icon" style={{ background: "#f0f9ff", color: "#023d5bff" }}>
                   <FileTextIcon size={22} />
                 </div>
                 <div>
@@ -896,7 +896,7 @@ export default function AdminCareersPage() {
                 </div>
               </div>
 
-              <div 
+              <div
                 className="saas-stat-card"
                 onClick={() => { setAppStatusFilter("reviewed"); setAppCurrentPage(1); }}
                 style={{ cursor: "pointer" }}
@@ -911,7 +911,7 @@ export default function AdminCareersPage() {
                 </div>
               </div>
 
-              <div 
+              <div
                 className="saas-stat-card"
                 onClick={() => { setAppStatusFilter("shortlisted"); setAppCurrentPage(1); }}
                 style={{ cursor: "pointer" }}
@@ -1078,7 +1078,7 @@ export default function AdminCareersPage() {
                       : `No candidate matches your current filter ${appSearchQuery ? `"${appSearchQuery}"` : ""}. Try adjusting or clearing your filter.`}
                   </p>
                   {(appSearchQuery || appStatusFilter !== "all") && (
-                    <button 
+                    <button
                       onClick={clearAppFilters}
                       className="admin-action-btn"
                       style={{ padding: "8px 16px", fontSize: "13px", fontWeight: "600" }}

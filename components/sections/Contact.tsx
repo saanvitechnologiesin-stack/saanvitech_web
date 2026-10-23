@@ -41,6 +41,14 @@ const ContactSection = ({ data }: { data: SectionProps }) => {
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
 
+            const phoneVal = (data.phone as string || "").trim();
+            if (phoneVal && phoneVal.replace(/\D/g, '').length !== 10) {
+                setStatus("error");
+                setMessage("Please enter a valid 10-digit mobile number.");
+                clearMessage(4000);
+                return;
+            }
+
             setLoading(true);
 
             const response = await fetch("/api/contact", {
@@ -178,9 +186,15 @@ const ContactSection = ({ data }: { data: SectionProps }) => {
                                         id="ContactForm-phone"
                                         label="Phone Number"
                                         type="tel"
-                                        placeholder="Phone Number (Optional)"
+                                        placeholder="Mobile Number (10 digits)"
                                         name="phone"
                                         required={false}
+                                        maxLength={10}
+                                        pattern="[0-9]{10}"
+                                        inputMode="numeric"
+                                        onInput={(e) => {
+                                            e.currentTarget.value = e.currentTarget.value.replace(/\D/g, '').slice(0, 10);
+                                        }}
                                     />
 
                                     <TextField 

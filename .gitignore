@@ -32,3 +32,9 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# storage & user uploads (never commit user data or resumes)
+/storage/
+!/storage/.gitkeep
+/public/uploads/
+

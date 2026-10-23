@@ -21,6 +21,16 @@ import {
   RotateCcwIcon,
   FileTextIcon,
   UploadIcon,
+  UserIcon,
+  MailIcon,
+  PhoneIcon,
+  LinkedinIcon,
+  GlobeIcon,
+  ShieldCheckIcon,
+  ZapIcon,
+  SendIcon,
+  RocketIcon,
+  SpinnerIcon,
 } from "@/components/admin/careers/CareerIcons";
 
 const PAGE_TITLE = "Careers at Saanvi Technologies";
@@ -72,6 +82,7 @@ export default function CareersPage() {
   const [submittingApp, setSubmittingApp] = useState<boolean>(false);
   const [appSuccessMsg, setAppSuccessMsg] = useState<string>("");
   const [appErrorMsg, setAppErrorMsg] = useState<string>("");
+  const [isDragging, setIsDragging] = useState<boolean>(false);
 
   // Bottom-Right Toast notification state
   const [toast, setToast] = useState<{ type: "success" | "error" | "warning"; text: string } | null>(null);
@@ -215,6 +226,12 @@ export default function CareersPage() {
   const handleApplySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!applyingJob) return;
+
+    const cleanPhone = appForm.phone.replace(/\D/g, "");
+    if (cleanPhone.length !== 10) {
+      setAppErrorMsg("Please enter a valid 10-digit mobile number.");
+      return;
+    }
 
     if (!resumeFile && !appForm.resumeUrl.trim()) {
       setAppErrorMsg("Please upload your resume file (PDF, DOC, DOCX) or provide a resume link.");
@@ -718,16 +735,33 @@ export default function CareersPage() {
               }
             }}
           >
-            <div className="career-modal-dialog" onClick={e => e.stopPropagation()}>
-              {/* Sticky Modal Header */}
-              <div className="modal-header-sticky">
-                <div>
-                  <span className="job-badge badge-dept" style={{ marginBottom: "6px", display: "inline-flex" }}>
-                    Application Form
-                  </span>
-                  <h2 style={{ fontSize: "20px", fontWeight: "700", color: "#0f172a", margin: 0 }}>
+            <div className="career-modal-dialog apply-modal" onClick={e => e.stopPropagation()}>
+
+              {/* Modal Header */}
+              <div className="apply-modal-header">
+                <div className="apply-modal-title-wrap">
+                  <h2 className="apply-modal-title">
                     Apply for {applyingJob.title}
                   </h2>
+                  <div className="apply-role-pills">
+                    <span className="apply-role-pill dept">{applyingJob.department}</span>
+                    <span className="apply-role-pill">
+                      <MapPinIcon size={12} /> {applyingJob.location}
+                    </span>
+                    <span className="apply-role-pill">
+                      <ClockIcon size={12} /> {applyingJob.type}
+                    </span>
+                    {applyingJob.experience && (
+                      <span className="apply-role-pill">
+                        <TargetIcon size={12} /> {applyingJob.experience}
+                      </span>
+                    )}
+                    {applyingJob.salary && (
+                      <span className="apply-role-pill">
+                        <BanknoteIcon size={12} /> {applyingJob.salary}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 <button
@@ -744,102 +778,189 @@ export default function CareersPage() {
               </div>
 
               {/* Scrollable Modal Content */}
-              <div className="modal-body-scrollable" style={{ padding: "24px 28px", background: "#ffffff" }}>
+              <div className="apply-modal-body">
                 {appSuccessMsg ? (
-                  <div style={{ textAlign: "center", padding: "30px 10px" }}>
-                    <div style={{ width: "56px", height: "56px", borderRadius: "50%", background: "#ecfdf5", color: "#059669", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
-                      <CheckCircleIcon size={32} />
+                  <div className="apply-success-box">
+                    <div className="apply-success-icon-wrap">
+                      <CheckCircleIcon size={34} />
                     </div>
-                    <h3 style={{ fontSize: "20px", fontWeight: "700", color: "#059669", marginBottom: "8px" }}>
-                      Application Submitted!
+                    <h3 style={{ fontSize: "22px", fontWeight: "700", color: "#0f172a", marginBottom: "8px" }}>
+                      Application Received! 🎉
                     </h3>
-                    <p style={{ fontSize: "15px", color: "#475569", lineHeight: 1.6, marginBottom: "24px" }}>
-                      {appSuccessMsg}
+                    <p style={{ fontSize: "14px", color: "#475569", lineHeight: 1.6, maxWidth: "460px", margin: "0 auto 20px" }}>
+                      Thank you for applying for <strong>{applyingJob.title}</strong> at Saanvi Technologies.
                     </p>
-                    <button onClick={() => setApplyingJob(null)} className="btn-apply">
-                      Done
+
+                    <button
+                      onClick={() => setApplyingJob(null)}
+                      className="apply-btn-submit"
+                      style={{ margin: "0 auto", display: "inline-flex" }}
+                    >
+                      Done & Back to Jobs
                     </button>
                   </div>
                 ) : (
-                  <form id="public-career-apply-form" onSubmit={handleApplySubmit}>
-                    <p style={{ fontSize: "14px", color: "#64748b", margin: "0 0 20px" }}>
-                      Please provide your contact details and background so our hiring team can review your profile.
-                    </p>
+                  <form id="public-career-apply-form" onSubmit={handleApplySubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                    {appErrorMsg && (
+                      <div style={{ padding: "12px 16px", borderRadius: "8px", background: "#fef2f2", border: "1px solid #fecaca", color: "#991b1b", fontSize: "13px", fontWeight: "500", display: "flex", alignItems: "center", gap: "8px" }}>
+                        <CloseIcon size={14} />
+                        {appErrorMsg}
+                      </div>
+                    )}
 
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "16px" }}>
-                      <div className="career-form-group">
-                        <label>Full Name *</label>
-                        <input
-                          type="text"
-                          className="career-form-input"
-                          placeholder="John Doe"
-                          value={appForm.name}
-                          onChange={e => setAppForm({ ...appForm, name: e.target.value })}
-                          required
-                        />
+                    {/* SECTION 1: Personal & Contact Details */}
+                    <div className="apply-section-card">
+                      <div className="apply-section-header">
+                        <div className="apply-step-badge">1</div>
+                        <h4 className="apply-section-title">Personal Information</h4>
+                        <span className="apply-section-sub">* Required fields</span>
                       </div>
 
-                      <div className="career-form-group">
-                        <label>Email Address *</label>
-                        <input
-                          type="email"
-                          className="career-form-input"
-                          placeholder="john@example.com"
-                          value={appForm.email}
-                          onChange={e => setAppForm({ ...appForm, email: e.target.value })}
-                          required
-                        />
+                      <div className="apply-form-grid">
+                        <div>
+                          <div className="career-form-label-row">
+                            <span>Full Name <span className="req">*</span></span>
+                          </div>
+                          <div className="input-icon-wrap">
+                            <input
+                              type="text"
+                              className="career-form-input"
+                              placeholder="e.g. Rahul Sharma"
+                              value={appForm.name}
+                              onChange={e => setAppForm({ ...appForm, name: e.target.value })}
+                              required
+                            />
+                            <span className="input-icon-left">
+                              <UserIcon size={15} />
+                            </span>
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="career-form-label-row">
+                            <span>Email Address <span className="req">*</span></span>
+                          </div>
+                          <div className="input-icon-wrap">
+                            <input
+                              type="email"
+                              className="career-form-input"
+                              placeholder="e.g. rahul@example.com"
+                              value={appForm.email}
+                              onChange={e => setAppForm({ ...appForm, email: e.target.value })}
+                              required
+                            />
+                            <span className="input-icon-left">
+                              <MailIcon size={15} />
+                            </span>
+                          </div>
+                        </div>
+
+                        <div style={{ gridColumn: "span 2" }}>
+                          <div className="career-form-label-row">
+                            <span>Mobile Number <span className="req">*</span></span>
+                            <span className="hint">10 digits max</span>
+                          </div>
+                          <div className="input-icon-wrap">
+                            <input
+                              type="tel"
+                              className="career-form-input"
+                              placeholder="e.g. 9876543210"
+                              value={appForm.phone}
+                              maxLength={10}
+                              pattern="[0-9]{10}"
+                              inputMode="numeric"
+                              onChange={e => {
+                                const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
+                                setAppForm({ ...appForm, phone: digits });
+                              }}
+                              required
+                            />
+                            <span className="input-icon-left">
+                              <PhoneIcon size={15} />
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "16px" }}>
-                      <div className="career-form-group">
-                        <label>Phone Number *</label>
-                        <input
-                          type="tel"
-                          className="career-form-input"
-                          placeholder="+91 98765 43210"
-                          value={appForm.phone}
-                          onChange={e => setAppForm({ ...appForm, phone: e.target.value })}
-                          required
-                        />
+                    {/* SECTION 2: Professional Profiles */}
+                    <div className="apply-section-card">
+                      <div className="apply-section-header">
+                        <div className="apply-step-badge">2</div>
+                        <h4 className="apply-section-title">Professional Profiles</h4>
+                        <span className="apply-section-sub">Optional</span>
                       </div>
 
-                      <div className="career-form-group">
-                        <label>LinkedIn Profile URL</label>
-                        <input
-                          type="url"
-                          className="career-form-input"
-                          placeholder="https://linkedin.com/in/username"
-                          value={appForm.linkedin}
-                          onChange={e => setAppForm({ ...appForm, linkedin: e.target.value })}
-                        />
+                      <div className="apply-form-grid">
+                        <div>
+                          <div className="career-form-label-row">
+                            <span>LinkedIn Profile</span>
+                          </div>
+                          <div className="input-icon-wrap">
+                            <input
+                              type="url"
+                              className="career-form-input"
+                              placeholder="https://linkedin.com/in/username"
+                              value={appForm.linkedin}
+                              onChange={e => setAppForm({ ...appForm, linkedin: e.target.value })}
+                            />
+                            <span className="input-icon-left">
+                              <LinkedinIcon size={15} />
+                            </span>
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="career-form-label-row">
+                            <span>Portfolio / GitHub</span>
+                          </div>
+                          <div className="input-icon-wrap">
+                            <input
+                              type="url"
+                              className="career-form-input"
+                              placeholder="https://github.com/... or portfolio"
+                              value={appForm.portfolio}
+                              onChange={e => setAppForm({ ...appForm, portfolio: e.target.value })}
+                            />
+                            <span className="input-icon-left">
+                              <GlobeIcon size={15} />
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="career-form-group">
-                      <label>Portfolio / GitHub URL</label>
-                      <input
-                        type="url"
-                        className="career-form-input"
-                        placeholder="https://github.com/username or https://portfolio.com"
-                        value={appForm.portfolio}
-                        onChange={e => setAppForm({ ...appForm, portfolio: e.target.value })}
-                      />
-                    </div>
+                    {/* SECTION 3: Resume & Documents */}
+                    <div className="apply-section-card">
+                      <div className="apply-section-header">
+                        <div className="apply-step-badge">3</div>
+                        <h4 className="apply-section-title">Resume & Documents</h4>
+                        <span className="apply-section-sub"><span className="req">*</span> Upload or Link</span>
+                      </div>
 
-                    {/* Resume Upload Component */}
-                    <div className="career-form-group">
-                      <label style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <span>Resume / CV *</span>
-                        <span style={{ fontSize: "12px", color: "#64748b", fontWeight: "normal" }}>
-                          PDF, DOC, DOCX (Max 10MB)
-                        </span>
-                      </label>
-
-                      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                         {!resumeFile ? (
-                          <label className="resume-upload-zone">
+                          <label
+                            className={`modern-resume-zone ${isDragging ? "dragging" : ""}`}
+                            onDragOver={e => {
+                              e.preventDefault();
+                              setIsDragging(true);
+                            }}
+                            onDragLeave={() => setIsDragging(false)}
+                            onDrop={e => {
+                              e.preventDefault();
+                              setIsDragging(false);
+                              if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                                const file = e.dataTransfer.files[0];
+                                if (file.size > 10 * 1024 * 1024) {
+                                  setAppErrorMsg("Resume file size must be under 10MB.");
+                                  return;
+                                }
+                                setResumeFile(file);
+                                setAppErrorMsg("");
+                              }
+                            }}
+                          >
                             <input
                               type="file"
                               accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
@@ -856,28 +977,33 @@ export default function CareersPage() {
                               }}
                               style={{ display: "none" }}
                             />
-                            <div style={{ color: "#2563eb" }}>
-                              <UploadIcon size={26} />
+                            <div className="resume-cloud-icon-circle">
+                              <UploadIcon size={24} />
                             </div>
-                            <div style={{ fontSize: "14px", fontWeight: "600", color: "#0f172a" }}>
-                              Click to upload your resume
+                            <div style={{ fontSize: "14px", fontWeight: "700", color: "#0f172a" }}>
+                              Drop your resume here, or <span style={{ color: "#093d64", textDecoration: "underline" }}>browse files</span>
                             </div>
                             <div style={{ fontSize: "12px", color: "#64748b" }}>
-                              Drag and drop or browse from your device
+                              PDF, DOC, DOCX up to 10MB
+                            </div>
+                            <div className="resume-format-chips">
+                              <span className="format-chip">PDF</span>
+                              <span className="format-chip">DOCX</span>
+                              <span className="format-chip">DOC</span>
                             </div>
                           </label>
                         ) : (
-                          <div className="resume-file-selected">
+                          <div className="modern-resume-selected">
                             <div style={{ display: "flex", alignItems: "center", gap: "12px", minWidth: 0 }}>
-                              <div style={{ color: "#2563eb", flexShrink: 0 }}>
-                                <FileTextIcon size={24} />
+                              <div className="resume-file-icon-box">
+                                <FileTextIcon size={22} />
                               </div>
-                              <div style={{ minWidth: 0 }}>
-                                <div style={{ fontWeight: "600", fontSize: "13px", color: "#0f172a", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                              <div className="resume-file-details">
+                                <div className="resume-file-name" title={resumeFile.name}>
                                   {resumeFile.name}
                                 </div>
-                                <div style={{ fontSize: "11px", color: "#64748b" }}>
-                                  {(resumeFile.size / (1024 * 1024)).toFixed(2)} MB • File selected
+                                <div className="resume-file-meta">
+                                  ✓ Ready for review • {(resumeFile.size / (1024 * 1024)).toFixed(2)} MB
                                 </div>
                               </div>
                             </div>
@@ -891,33 +1017,47 @@ export default function CareersPage() {
                           </div>
                         )}
 
-                        <div style={{ display: "flex", alignItems: "center", gap: "10px", margin: "2px 0" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px", margin: "4px 0" }}>
                           <div style={{ flex: 1, height: "1px", background: "#e2e8f0" }}></div>
-                          <span style={{ fontSize: "11px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.04em" }}>
-                            or provide link
+                          <span style={{ fontSize: "11px", fontWeight: "600", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                            or paste resume link
                           </span>
                           <div style={{ flex: 1, height: "1px", background: "#e2e8f0" }}></div>
                         </div>
 
-                        <input
-                          type="url"
-                          className="career-form-input"
-                          placeholder="Google Drive, Dropbox, or OneDrive resume link..."
-                          value={appForm.resumeUrl}
-                          onChange={e => setAppForm({ ...appForm, resumeUrl: e.target.value })}
-                        />
+                        <div className="input-icon-wrap">
+                          <input
+                            type="url"
+                            className="career-form-input"
+                            placeholder="Google Drive, Dropbox, or OneDrive resume share link..."
+                            value={appForm.resumeUrl}
+                            onChange={e => setAppForm({ ...appForm, resumeUrl: e.target.value })}
+                          />
+                          <span className="input-icon-left">
+                            <GlobeIcon size={15} />
+                          </span>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="career-form-group">
-                      <label>Brief Cover Note / Why Saanvi Technologies?</label>
-                      <textarea
-                        className="career-form-textarea"
-                        rows={3}
-                        placeholder="Share a short note about your experience and why you are interested in this position..."
-                        value={appForm.coverLetter}
-                        onChange={e => setAppForm({ ...appForm, coverLetter: e.target.value })}
-                      />
+                    {/* SECTION 4: Short Note */}
+                    <div className="apply-section-card">
+                      <div className="apply-section-header">
+                        <div className="apply-step-badge">4</div>
+                        <h4 className="apply-section-title">Brief Note (Optional)</h4>
+                        <span className="apply-section-sub">Why you?</span>
+                      </div>
+
+                      <div>
+                        <textarea
+                          className="career-form-textarea"
+                          rows={3}
+                          placeholder="Tell us what excites you about this role at Saanvi Technologies and what sets you apart..."
+                          value={appForm.coverLetter}
+                          onChange={e => setAppForm({ ...appForm, coverLetter: e.target.value })}
+                          style={{ resize: "vertical" }}
+                        />
+                      </div>
                     </div>
                   </form>
                 )}
@@ -925,23 +1065,33 @@ export default function CareersPage() {
 
               {/* Sticky Footer */}
               {!appSuccessMsg && (
-                <div style={{ padding: "16px 28px", background: "#f8fafc", borderTop: "1px solid #e2e8f0", display: "flex", justifyContent: "flex-end", gap: "12px", alignItems: "center" }}>
-                  <button
-                    type="button"
-                    onClick={() => setApplyingJob(null)}
-                    className="btn-details"
-                    disabled={submittingApp}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    form="public-career-apply-form"
-                    className="btn-apply"
-                    disabled={submittingApp}
-                  >
-                    {submittingApp ? "Submitting Application..." : "Submit Application →"}
-                  </button>
+                <div className="apply-modal-footer">
+                  <div className="apply-footer-buttons">
+                    <button
+                      type="button"
+                      onClick={() => setApplyingJob(null)}
+                      className="apply-btn-cancel"
+                      disabled={submittingApp}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      form="public-career-apply-form"
+                      className="apply-btn-submit"
+                      disabled={submittingApp}
+                    >
+                      {submittingApp ? (
+                        <>
+                          <SpinnerIcon size={16} /> <span>Submitting...</span>
+                        </>
+                      ) : (
+                        <>
+                          Submit Application <SendIcon size={14} />
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

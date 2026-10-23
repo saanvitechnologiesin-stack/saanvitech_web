@@ -39,6 +39,15 @@ export const ApplicationsTable: React.FC<ApplicationsTableProps> = ({
     }
   };
 
+  const resolveResumeUrl = (rawLink?: string) => {
+    if (!rawLink) return "";
+    if (rawLink.startsWith("/uploads/resumes/")) {
+      const filename = rawLink.replace("/uploads/resumes/", "");
+      return `/api/admin/resumes/${filename}`;
+    }
+    return rawLink;
+  };
+
   const getStatusBadgeClass = (status?: ApplicationStatus) => {
     switch (status) {
       case "shortlisted":
@@ -71,7 +80,7 @@ export const ApplicationsTable: React.FC<ApplicationsTableProps> = ({
           <tbody>
             {applications.map(app => {
               const currentStatus: ApplicationStatus = app.status || "new";
-              const resumeLink = app.resumeFilePath || app.resumeUrl;
+              const resumeLink = resolveResumeUrl(app.resumeFilePath || app.resumeUrl);
 
               return (
                 <tr key={app.id}>
@@ -166,10 +175,10 @@ export const ApplicationsTable: React.FC<ApplicationsTableProps> = ({
       </div>
 
       {/* MOBILE CARD VIEW */}
-      <div className="mobile-card-view">
+      <div className="mobile-cards-view">
         {applications.map(app => {
           const currentStatus: ApplicationStatus = app.status || "new";
-          const resumeLink = app.resumeFilePath || app.resumeUrl;
+          const resumeLink = resolveResumeUrl(app.resumeFilePath || app.resumeUrl);
 
           return (
             <div key={app.id} className="mobile-job-card">
@@ -309,7 +318,7 @@ export const ApplicationsTable: React.FC<ApplicationsTableProps> = ({
                 <div style={{ fontSize: "12px", color: "#64748b", marginBottom: "6px" }}>Candidate Resume</div>
                 {selectedApp.resumeFilePath || selectedApp.resumeUrl ? (
                   <a
-                    href={selectedApp.resumeFilePath || selectedApp.resumeUrl}
+                    href={resolveResumeUrl(selectedApp.resumeFilePath || selectedApp.resumeUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-apply"

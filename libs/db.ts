@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import { Pool } from 'pg';
 import { CareerType, CareerApplicationType, ApplicationStatus } from '@/types/career';
 import { AdminUserType } from '@/types/admin';
@@ -567,10 +569,33 @@ export async function deleteCareerApplication(id: number | string): Promise<bool
   await initDb();
   const client = await getPool().connect();
   try {
+    // 1. Fetch file path to clean up disk storage
+    const findRes = await client.query(
+      `SELECT resume_file_path FROM career_applications WHERE id = $1`,
+      [id]
+    );
+
     const res = await client.query(
       `DELETE FROM career_applications WHERE id = $1`,
       [id]
     );
+
+    // 2. Remove physical file from disk if present
+    if (findRes.rows.length > 0 && findRes.rows[0].resume_file_path) {
+      const rawPath: string = findRes.rows[0].resume_file_path;
+      const filename = path.basename(rawPath);
+      if (filename) {
+        const privatePath = path.join(process.cwd(), "storage", "resumes", filename);
+        const publicPath = path.join(process.cwd(), "public", "uploads", "resumes", filename);
+        if (fs.existsSync(privatePath)) {
+          try { fs.unlinkSync(privatePath); } catch {}
+        }
+        if (fs.existsSync(publicPath)) {
+          try { fs.unlinkSync(publicPath); } catch {}
+        }
+      }
+    }
+
     return (res.rowCount ?? 0) > 0;
   } finally {
     client.release();
