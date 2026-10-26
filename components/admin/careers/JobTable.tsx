@@ -111,10 +111,10 @@ export const JobTable: React.FC<JobTableProps> = ({
           return (
             <div key={career.id} className="mobile-job-card">
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "10px", marginBottom: "8px" }}>
-                <div>
-                  <div style={{ fontWeight: "700", color: "#0f172a", fontSize: "15px" }}>{career.title}</div>
+                <div style={{ minWidth: 0, flex: "1 1 auto" }}>
+                  <div style={{ fontWeight: "700", color: "#0f172a", fontSize: "15px", wordBreak: "break-word" }}>{career.title}</div>
                 </div>
-                <span className={`status-badge ${currentStatus}`}>
+                <span className={`status-badge ${currentStatus}`} style={{ flexShrink: 0 }}>
                   <span className={`status-dot ${currentStatus}`} />
                   <span style={{ textTransform: "capitalize" }}>{currentStatus}</span>
                 </span>

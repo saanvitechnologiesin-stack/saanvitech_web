@@ -12,6 +12,7 @@ import { JobTable } from "@/components/admin/careers/JobTable";
 import { ApplicationsTable } from "@/components/admin/careers/ApplicationsTable";
 import { CareerModal, CareerFormData } from "@/components/admin/careers/CareerModal";
 import { DeleteConfirmModal } from "@/components/common/DeleteConfirmModal";
+import { AdminSkeletonLoader } from "@/components/admin/careers/AdminSkeletonLoader";
 import {
   CheckIcon,
   CheckCircleIcon,
@@ -410,15 +411,9 @@ export default function AdminCareersPage() {
     }
   };
 
-  // UN-AUTHENTICATED: Clean WordPress-style login page
+  // INITIAL LOADING STATE: Full-page Modern SaaS Skeleton Loader
   if (authChecking) {
-    return (
-      <div style={{ minHeight: "100vh", background: "#f8fafc", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ color: "#64748b", fontSize: "14px", display: "flex", alignItems: "center", gap: "8px" }}>
-          <span>Loading Careers Management Portal...</span>
-        </div>
-      </div>
-    );
+    return <AdminSkeletonLoader />;
   }
 
   if (!isAuthenticated) {
@@ -512,7 +507,7 @@ export default function AdminCareersPage() {
 
   return (
     <div className="admin-page-bg">
-      <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", width: "100%", boxSizing: "border-box" }}>
         {/* Toast Notification */}
         {toast && (
           <div className={`saas-toast ${toast.type}`} role="alert">
@@ -530,41 +525,15 @@ export default function AdminCareersPage() {
         />
 
         {/* VIEW NAVIGATION TABS */}
-        <div style={{
-          display: "flex",
-          gap: "8px",
-          margin: "20px 0 18px",
-          borderBottom: "1px solid #e2e8f0",
-          paddingBottom: "2px"
-        }}>
+        <div className="admin-view-nav-tabs">
           <button
             onClick={() => setActiveAdminView("jobs")}
-            style={{
-              padding: "10px 18px",
-              fontSize: "14px",
-              fontWeight: 600,
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              background: "transparent",
-              border: "none",
-              borderBottom: activeAdminView === "jobs" ? "2px solid #022d42ff" : "2px solid transparent",
-              color: activeAdminView === "jobs" ? "#003955ff" : "#64748b",
-              cursor: "pointer",
-              transition: "all 0.15s ease",
-              marginBottom: "-1px"
-            }}
+            className={`admin-view-nav-btn ${activeAdminView === "jobs" ? "active" : ""}`}
           >
-            <BriefcaseIcon size={16} />
-            <span>Job Postings</span>
-            <span style={{
-              background: activeAdminView === "jobs" ? "#e0f2fe" : "#f1f5f9",
-              color: activeAdminView === "jobs" ? "#002b40ff" : "#64748b",
-              fontSize: "12px",
-              fontWeight: 700,
-              padding: "2px 7px",
-              borderRadius: "10px"
-            }}>
+            <BriefcaseIcon size={15} />
+            <span className="admin-tab-text-full">Job Postings</span>
+            <span className="admin-tab-text-short">Jobs</span>
+            <span className={`admin-view-nav-badge ${activeAdminView === "jobs" ? "active" : ""}`}>
               {careers.length}
             </span>
           </button>
@@ -574,44 +543,18 @@ export default function AdminCareersPage() {
               setActiveAdminView("applications");
               fetchApplications();
             }}
-            style={{
-              padding: "10px 18px",
-              fontSize: "14px",
-              fontWeight: 600,
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              background: "transparent",
-              border: "none",
-              borderBottom: activeAdminView === "applications" ? "2px solid #01344dff" : "2px solid transparent",
-              color: activeAdminView === "applications" ? "#002b41ff" : "#64748b",
-              cursor: "pointer",
-              transition: "all 0.15s ease",
-              marginBottom: "-1px"
-            }}
+            className={`admin-view-nav-btn ${activeAdminView === "applications" ? "active" : ""}`}
           >
-            <UserIcon size={16} />
-            <span>Candidate Applications</span>
-            <span style={{
-              background: activeAdminView === "applications" ? "#e0f2fe" : "#f1f5f9",
-              color: activeAdminView === "applications" ? "#025a87ff" : "#64748b",
-              fontSize: "12px",
-              fontWeight: 700,
-              padding: "2px 7px",
-              borderRadius: "10px"
-            }}>
+            <UserIcon size={15} />
+            <span className="admin-tab-text-full">Candidate Applications</span>
+            <span className="admin-tab-text-short">Applications</span>
+            <span className={`admin-view-nav-badge ${activeAdminView === "applications" ? "active" : ""}`}>
               {applications.length}
             </span>
             {appNewCount > 0 && (
-              <span style={{
-                background: "#014a6eff",
-                color: "#ffffff",
-                fontSize: "11px",
-                fontWeight: 700,
-                padding: "2px 7px",
-                borderRadius: "10px"
-              }}>
-                {appNewCount} New
+              <span className="admin-view-nav-new">
+                <span className="admin-tab-text-full">{appNewCount} New</span>
+                <span className="admin-tab-text-short">{appNewCount}</span>
               </span>
             )}
           </button>
@@ -670,20 +613,16 @@ export default function AdminCareersPage() {
               </div>
 
               {/* Directory Toolbar: Search & Department Filter */}
-              <div style={{ padding: "16px 20px", borderBottom: "1px solid #f1f5f9", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "14px" }}>
-                <div>
-                  <h2 style={{ fontSize: "16px", fontWeight: "600", margin: "0 0 2px", color: "#0f172a" }}>
-                    Job Postings Directory
-                  </h2>
-                  <span style={{ fontSize: "13px", color: "#64748b" }}>
-                    Showing {filteredCareers.length} of {careers.length} total positions
-                  </span>
+              <div className="admin-dir-toolbar">
+                <div className="admin-dir-toolbar-info">
+                  <h2>Job Postings Directory</h2>
+                  <span>Showing {filteredCareers.length} of {careers.length} total positions</span>
                 </div>
 
-                <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}>
+                <div className="admin-dir-toolbar-controls">
                   {/* Search Input */}
-                  <div style={{ position: "relative", minWidth: "240px" }}>
-                    <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#94a3b8", display: "flex", alignItems: "center" }}>
+                  <div className="admin-dir-search-wrap">
+                    <span className="admin-dir-search-icon">
                       <SearchIcon size={14} />
                     </span>
                     <input
@@ -691,68 +630,32 @@ export default function AdminCareersPage() {
                       placeholder="Search by title, location, type..."
                       value={searchQuery}
                       onChange={e => { setSearchQuery(e.target.value); setCurrentPage(1); }}
-                      style={{
-                        width: "100%",
-                        height: "36px",
-                        minHeight: "36px",
-                        padding: "4px 10px 4px 32px",
-                        fontSize: "13px",
-                        color: "#1e293b",
-                        border: "1px solid #e2e8f0",
-                        borderRadius: "8px",
-                        outline: "none",
-                        background: "#f8fafc",
-                        boxSizing: "border-box",
-                      }}
+                      className="admin-dir-search-input"
                     />
                   </div>
 
-                  {/* Department Filter */}
-                  <select
-                    value={filterDepartment}
-                    onChange={e => { setFilterDepartment(e.target.value); setCurrentPage(1); }}
-                    style={{
-                      height: "36px",
-                      minHeight: "36px",
-                      padding: "4px 12px",
-                      fontSize: "13px",
-                      color: "#1e293b",
-                      border: "1px solid #e2e8f0",
-                      borderRadius: "8px",
-                      outline: "none",
-                      background: "#f8fafc",
-                      cursor: "pointer",
-                      boxSizing: "border-box",
-                    }}
-                  >
-                    {departments.map(dept => (
-                      <option key={dept} value={dept}>{dept === "All" ? "All Departments" : dept}</option>
-                    ))}
-                  </select>
-
-                  {(searchQuery || filterDepartment !== "All" || activeStatusTab !== "all") && (
-                    <button
-                      onClick={clearFilters}
-                      style={{
-                        height: "36px",
-                        minHeight: "36px",
-                        padding: "0 12px",
-                        fontSize: "12px",
-                        fontWeight: "500",
-                        color: "#475569",
-                        background: "#f1f5f9",
-                        border: "1px solid #e2e8f0",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "5px",
-                      }}
+                  <div className="admin-dir-controls-row">
+                    {/* Department Filter */}
+                    <select
+                      value={filterDepartment}
+                      onChange={e => { setFilterDepartment(e.target.value); setCurrentPage(1); }}
+                      className="admin-dir-select"
                     >
-                      <CloseIcon size={12} />
-                      <span>Reset Filters</span>
-                    </button>
-                  )}
+                      {departments.map(dept => (
+                        <option key={dept} value={dept}>{dept === "All" ? "All Departments" : dept}</option>
+                      ))}
+                    </select>
+
+                    {(searchQuery || filterDepartment !== "All" || activeStatusTab !== "all") && (
+                      <button
+                        onClick={clearFilters}
+                        className="admin-dir-btn-reset"
+                      >
+                        <CloseIcon size={12} />
+                        <span>Reset</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -973,20 +876,16 @@ export default function AdminCareersPage() {
               </div>
 
               {/* Directory Toolbar: Search & Refresh */}
-              <div style={{ padding: "16px 20px", borderBottom: "1px solid #f1f5f9", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "14px" }}>
-                <div>
-                  <h2 style={{ fontSize: "16px", fontWeight: "600", margin: "0 0 2px", color: "#0f172a" }}>
-                    Candidate Applications Directory
-                  </h2>
-                  <span style={{ fontSize: "13px", color: "#64748b" }}>
-                    Showing {filteredApplications.length} of {applications.length} total submissions
-                  </span>
+              <div className="admin-dir-toolbar">
+                <div className="admin-dir-toolbar-info">
+                  <h2>Candidate Applications Directory</h2>
+                  <span>Showing {filteredApplications.length} of {applications.length} total submissions</span>
                 </div>
 
-                <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}>
+                <div className="admin-dir-toolbar-controls">
                   {/* Search Input */}
-                  <div style={{ position: "relative", minWidth: "260px" }}>
-                    <span style={{ position: "absolute", left: "10px", top: "50%", transform: "translateY(-50%)", color: "#94a3b8", display: "flex", alignItems: "center" }}>
+                  <div className="admin-dir-search-wrap">
+                    <span className="admin-dir-search-icon">
                       <SearchIcon size={14} />
                     </span>
                     <input
@@ -994,67 +893,29 @@ export default function AdminCareersPage() {
                       placeholder="Search candidate, role, email..."
                       value={appSearchQuery}
                       onChange={e => { setAppSearchQuery(e.target.value); setAppCurrentPage(1); }}
-                      style={{
-                        width: "100%",
-                        height: "36px",
-                        minHeight: "36px",
-                        padding: "4px 10px 4px 32px",
-                        fontSize: "13px",
-                        color: "#1e293b",
-                        border: "1px solid #e2e8f0",
-                        borderRadius: "8px",
-                        outline: "none",
-                        background: "#f8fafc",
-                        boxSizing: "border-box",
-                      }}
+                      className="admin-dir-search-input"
                     />
                   </div>
 
-                  {(appSearchQuery || appStatusFilter !== "all") && (
-                    <button
-                      onClick={clearAppFilters}
-                      style={{
-                        height: "36px",
-                        minHeight: "36px",
-                        padding: "0 12px",
-                        fontSize: "12px",
-                        fontWeight: "500",
-                        color: "#475569",
-                        background: "#f1f5f9",
-                        border: "1px solid #e2e8f0",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "5px",
-                      }}
-                    >
-                      <CloseIcon size={12} />
-                      <span>Clear</span>
-                    </button>
-                  )}
+                  <div className="admin-dir-controls-row">
+                    {(appSearchQuery || appStatusFilter !== "all") && (
+                      <button
+                        onClick={clearAppFilters}
+                        className="admin-dir-btn-reset"
+                      >
+                        <CloseIcon size={12} />
+                        <span>Clear</span>
+                      </button>
+                    )}
 
-                  <button
-                    onClick={() => fetchApplications()}
-                    title="Refresh applications"
-                    style={{
-                      height: "36px",
-                      minHeight: "36px",
-                      padding: "0 14px",
-                      fontSize: "13px",
-                      fontWeight: "500",
-                      color: "#0f172a",
-                      background: "#ffffff",
-                      border: "1px solid #cbd5e1",
-                      borderRadius: "8px",
-                      cursor: "pointer",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "6px"
-                    }}
-                  >
-                    Refresh
-                  </button>
+                    <button
+                      onClick={() => fetchApplications()}
+                      title="Refresh applications"
+                      className="admin-dir-btn-refresh"
+                    >
+                      Refresh
+                    </button>
+                  </div>
                 </div>
               </div>
 
