@@ -11,7 +11,7 @@ export const ImageTextData: SectionProps = {
     text: "At Saanvi Technologies, we are driven by a passion for excellence and innovation. Our team of technology enthusiasts is committed to delivering reliable, scalable, and tailored IT solutions that empower businesses to grow and succeed in a competitive digital landscape.",
     button: {
         label: "More About Us",
-        href: "/contact-us",
+        href: "/about-us",
         type: "primary"
     },
     image: {

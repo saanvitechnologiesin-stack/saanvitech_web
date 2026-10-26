@@ -20,10 +20,10 @@ const Home = () => {
   return (
     <>
       {/* Hero Slider */}
-      <HeroSlider 
+      <HeroSlider
         wrapperCls="with-floating-header"
-        slides={HeroSlidesData} 
-        navigation={true} 
+        slides={HeroSlidesData}
+        navigation={true}
       />
 
       {/* Image Text */}
