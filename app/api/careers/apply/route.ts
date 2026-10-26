@@ -127,6 +127,7 @@ export async function POST(req: NextRequest) {
 
     // Process uploaded file if present
     let savedResumeRelativePath = "";
+    let resumeBuffer: Buffer | null = null;
 
     if (resumeFile && resumeFile.size > 0) {
       // Validate file size (10MB max)
@@ -149,7 +150,7 @@ export async function POST(req: NextRequest) {
       }
 
       const bytes = await resumeFile.arrayBuffer();
-      const buffer = Buffer.from(bytes);
+      resumeBuffer = Buffer.from(bytes);
 
       // Save to private storage (outside public/)
       ensureStorageDir();
@@ -157,7 +158,7 @@ export async function POST(req: NextRequest) {
       const sanitizedFilename = resumeFile.name.replace(/[^a-zA-Z0-9.-]/g, "_");
       const uniqueFilename = `${Date.now()}-${sanitizedFilename}`;
       const filePath = path.join(PRIVATE_STORAGE_DIR, uniqueFilename);
-      fs.writeFileSync(filePath, buffer);
+      fs.writeFileSync(filePath, resumeBuffer);
 
       // Point link to authenticated admin resume streaming route
       savedResumeRelativePath = `/api/admin/resumes/${uniqueFilename}`;
@@ -333,6 +334,16 @@ export async function POST(req: NextRequest) {
         });
         console.log(`[Career Apply API] Confirmation email sent to applicant: ${cleanEmail}`);
 
+        // Determine base URL for email links (so they are valid absolute URLs, not relative paths)
+        const hostHeader = req.headers.get("x-forwarded-host") || req.headers.get("host") || "";
+        const protoHeader = req.headers.get("x-forwarded-proto") || (hostHeader.includes("localhost") ? "http" : "https");
+        const siteUrl = process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || (hostHeader ? `${protoHeader}://${hostHeader}` : "https://saanvitechin.com");
+        const adminSecret = process.env.ADMIN_SECRET_KEY || "saanvi-admin-2026";
+
+        const absoluteResumeUrl = savedResumeRelativePath
+          ? `${siteUrl}${savedResumeRelativePath}?key=${adminSecret}`
+          : (resumeUrl ? resumeUrl.trim() : "");
+
         // 2. INTERNAL NOTIFICATION TO SAANVI HIRING TEAM
         const adminRecipients = getAdminNotificationEmails();
         if (adminRecipients.length > 0) {
@@ -359,9 +370,9 @@ export async function POST(req: NextRequest) {
                     <tr><td style="padding: 8px 0; color: #64748b; width: 35%;">Candidate:</td><td style="padding: 8px 0; font-weight: 600; color: #0f172a;">${cleanName}</td></tr>
                     <tr><td style="padding: 8px 0; color: #64748b;">Email:</td><td style="padding: 8px 0;"><a href="mailto:${cleanEmail}" style="color: #2563eb; text-decoration: none;">${cleanEmail}</a></td></tr>
                     <tr><td style="padding: 8px 0; color: #64748b;">Phone:</td><td style="padding: 8px 0;"><a href="tel:${cleanPhone}" style="color: #2563eb; text-decoration: none;">+91 ${cleanPhone}</a></td></tr>
-                    <tr><td style="padding: 8px 0; color: #64748b;">LinkedIn:</td><td style="padding: 8px 0;">${linkedin ? `<a href="${linkedin}" style="color: #2563eb; text-decoration: none;">${linkedin}</a>` : '<span style="color:#94a3b8;">Not provided</span>'}</td></tr>
-                    <tr><td style="padding: 8px 0; color: #64748b;">Portfolio:</td><td style="padding: 8px 0;">${portfolio ? `<a href="${portfolio}" style="color: #2563eb; text-decoration: none;">${portfolio}</a>` : '<span style="color:#94a3b8;">Not provided</span>'}</td></tr>
-                    <tr><td style="padding: 8px 0; color: #64748b;">Resume File:</td><td style="padding: 8px 0;">${savedResumeRelativePath ? `<a href="${savedResumeRelativePath}" style="color: #2563eb; font-weight: 600;">Download Resume</a>` : (resumeUrl ? `<a href="${resumeUrl}" style="color: #2563eb; font-weight: 600;">View Cloud Link</a>` : '<span style="color:#94a3b8;">None</span>')}</td></tr>
+                    <tr><td style="padding: 8px 0; color: #64748b;">LinkedIn:</td><td style="padding: 8px 0;">${linkedin ? `<a href="${linkedin}" target="_blank" style="color: #2563eb; text-decoration: none;">${linkedin}</a>` : '<span style="color:#94a3b8;">Not provided</span>'}</td></tr>
+                    <tr><td style="padding: 8px 0; color: #64748b;">Portfolio:</td><td style="padding: 8px 0;">${portfolio ? `<a href="${portfolio}" target="_blank" style="color: #2563eb; text-decoration: none;">${portfolio}</a>` : '<span style="color:#94a3b8;">Not provided</span>'}</td></tr>
+                    <tr><td style="padding: 8px 0; color: #64748b;">Resume File:</td><td style="padding: 8px 0;">${savedResumeRelativePath ? `<a href="${absoluteResumeUrl}" target="_blank" style="color: #2563eb; font-weight: 600;">Download Resume</a> (also attached)` : (resumeUrl ? `<a href="${resumeUrl}" target="_blank" style="color: #2563eb; font-weight: 600;">View Cloud Link</a>` : '<span style="color:#94a3b8;">None</span>')}</td></tr>
                   </table>
                   ${coverLetter ? `
                     <div style="margin-top: 18px; padding: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; line-height: 1.5; color: #334155;">
@@ -374,14 +385,23 @@ export async function POST(req: NextRequest) {
             </html>
           `;
 
+          const adminAttachments = [
+            ...logoAttachment,
+            ...(resumeFile && resumeBuffer ? [{
+              filename: resumeFile.name,
+              content: resumeBuffer,
+              contentType: resumeFile.type || "application/pdf",
+            }] : []),
+          ];
+
           await transporter.sendMail({
             from: `"${fromName}" <${user}>`,
             to: adminRecipients.join(", "),
             replyTo: `"${cleanName}" <${cleanEmail}>`,
             subject: `[New Candidate Application] ${cleanName} - ${cleanRoleTitle}`,
             html: adminEmailHtml,
-            text: `New applicant for ${cleanRoleTitle}:\n\nName: ${cleanName}\nEmail: ${cleanEmail}\nPhone: +91 ${cleanPhone}\n\nView details in /admin/careers portal.`,
-            attachments: logoAttachment,
+            text: `New applicant for ${cleanRoleTitle}:\n\nName: ${cleanName}\nEmail: ${cleanEmail}\nPhone: +91 ${cleanPhone}\n\nResume: ${absoluteResumeUrl || resumeUrl || "Attached"}\n\nView details in /admin/careers portal.`,
+            attachments: adminAttachments,
           });
           console.log(`[Career Apply API] Internal notification sent to: ${adminRecipients.join(", ")}`);
         }

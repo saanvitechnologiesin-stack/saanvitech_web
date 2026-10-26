@@ -10,6 +10,7 @@ function checkAdmin(req: NextRequest): boolean {
   const token =
     req.headers.get("authorization")?.replace("Bearer ", "") ||
     req.headers.get("x-admin-key") ||
+    req.nextUrl.searchParams.get("key") ||
     req.cookies.get("admin_session")?.value;
 
   if (!token) return false;
