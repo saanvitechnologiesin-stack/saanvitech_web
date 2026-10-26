@@ -197,7 +197,7 @@ export const CareerModal: React.FC<CareerModalProps> = ({
                 </div>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "16px", marginBottom: "16px" }}>
+              <div className="career-form-grid-2">
                 <div className="career-form-group">
                   <label className="career-form-label">
                     <span>Job Title <span style={{ color: "#ef4444" }}>*</span></span>
@@ -234,7 +234,7 @@ export const CareerModal: React.FC<CareerModalProps> = ({
                 </div>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
+              <div className="career-form-grid-4">
                 <div className="career-form-group">
                   <label className="career-form-label">
                     <span>Workplace &amp; Location <span style={{ color: "#ef4444" }}>*</span></span>

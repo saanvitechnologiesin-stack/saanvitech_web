@@ -53,7 +53,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
 
   return (
     <header className="admin-header-card">
-      <div style={{ flex: "1 1 500px" }}>
+      <div className="admin-header-titles">
         <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", marginBottom: "4px" }}>
           <span style={{ fontSize: "11px", fontWeight: "700", textTransform: "uppercase", letterSpacing: "1px", color: "#94a3b8" }}>
             Saanvi Recruitment Portal
@@ -67,7 +67,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
         </p>
       </div>
 
-      <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center" }}>
+      <div className="admin-header-actions">
         {/* Post a New Role Button */}
         <button 
           onClick={onOpenNewModal} 
