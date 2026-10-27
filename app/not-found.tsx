@@ -36,7 +36,7 @@ export default function NotFound() {
                 <div className="section-headings text-center">
                   <div className="error-media" data-aos="zoom-in-up">
                     <Image
-                      src="/img/error/error.png"
+                      src="/img/error/error.jpg"
                       alt="404 error image"
                       width={658}
                       height={277}
@@ -45,7 +45,7 @@ export default function NotFound() {
                   </div>
 
                   <p className="text text-18" data-aos="fade-up">
-                    Sorry, the page you&apos;re looking for doesn&apos;t exist. If you think something is broken, report a porblem. 
+                    Sorry, the page you&apos;re looking for doesn&apos;t exist. If you think something is broken, report a problem. 
                   </p>
 
                   <div className="buttons" data-aos="fade-up">
