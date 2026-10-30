@@ -4,16 +4,16 @@ import BreadcrumbBannerImage from '@/public/img/banner/services-banner.jpg';
 import BreadcrumbBanner from "@/components/BreadcrumbBanner";
 import Services from '@/components/sections/Services';
 
-const PAGE_TITLE: string = 'Our Service';
+const PAGE_TITLE: string = 'Our Services';
 export const metadata: Metadata = {
-  title: PAGE_TITLE,
+    title: PAGE_TITLE,
 }
 
 const PageServices = () => {
-    return(
+    return (
         <>
             {/* Breadcrumb Banner */}
-            <BreadcrumbBanner 
+            <BreadcrumbBanner
                 title={PAGE_TITLE}
                 image={{
                     src: BreadcrumbBannerImage.src,
