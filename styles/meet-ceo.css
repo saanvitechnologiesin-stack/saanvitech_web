@@ -1,162 +1,385 @@
-/* ===== Meet CEO Section ===== */
+/* ===== Meet CEO / Leadership Section ===== */
 .meet-ceo {
   overflow: hidden;
+  padding-block: 20px;
 }
 
 .meet-ceo-content {
-  margin-block-start: 60px;
+  margin-block-start: 50px;
 }
 
 .meet-ceo-grid {
   display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 60px;
+  grid-template-columns: 380px 1fr;
+  gap: 50px;
   align-items: center;
 }
 
-/* Image card — reuses .card-team styles from team.css for hover effect */
+/* Rounded CEO Profile Card */
 .meet-ceo-image-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.ceo-profile-card {
+  background: #ffffff;
+  border: 1px solid rgba(28, 37, 57, 0.08);
+  border-radius: 28px;
+  padding: 36px 28px 30px;
+  text-align: center;
+  box-shadow: 0 16px 40px -10px rgba(28, 37, 57, 0.08);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ceo-profile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px -12px rgba(28, 37, 57, 0.14);
+}
+
+.ceo-avatar-frame {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(135deg, rgba(28, 37, 57, 0.12) 0%, rgba(249, 142, 85, 0.35) 100%);
+  box-shadow: 0 12px 28px -6px rgba(28, 37, 57, 0.16);
   position: relative;
 }
 
-.meet-ceo-image-wrap .card-team {
-  aspect-ratio: 4 / 5;
-  max-height: 540px;
-}
-
-.meet-ceo-image-wrap .card-team img {
+.ceo-avatar-inner {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #1c2539;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Right side — CEO info */
+.ceo-avatar-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+  border-radius: 50%;
+}
+
+.ceo-card-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-foreground-heading, #1c2539);
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.ceo-card-title {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+
+.ceo-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding-block: 14px;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 18px;
+}
+
+.ceo-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ceo-stat-val {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1c2539;
+  line-height: 1.2;
+}
+
+.ceo-stat-lbl {
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 3px;
+}
+
+.ceo-card-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.ceo-card-social-link {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #1c2539;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.ceo-card-social-link:hover {
+  background: #1c2539;
+  color: #ffffff;
+  border-color: #1c2539;
+  transform: translateY(-2px);
+}
+
+.ceo-card-social-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Right Column: Info & Bio */
 .meet-ceo-info {
   display: flex;
   align-items: center;
 }
 
 .meet-ceo-info-inner {
-  max-width: 600px;
+  max-width: 100%;
 }
 
-.meet-ceo-info-inner .heading {
-  color: var(--color-foreground-heading, rgba(28, 37, 57, 1));
+.meet-ceo-name {
+  color: var(--color-foreground-heading, #1c2539);
+  margin-bottom: 6px;
+  line-height: 1.25;
 }
 
 .meet-ceo-designation {
-  color: var(--color-foreground-subheading, rgba(93, 102, 111, 1));
-  margin-block-start: 6px;
-  font-weight: 500;
+  color: #f98e55;
+  font-weight: 600;
+  font-size: 16px;
   letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+
+.meet-ceo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.meet-ceo-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 500;
+  background: rgba(28, 37, 57, 0.06);
+  color: #1c2539;
+  border: 1px solid rgba(28, 37, 57, 0.08);
 }
 
 .meet-ceo-divider {
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, rgba(28, 37, 57, 1), rgba(93, 102, 111, 0.4));
+  background: linear-gradient(90deg, #1c2539, #f98e55);
   border-radius: 3px;
-  margin-block: 24px;
+  margin-block: 16px 20px;
 }
 
-.meet-ceo-quote {
-  position: relative;
-  color: var(--color-foreground, rgba(93, 102, 111, 1));
-  line-height: 1.75;
+.meet-ceo-bio {
+  color: #334155;
+  font-size: 15.5px;
+  line-height: 1.65;
+  margin-bottom: 22px;
+}
+
+.meet-ceo-vision-card {
+  background: #f8fafc;
+  border-left: 4px solid #1c2539;
+  border-radius: 0 14px 14px 0;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+  border-top: 1px solid #f1f5f9;
+  border-right: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.meet-ceo-vision-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.meet-ceo-vision-header .meet-ceo-quote-icon {
+  width: 24px;
+  height: 24px;
+  color: #1c2539;
+  flex-shrink: 0;
+}
+
+.meet-ceo-vision-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1c2539;
+  margin: 0;
+}
+
+.meet-ceo-vision-text {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #475569;
   font-style: italic;
-  padding-inline-start: 0;
+  margin: 0;
 }
 
-.meet-ceo-quote-icon {
-  width: 32px;
-  height: 32px;
-  color: rgba(28, 37, 57, 0.15);
-  margin-bottom: 12px;
-  display: block;
+/* Actions Bar */
+.meet-ceo-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 24px;
 }
 
-/* Social links on the right side */
+.download-brochure-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 14.5px;
+  padding: 12px 24px;
+  border-radius: 40px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.download-brochure-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
 .meet-ceo-social {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-block-start: 32px;
+  gap: 12px;
 }
 
 .meet-ceo-social-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid rgba(28, 37, 57, 0.2);
   color: rgba(28, 37, 57, 1);
+  background: #ffffff;
   transition: all 0.3s ease;
   text-decoration: none;
 }
 
 .meet-ceo-social-link:hover {
   background-color: rgba(28, 37, 57, 1);
-  color: rgba(255, 255, 255, 1);
+  color: #ffffff;
   border-color: rgba(28, 37, 57, 1);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 .meet-ceo-social-link svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 /* ===== Responsive ===== */
 @media (max-width: 991px) {
   .meet-ceo-grid {
-    grid-template-columns: 350px 1fr;
-    gap: 40px;
+    grid-template-columns: 340px 1fr;
+    gap: 36px;
   }
 
-  .meet-ceo-image-wrap .card-team {
-    max-height: 460px;
+  .ceo-avatar-frame {
+    width: 200px;
+    height: 200px;
   }
 }
 
 @media (max-width: 767px) {
+  .meet-ceo-content {
+    margin-block-start: 36px;
+  }
+
   .meet-ceo-grid {
     grid-template-columns: 1fr;
     gap: 32px;
   }
 
-  .meet-ceo-image-wrap .card-team {
-    max-width: 400px;
+  .ceo-profile-card {
+    max-width: 360px;
     margin-inline: auto;
+    padding: 28px 20px;
+  }
+
+  .ceo-avatar-frame {
+    width: 180px;
+    height: 180px;
   }
 
   .meet-ceo-info-inner {
-    max-width: 100%;
-    text-align: center;
+    text-align: left;
   }
 
-  .meet-ceo-info {
+  .meet-ceo-name {
+    font-size: 26px;
+  }
+
+  .meet-ceo-designation {
+    font-size: 15px;
+  }
+
+  .meet-ceo-bio {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .meet-ceo-vision-card {
+    padding: 16px 18px;
+  }
+
+  .meet-ceo-vision-text {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .meet-ceo-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .download-brochure-btn {
+    width: 100%;
     justify-content: center;
-  }
-
-  .meet-ceo-divider {
-    margin-inline: auto;
-  }
-
-  .meet-ceo-quote {
-    text-align: center;
-  }
-
-  .meet-ceo-quote-icon {
-    margin-inline: auto;
+    font-size: 14px;
+    padding: 12px 20px;
   }
 
   .meet-ceo-social {
     justify-content: center;
-  }
-
-  .meet-ceo-content {
-    margin-block-start: 40px;
   }
 }

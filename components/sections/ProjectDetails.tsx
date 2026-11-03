@@ -30,11 +30,11 @@ const ProjectDetails = ({
                         <div className="project-details-content">
                             {image &&
                                 <div className="details-media radius18" data-aos="fade-up">
-                                    <Image 
+                                    <Image
                                         src={image}
-                                        width={1000} 
-                                        height={596} 
-                                        loading="lazy" 
+                                        width={1000}
+                                        height={596}
+                                        loading="lazy"
                                         alt={title || "Product Image"}
                                     />
                                 </div>
@@ -50,38 +50,38 @@ const ProjectDetails = ({
                         </div>
                     </div>
 
-                        <div className="lg:col-span-5 col-span-12">
-                            <div className="project-sidebar">
-                                {mockup_image && (
-                                    <div className="sidebar-widget project-sidebar-mockup radius18" data-aos="fade-up">
-                                        <Image
-                                            src={mockup_image}
-                                            width={1920}
-                                            height={1080}
-                                            alt="Web Dashboard Mockup"
-                                            className="sidebar-mockup-img"
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                )}
+                    <div className="lg:col-span-5 col-span-12">
+                        <div className="project-sidebar">
+                            {mockup_image && (
+                                <div className="sidebar-widget project-sidebar-mockup radius18" data-aos="fade-up">
+                                    <Image
+                                        src={mockup_image}
+                                        width={1920}
+                                        height={1080}
+                                        alt="Web Dashboard Mockup"
+                                        className="sidebar-mockup-img"
+                                        loading="lazy"
+                                    />
+                                </div>
+                            )}
 
-                                <SidebarPhone 
-                                    heading="Contact with us <br/> for any advice"
-                                    text="Need help? Talk to an expert"
-                                    phone="+91 98445 60390"
-                                    image={{
-                                        src: SidebarPhoneImage.src,                      
-                                        width: 1000,
-                                        height: 929,
-                                        loading: "lazy",
-                                        alt: "image"
-                                    }}
-                                />
-                            </div>
+                            <SidebarPhone
+                                heading="Contact with us <br/> for any advice"
+                                text="Need help? Talk to an expert"
+                                phone="+91 70191 94859"
+                                image={{
+                                    src: SidebarPhoneImage.src,
+                                    width: 1000,
+                                    height: 929,
+                                    loading: "lazy",
+                                    alt: "image"
+                                }}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     )
 }
 
