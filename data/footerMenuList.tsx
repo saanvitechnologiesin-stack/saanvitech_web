@@ -1,6 +1,6 @@
 export interface MenuType {
-  title: string;
-  path: string;
+    title: string;
+    path: string;
 }
 
 export const QuickLink: MenuType[] = [
@@ -90,8 +90,8 @@ export const MenuContact: MenuType[] = [
         path: 'mailto:info@saanvitechin.com'
     },
     {
-        title: '+91 98445 60390',
-        path: 'tel:+919844560390'
+        title: '+91 84316 07569',
+        path: 'tel:+918431607569'
     }
 ];
 
