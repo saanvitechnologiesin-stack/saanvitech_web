@@ -16,7 +16,7 @@ export const ContactData: SectionProps = {
         {
             icon: <Icons.Support />,
             title: "Get in Touch",
-            text: "Phone: +91 98445 60390 | Email: info@saanvitechin.com / chinmaya@saanvitechin.com",
+            text: "Phone: +91 84316 07569 | Email: info@saanvitechin.com / chinmaya@saanvitechin.com",
         },
     ],
     block: {

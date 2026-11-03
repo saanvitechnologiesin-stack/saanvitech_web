@@ -7,7 +7,7 @@ import SidebarPhone from "./SidebarPhone";
 import DrawerOpener from "./DrawerOpener";
 
 
-const ServiceSidebar = ({ slug }: {slug?: string;}) => {
+const ServiceSidebar = ({ slug }: { slug?: string; }) => {
     const services = Services;
     const filteredServices = services.filter(item => item.slug != slug);
     const categories: string[] = Array.from(new Set(filteredServices.flatMap(service => service.title)));
@@ -26,19 +26,19 @@ const ServiceSidebar = ({ slug }: {slug?: string;}) => {
 
             <aside className="service-sidebar">
                 {categories.length > 0 &&
-                    <SidebarCategories 
+                    <SidebarCategories
                         title="Services List"
                         categories={categories}
                         rootUrl="/services"
                     />
                 }
 
-                <SidebarPhone 
+                <SidebarPhone
                     heading="Contact with us <br/> for any advice"
                     text="Need help? Talk to an expert"
-                    phone="+91 98445 60390"
+                    phone="+91 84316 07569"
                     image={{
-                        src: SidebarPhoneImage.src,                      
+                        src: SidebarPhoneImage.src,
                         width: 1000,
                         height: 929,
                         loading: "lazy",
