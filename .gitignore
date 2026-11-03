@@ -38,3 +38,7 @@ yarn-error.log*
 !/storage/.gitkeep
 /public/uploads/
 
+
+# agents & skills
+/.agents/
+skills-lock.json
