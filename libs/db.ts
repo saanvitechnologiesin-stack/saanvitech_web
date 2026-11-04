@@ -587,19 +587,19 @@ export async function deleteCareerApplication(id: number | string): Promise<bool
       const filename = path.basename(rawPath);
       if (filename) {
         // Try delete from Supabase storage bucket
-        deleteFromSupabaseStorage(filename).catch(() => { });
+        deleteFromSupabaseStorage(filename).catch(() => {});
 
         const privatePath = path.join(PRIVATE_STORAGE_DIR, filename);
         const legacyPrivatePath = path.join(process.cwd(), "storage", "resumes", filename);
         const publicPath = path.join(process.cwd(), "public", "uploads", "resumes", filename);
         if (fs.existsSync(privatePath)) {
-          try { fs.unlinkSync(privatePath); } catch { }
+          try { fs.unlinkSync(privatePath); } catch {}
         }
         if (fs.existsSync(legacyPrivatePath)) {
-          try { fs.unlinkSync(legacyPrivatePath); } catch { }
+          try { fs.unlinkSync(legacyPrivatePath); } catch {}
         }
         if (fs.existsSync(publicPath)) {
-          try { fs.unlinkSync(publicPath); } catch { }
+          try { fs.unlinkSync(publicPath); } catch {}
         }
       }
     }
