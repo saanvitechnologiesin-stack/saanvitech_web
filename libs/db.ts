@@ -9,7 +9,7 @@ import { PRIVATE_STORAGE_DIR, deleteFromSupabaseStorage } from '@/libs/storage';
 let pool: Pool | null = null;
 let isInitialized = false;
 
-function getPool(): Pool {
+export function getPool(): Pool {
   if (!pool) {
     const DATABASE_URL = process.env.DATABASE_URL;
     if (!DATABASE_URL) {
