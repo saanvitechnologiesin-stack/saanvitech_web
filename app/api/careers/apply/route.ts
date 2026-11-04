@@ -4,7 +4,13 @@ import path from "path";
 import nodemailer from "nodemailer";
 import { createCareerApplication, getExistingApplication } from "@/libs/db";
 import { checkRateLimit, getClientIp } from "@/libs/rateLimit";
-import { PRIVATE_STORAGE_DIR, ensureStorageDir, cleanupOldResumes } from "@/libs/storage";
+import { 
+  PRIVATE_STORAGE_DIR, 
+  ensureStorageDir, 
+  cleanupOldResumes,
+  uploadToSupabaseStorage,
+  getSupabaseConfig
+} from "@/libs/storage";
 
 /**
  * Helper to get internal notification emails for new job applications
@@ -152,13 +158,37 @@ export async function POST(req: NextRequest) {
       const bytes = await resumeFile.arrayBuffer();
       resumeBuffer = Buffer.from(bytes);
 
-      // Save to private storage (outside public/)
-      ensureStorageDir();
-
       const sanitizedFilename = resumeFile.name.replace(/[^a-zA-Z0-9.-]/g, "_");
       const uniqueFilename = `${Date.now()}-${sanitizedFilename}`;
-      const filePath = path.join(PRIVATE_STORAGE_DIR, uniqueFilename);
-      fs.writeFileSync(filePath, resumeBuffer);
+
+      // 1. If Supabase Storage is configured, upload to Supabase bucket 'resumes'
+      const supabaseConfig = getSupabaseConfig();
+      if (supabaseConfig) {
+        try {
+          const upRes = await uploadToSupabaseStorage(
+            uniqueFilename,
+            resumeBuffer,
+            resumeFile.type || "application/pdf"
+          );
+          if (upRes.success) {
+            console.log(`[Career Apply API] Resume uploaded to Supabase Storage: ${uniqueFilename}`);
+          } else {
+            console.warn("[Career Apply API] Supabase storage upload warning:", upRes.error);
+          }
+        } catch (supaErr) {
+          console.error("[Career Apply API] Supabase storage upload error:", supaErr);
+        }
+      }
+
+      // 2. Also cache to writable local/tmp storage safely (never crashes serverless)
+      try {
+        if (ensureStorageDir()) {
+          const filePath = path.join(PRIVATE_STORAGE_DIR, uniqueFilename);
+          fs.writeFileSync(filePath, resumeBuffer);
+        }
+      } catch (fsErr) {
+        console.warn("[Career Apply API] Local file cache skipped in serverless environment:", fsErr);
+      }
 
       // Point link to authenticated admin resume streaming route
       savedResumeRelativePath = `/api/admin/resumes/${uniqueFilename}`;

@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import { verifySessionToken } from "@/libs/auth";
-import { PRIVATE_STORAGE_DIR, ensureStorageDir } from "@/libs/storage";
+import { 
+  PRIVATE_STORAGE_DIR, 
+  ensureStorageDir, 
+  downloadFromSupabaseStorage 
+} from "@/libs/storage";
 
 export const dynamic = "force-dynamic";
 
@@ -42,6 +46,26 @@ export async function GET(
 
     // 2. Prevent directory traversal attacks
     const sanitizedFilename = path.basename(filename);
+
+    // 3. First, try to fetch from Supabase Storage (cloud object storage)
+    try {
+      const supaDoc = await downloadFromSupabaseStorage(sanitizedFilename);
+      if (supaDoc) {
+        return new NextResponse(new Uint8Array(supaDoc.buffer), {
+          status: 200,
+          headers: {
+            "Content-Type": supaDoc.contentType,
+            "Content-Disposition": `inline; filename="${sanitizedFilename}"`,
+            "Cache-Control": "private, no-cache, no-store, must-revalidate",
+            "X-Content-Type-Options": "nosniff",
+          },
+        });
+      }
+    } catch (supaErr) {
+      console.warn("[Admin Resume Stream] Supabase storage check notice:", supaErr);
+    }
+
+    // 4. Fallback to local / tmp filesystem
     ensureStorageDir();
     let filePath = path.join(PRIVATE_STORAGE_DIR, sanitizedFilename);
 

@@ -4,6 +4,7 @@ import { Pool } from 'pg';
 import { CareerType, CareerApplicationType, ApplicationStatus } from '@/types/career';
 import { AdminUserType } from '@/types/admin';
 import { hashPassword } from '@/libs/auth';
+import { PRIVATE_STORAGE_DIR, deleteFromSupabaseStorage } from '@/libs/storage';
 
 let pool: Pool | null = null;
 let isInitialized = false;
@@ -580,18 +581,25 @@ export async function deleteCareerApplication(id: number | string): Promise<bool
       [id]
     );
 
-    // 2. Remove physical file from disk if present
+    // 2. Remove physical file from disk and cloud storage if present
     if (findRes.rows.length > 0 && findRes.rows[0].resume_file_path) {
       const rawPath: string = findRes.rows[0].resume_file_path;
       const filename = path.basename(rawPath);
       if (filename) {
-        const privatePath = path.join(process.cwd(), "storage", "resumes", filename);
+        // Try delete from Supabase storage bucket
+        deleteFromSupabaseStorage(filename).catch(() => { });
+
+        const privatePath = path.join(PRIVATE_STORAGE_DIR, filename);
+        const legacyPrivatePath = path.join(process.cwd(), "storage", "resumes", filename);
         const publicPath = path.join(process.cwd(), "public", "uploads", "resumes", filename);
         if (fs.existsSync(privatePath)) {
-          try { fs.unlinkSync(privatePath); } catch {}
+          try { fs.unlinkSync(privatePath); } catch { }
+        }
+        if (fs.existsSync(legacyPrivatePath)) {
+          try { fs.unlinkSync(legacyPrivatePath); } catch { }
         }
         if (fs.existsSync(publicPath)) {
-          try { fs.unlinkSync(publicPath); } catch {}
+          try { fs.unlinkSync(publicPath); } catch { }
         }
       }
     }
