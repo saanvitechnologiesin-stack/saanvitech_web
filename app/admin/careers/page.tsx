@@ -37,7 +37,33 @@ export default function AdminCareersPage() {
   const [authError, setAuthError] = useState<string>("");
   const [token, setToken] = useState<string>("");
   const [adminUser, setAdminUser] = useState<{ email: string; name: string } | null>(null);
+  const [rememberMe, setRememberMe] = useState<boolean>(true);
+  const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
   const [authChecking, setAuthChecking] = useState<boolean>(true);
+  const [hasMounted, setHasMounted] = useState<boolean>(false);
+
+  // Storage helper functions for session / persistent remember me
+  const getStoredToken = (): string => {
+    if (typeof window === "undefined") return "";
+    return localStorage.getItem("saanvi_admin_token") || sessionStorage.getItem("saanvi_admin_token") || "";
+  };
+
+  const storeToken = (authToken: string, remember: boolean) => {
+    if (typeof window === "undefined") return;
+    if (remember) {
+      localStorage.setItem("saanvi_admin_token", authToken);
+      sessionStorage.removeItem("saanvi_admin_token");
+    } else {
+      sessionStorage.setItem("saanvi_admin_token", authToken);
+      localStorage.removeItem("saanvi_admin_token");
+    }
+  };
+
+  const clearStoredToken = () => {
+    if (typeof window === "undefined") return;
+    localStorage.removeItem("saanvi_admin_token");
+    sessionStorage.removeItem("saanvi_admin_token");
+  };
 
   // Careers state
   const [careers, setCareers] = useState<CareerType[]>([]);
@@ -107,55 +133,114 @@ export default function AdminCareersPage() {
     }, 3500);
   };
 
+  // On mount: check stored token (localStorage or sessionStorage) & prefill remembered user
   useEffect(() => {
-    async function checkSession() {
+    const abortController = new AbortController();
+    const savedToken = getStoredToken();
+    const savedUser = typeof window !== "undefined" ? localStorage.getItem("saanvi_admin_remember_user") || "" : "";
+    if (savedUser) {
+      setEmail(savedUser);
+    }
+
+    // If token exists, show admin optimistically right away
+    if (savedToken) {
+      setIsAuthenticated(true);
+      setToken(savedToken);
+    }
+
+    // Mark as mounted so we stop rendering nothing
+    setHasMounted(true);
+
+    // If no token, skip API call — just show login
+    if (!savedToken) {
+      setAuthChecking(false);
+      return;
+    }
+
+    // Async-verify the token with the API
+    async function verifySession() {
       try {
-        const savedToken = sessionStorage.getItem("saanvi_admin_token") || "";
         const res = await fetch("/api/admin/auth", {
-          headers: savedToken ? { "x-admin-key": savedToken } : {},
+          headers: { "x-admin-key": savedToken },
+          signal: abortController.signal,
         });
         const data = await res.json();
+
+        if (abortController.signal.aborted) return;
+
         if (data.authenticated && data.user) {
-          setIsAuthenticated(true);
           setAdminUser(data.user);
-          setToken(savedToken);
-          fetchCareers(savedToken);
-          fetchApplications(savedToken);
+          await Promise.all([
+            fetchCareers(savedToken),
+            fetchApplications(savedToken),
+          ]);
+        } else {
+          // Token expired/invalid — clear and show login
+          clearStoredToken();
+          setIsAuthenticated(false);
+          setToken("");
         }
       } catch (err) {
+        if (abortController.signal.aborted) return;
         console.error("Session check error:", err);
+        // On network error with existing token, stay optimistic
+        // but still try to load data
+        fetchCareers(savedToken);
+        fetchApplications(savedToken);
       } finally {
-        setAuthChecking(false);
+        if (!abortController.signal.aborted) {
+          setAuthChecking(false);
+        }
       }
     }
-    checkSession();
+    verifySession();
+
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthError("");
+    setIsLoggingIn(true);
 
     try {
       const res = await fetch("/api/admin/auth", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, rememberMe }),
       });
       const data = await res.json();
 
       if (data.success && data.token) {
-        sessionStorage.setItem("saanvi_admin_token", data.token);
+        storeToken(data.token, rememberMe);
+        if (rememberMe) {
+          localStorage.setItem("saanvi_admin_remember_user", email);
+        } else {
+          localStorage.removeItem("saanvi_admin_remember_user");
+        }
         setToken(data.token);
         setAdminUser(data.user);
+
+        // Activate skeleton loader during login transition while data loads
+        setAuthChecking(true);
         setIsAuthenticated(true);
-        fetchCareers(data.token);
-        fetchApplications(data.token);
+
+        await Promise.all([
+          fetchCareers(data.token),
+          fetchApplications(data.token),
+        ]);
+
+        setAuthChecking(false);
         showToast("success", `Welcome back, ${data.user?.name || "Admin"}!`);
       } else {
         setAuthError(data.error || "Invalid email or password.");
       }
     } catch {
       setAuthError("Failed to authenticate. Please check your network and try again.");
+    } finally {
+      setIsLoggingIn(false);
     }
   };
 
@@ -163,11 +248,10 @@ export default function AdminCareersPage() {
     try {
       await fetch("/api/admin/auth", { method: "DELETE" });
     } catch { }
-    sessionStorage.removeItem("saanvi_admin_token");
+    clearStoredToken();
     setIsAuthenticated(false);
     setToken("");
     setAdminUser(null);
-    setEmail("");
     setPassword("");
   };
 
@@ -175,7 +259,7 @@ export default function AdminCareersPage() {
     setLoading(true);
     try {
       const headers: Record<string, string> = {};
-      const key = authToken || token || (typeof window !== "undefined" ? sessionStorage.getItem("saanvi_admin_token") || "" : "");
+      const key = authToken || token || getStoredToken();
       if (key) headers["x-admin-key"] = key;
 
       const res = await fetch("/api/careers?all=true", { headers });
@@ -194,7 +278,7 @@ export default function AdminCareersPage() {
     setApplicationsLoading(true);
     try {
       const headers: Record<string, string> = {};
-      const key = authToken || token || (typeof window !== "undefined" ? sessionStorage.getItem("saanvi_admin_token") || "" : "");
+      const key = authToken || token || getStoredToken();
       if (key) headers["x-admin-key"] = key;
 
       const res = await fetch("/api/admin/applications", { headers });
@@ -411,8 +495,13 @@ export default function AdminCareersPage() {
     }
   };
 
-  // INITIAL LOADING STATE: Full-page Modern SaaS Skeleton Loader
-  if (authChecking) {
+  // Before client-side mount, render nothing to avoid SSR hydration flash
+  if (!hasMounted) {
+    return null;
+  }
+
+  // Show skeleton only while we have a token and are verifying it with the API
+  if (authChecking && isAuthenticated) {
     return <AdminSkeletonLoader />;
   }
 
@@ -427,6 +516,9 @@ export default function AdminCareersPage() {
         setShowPassword={setShowPassword}
         authError={authError}
         onLogin={handleLogin}
+        rememberMe={rememberMe}
+        setRememberMe={setRememberMe}
+        isLoggingIn={isLoggingIn}
       />
     );
   }

@@ -9,6 +9,9 @@ interface AdminLoginCardProps {
   setShowPassword: (val: boolean) => void;
   authError: string;
   onLogin: (e: React.FormEvent) => void;
+  rememberMe: boolean;
+  setRememberMe: (val: boolean) => void;
+  isLoggingIn?: boolean;
 }
 
 export const AdminLoginCard: React.FC<AdminLoginCardProps> = ({
@@ -20,6 +23,9 @@ export const AdminLoginCard: React.FC<AdminLoginCardProps> = ({
   setShowPassword,
   authError,
   onLogin,
+  rememberMe,
+  setRememberMe,
+  isLoggingIn = false,
 }) => {
   return (
     <div 
@@ -212,7 +218,8 @@ export const AdminLoginCard: React.FC<AdminLoginCardProps> = ({
             >
               <input 
                 type="checkbox" 
-                defaultChecked 
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
                 style={{ 
                   width: "14px", 
                   height: "14px", 
@@ -233,6 +240,7 @@ export const AdminLoginCard: React.FC<AdminLoginCardProps> = ({
 
             <button
               type="submit"
+              disabled={isLoggingIn}
               style={{
                 background: "#093d64",
                 borderColor: "#093d64",
@@ -246,7 +254,8 @@ export const AdminLoginCard: React.FC<AdminLoginCardProps> = ({
                 fontSize: "13px",
                 fontFamily: 'var(--font-button--family), var(--font-heading--family), "Poppins", sans-serif',
                 fontWeight: "600",
-                cursor: "pointer",
+                cursor: isLoggingIn ? "not-allowed" : "pointer",
+                opacity: isLoggingIn ? 0.75 : 1,
                 lineHeight: "32px",
                 transition: "all 0.15s ease",
                 display: "inline-flex",
@@ -254,15 +263,19 @@ export const AdminLoginCard: React.FC<AdminLoginCardProps> = ({
                 justifyContent: "center",
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.background = "#f98e55";
-                e.currentTarget.style.borderColor = "#f98e55";
+                if (!isLoggingIn) {
+                  e.currentTarget.style.background = "#f98e55";
+                  e.currentTarget.style.borderColor = "#f98e55";
+                }
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.background = "#093d64";
-                e.currentTarget.style.borderColor = "#093d64";
+                if (!isLoggingIn) {
+                  e.currentTarget.style.background = "#093d64";
+                  e.currentTarget.style.borderColor = "#093d64";
+                }
               }}
             >
-              Log In
+              {isLoggingIn ? "Logging in..." : "Log In"}
             </button>
           </div>
         </form>
