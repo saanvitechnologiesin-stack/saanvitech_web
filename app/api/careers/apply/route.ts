@@ -113,6 +113,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Job role is required." }, { status: 400 });
     }
 
+    const cleanLinkedin = linkedin.trim();
+    if (!cleanLinkedin) {
+      return NextResponse.json(
+        { error: "Please enter your LinkedIn profile URL." },
+        { status: 400 }
+      );
+    }
+
     // Duplicate Spam Prevention: Verify if candidate already applied for this role
     const existing = await getExistingApplication(cleanEmail, roleId, cleanRoleTitle);
     if (existing) {
@@ -180,7 +188,7 @@ export async function POST(req: NextRequest) {
         phone: cleanPhone,
         roleId: roleId || undefined,
         roleTitle: cleanRoleTitle,
-        linkedin: linkedin ? linkedin.trim() : undefined,
+        linkedin: cleanLinkedin,
         portfolio: portfolio ? portfolio.trim() : undefined,
         coverLetter: coverLetter ? coverLetter.trim() : undefined,
         resumeUrl: resumeUrl ? resumeUrl.trim() : undefined,

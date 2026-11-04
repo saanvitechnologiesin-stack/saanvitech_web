@@ -17,6 +17,7 @@ import {
   CheckCircleIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  ChevronDownIcon,
   SearchIcon,
   RotateCcwIcon,
   FileTextIcon,
@@ -34,6 +35,21 @@ import {
 } from "@/components/admin/careers/CareerIcons";
 
 const PAGE_TITLE = "Careers at Saanvi Technologies";
+
+function formatPostedDate(dateStr?: string): string | null {
+  if (!dateStr) return null;
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) return null;
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  if (diffDays <= 0) return "Posted today";
+  if (diffDays === 1) return "Posted 1 day ago";
+  if (diffDays < 30) return `Posted ${diffDays} days ago`;
+  const diffMonths = Math.floor(diffDays / 30);
+  if (diffMonths === 1) return "Posted 1 month ago";
+  return `Posted ${diffMonths} months ago`;
+}
 
 export default function CareersPage() {
   const [careers, setCareers] = useState<CareerType[]>([]);
@@ -98,6 +114,17 @@ export default function CareersPage() {
   useEffect(() => {
     document.title = PAGE_TITLE;
   }, []);
+
+  // Prevent background scrolling when apply modal is open
+  useEffect(() => {
+    if (applyingJob) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [applyingJob]);
 
   // Debounce search input so backend isn't called on every keystroke
   const [debouncedSearch, setDebouncedSearch] = useState<string>("");
@@ -230,6 +257,11 @@ export default function CareersPage() {
     const cleanPhone = appForm.phone.replace(/\D/g, "");
     if (cleanPhone.length !== 10) {
       setAppErrorMsg("Please enter a valid 10-digit mobile number.");
+      return;
+    }
+
+    if (!appForm.linkedin.trim()) {
+      setAppErrorMsg("Please provide your LinkedIn profile URL.");
       return;
     }
 
@@ -560,11 +592,37 @@ export default function CareersPage() {
                 paginatedCareers.map((job, idx) => {
                   const jobKey = String(job.id || idx);
                   const isExpanded = Boolean(expandedJobIds[jobKey]);
+                  const postedTime = formatPostedDate(job.created_at);
+
                   return (
-                    <div key={jobKey} className="job-card" data-aos="fade-up" data-aos-delay={`${(idx % 4) + 1}00`}>
+                    <div
+                      key={jobKey}
+                      className={`job-card ${isExpanded ? "is-expanded" : ""}`}
+                      tabIndex={0}
+                      role="button"
+                      aria-expanded={isExpanded}
+                      aria-controls={`job-details-${jobKey}`}
+                      onClick={(e) => {
+                        const target = e.target as HTMLElement;
+                        if (target.closest("button, a, input, textarea, select")) {
+                          return;
+                        }
+                        toggleJobExpand(jobKey);
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          const target = e.target as HTMLElement;
+                          if (target.closest("button, a, input, textarea, select")) {
+                            return;
+                          }
+                          e.preventDefault();
+                          toggleJobExpand(jobKey);
+                        }
+                      }}
+                    >
                       <div className="job-card-header">
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <h3 style={{ fontSize: "17px", fontWeight: "600", color: "#1c2539", margin: "0 0 5px", lineHeight: 1.35, letterSpacing: "-0.01em" }}>
+                          <h3 className="job-card-title">
                             {job.title}
                           </h3>
                           <p style={{ fontSize: "13.5px", color: "#475569", margin: "0 0 8px", lineHeight: 1.5 }}>
@@ -581,26 +639,32 @@ export default function CareersPage() {
                             {job.salary && (
                               <span className="job-badge">{job.salary}</span>
                             )}
+                            {postedTime && (
+                              <span className="job-posted-time">
+                                <ClockIcon size={12} /> {postedTime}
+                              </span>
+                            )}
                           </div>
                         </div>
 
-                        <div className="job-card-actions">
-                          <button
-                            type="button"
-                            onClick={() => toggleJobExpand(jobKey)}
-                            className={`job-expand-toggle-btn ${isExpanded ? "expanded" : ""}`}
-                            title={isExpanded ? "Minimize details" : "View details"}
-                            aria-label={isExpanded ? "Minimize details" : "View details"}
-                            aria-expanded={isExpanded}
-                          >
-                            {isExpanded ? "−" : "+"}
-                          </button>
+                        {/* Subtle Chevron indicator */}
+                        <div className={`job-card-chevron ${isExpanded ? "expanded" : ""}`} aria-hidden="true">
+                          <ChevronDownIcon size={18} />
                         </div>
                       </div>
 
                       {/* Expandable Details Inline */}
                       {isExpanded && (
-                        <div className="job-card-expanded">
+                        <div id={`job-details-${jobKey}`} className="job-card-expanded">
+                          {((job as any).description || job.overview) && (
+                            <div className="job-expanded-block">
+                              <h4 className="job-expanded-title">About this Role</h4>
+                              <p className="job-expanded-text">
+                                {(job as any).description || job.overview}
+                              </p>
+                            </div>
+                          )}
+
                           {job.responsibilities && job.responsibilities.length > 0 && (
                             <div className="job-expanded-block">
                               <h4 className="job-expanded-title">Key Responsibilities</h4>
@@ -637,7 +701,8 @@ export default function CareersPage() {
                           <div className="job-expanded-actions">
                             <button
                               type="button"
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.stopPropagation();
                                 setApplyingJob(job);
                                 setAppSuccessMsg("");
                                 setAppErrorMsg("");
@@ -725,17 +790,8 @@ export default function CareersPage() {
 
         {/* APPLY MODAL */}
         {applyingJob && (
-          <div
-            className="career-modal-backdrop"
-            onClick={e => {
-              if (e.target === e.currentTarget) {
-                setApplyingJob(null);
-                setAppSuccessMsg("");
-                setAppErrorMsg("");
-              }
-            }}
-          >
-            <div className="career-modal-dialog apply-modal" onClick={e => e.stopPropagation()}>
+          <div className="career-modal-backdrop">
+            <div className="career-modal-dialog apply-modal">
 
               {/* Modal Header */}
               <div className="apply-modal-header">
@@ -888,13 +944,13 @@ export default function CareersPage() {
                       <div className="apply-section-header">
                         <div className="apply-step-badge">2</div>
                         <h4 className="apply-section-title">Professional Profiles</h4>
-                        <span className="apply-section-sub">Optional</span>
+                        <span className="apply-section-sub">* Required fields</span>
                       </div>
 
                       <div className="apply-form-grid">
                         <div>
                           <div className="career-form-label-row">
-                            <span>LinkedIn Profile</span>
+                            <span>LinkedIn Profile <span className="req">*</span></span>
                           </div>
                           <div className="input-icon-wrap">
                             <input
@@ -903,6 +959,7 @@ export default function CareersPage() {
                               placeholder="https://linkedin.com/in/username"
                               value={appForm.linkedin}
                               onChange={e => setAppForm({ ...appForm, linkedin: e.target.value })}
+                              required
                             />
                             <span className="input-icon-left">
                               <LinkedinIcon size={15} />
@@ -912,7 +969,7 @@ export default function CareersPage() {
 
                         <div>
                           <div className="career-form-label-row">
-                            <span>Portfolio / GitHub</span>
+                            <span>Portfolio / GitHub <span className="hint">(Optional)</span></span>
                           </div>
                           <div className="input-icon-wrap">
                             <input

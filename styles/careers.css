@@ -332,14 +332,64 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease, transform 0.22s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  outline: none;
+  position: relative;
 }
 
 .job-card:hover {
-  border-color: #1c2539;
-  box-shadow: 0 8px 24px rgba(28, 37, 57, 0.1);
-  transform: translateY(-1px);
+  border-color: #f98e55;
+  background-color: rgba(249, 142, 85, 0.018);
+  box-shadow: 0 8px 24px rgba(249, 142, 85, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+.job-card:focus-visible {
+  border-color: #f98e55;
+  outline: 2px solid #f98e55;
+  outline-offset: 2px;
+  background-color: rgba(249, 142, 85, 0.02);
+  box-shadow: 0 0 0 4px rgba(249, 142, 85, 0.18);
+}
+
+.job-card.is-expanded {
+  border-color: #cbd5e1;
+  background-color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.job-card.is-expanded:hover {
+  border-color: #f98e55;
+  box-shadow: 0 8px 24px rgba(249, 142, 85, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.job-card-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1c2539;
+  margin: 0 0 5px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.job-card:hover .job-card-title,
+.job-card:focus-visible .job-card-title {
+  color: #1c2539;
+  text-decoration: none;
+}
+
+.job-posted-time {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
 }
 
 .job-card-header {
@@ -387,7 +437,7 @@
 }
 
 .btn-apply {
-  background: #093d64;
+  background: #f98e55;
   color: #ffffff;
   padding: 10px 24px;
   border-radius: 10px;
@@ -399,11 +449,13 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  box-shadow: 0 4px 14px rgba(249, 142, 85, 0.25);
 }
 
 .btn-apply:hover {
-  background: #f98e55;
+  background: #ea793a;
   transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(249, 142, 85, 0.35);
 }
 
 .btn-details {
@@ -439,6 +491,7 @@
   align-items: center;
   justify-content: center;
   padding: 16px;
+  overscroll-behavior: contain;
   animation: modalFadeIn 0.2s ease-out;
 }
 
@@ -2078,6 +2131,7 @@
    ========================================================================== */
 .profile-dropdown-container {
   position: relative;
+  opacity: 1 !important;
 }
 
 .profile-trigger-btn {
@@ -2508,62 +2562,69 @@
   background: #ffffff;
 }
 
-/* Inline Job Details Expansion */
-.job-expand-toggle-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  color: #475569;
-  font-size: 18px;
-  font-weight: 600;
-  display: inline-flex;
+/* Subtle Job Card Chevron Indicator */
+.job-card-chevron {
+  display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  user-select: none;
+  width: 32px;
+  height: 32px;
+  color: #94a3b8;
+  transition: transform 0.22s ease, color 0.22s ease;
   flex-shrink: 0;
-  line-height: 1;
+  margin-top: 2px;
 }
 
-.job-expand-toggle-btn:hover {
-  background: #f1f5f9;
-  border-color: #94a3b8;
-  color: #0f172a;
+.job-card:hover .job-card-chevron {
+  color: #f98e55;
 }
 
-.job-expand-toggle-btn.expanded {
-  background: #093d64;
-  border-color: #093d64;
-  color: #ffffff;
+.job-card-chevron.expanded {
+  transform: rotate(180deg);
+  color: #475569;
 }
 
-.job-expand-toggle-btn.expanded:hover {
-  background: #1c2539;
-  border-color: #1c2539;
+.job-card:hover .job-card-chevron.expanded {
+  color: #f98e55;
 }
 
 .job-card-expanded {
   margin-top: 10px;
-  padding-top: 20px;
+  padding-top: 18px;
   border-top: 1px solid #e2e8f0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  animation: jobExpandFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 16px;
+  animation: jobExpandFadeIn 0.22s ease-out;
 }
 
 @keyframes jobExpandFadeIn {
   from {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.job-expanded-text {
+  margin: 0;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.65;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .job-card,
+  .job-card-title,
+  .job-card-chevron,
+  .job-card-expanded,
+  .btn-apply {
+    transition: none !important;
+    animation: none !important;
   }
 }
 
@@ -2767,6 +2828,7 @@
   gap: 18px;
   max-height: calc(88vh - 170px);
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 /* Section Cards */
