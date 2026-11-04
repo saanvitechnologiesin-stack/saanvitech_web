@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const identifier = (body.email || body.username || body.identifier || "").trim();
-    const { password } = body;
+    const { password, rememberMe } = body;
 
     if (!identifier || !password) {
       return NextResponse.json(
@@ -48,14 +48,20 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // Set HTTP-only cookie for secure persistence
-    response.cookies.set("admin_session", token, {
+    // Set HTTP-only cookie: persistent if rememberMe is true, session cookie if false
+    const cookieOptions: any = {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 7 * 24 * 60 * 60, // 7 days
       path: "/",
-    });
+    };
+
+    if (rememberMe !== false) {
+      // 30 days persistence when Remember Me is enabled (default)
+      cookieOptions.maxAge = 30 * 24 * 60 * 60;
+    }
+
+    response.cookies.set("admin_session", token, cookieOptions);
 
     return response;
   } catch (err: any) {
