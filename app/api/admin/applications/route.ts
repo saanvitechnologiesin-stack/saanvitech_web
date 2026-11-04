@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
     // Background retention check: purge any resumes older than 30 days
     try {
       cleanupOldResumes(30);
-    } catch (e) {}
+    } catch (e) { }
 
     return NextResponse.json({
       success: true,
@@ -79,6 +79,7 @@ export async function PATCH(req: NextRequest) {
         { status: 400 }
       );
     }
+
 
     const updated = await updateCareerApplicationStatus(id, status);
     if (!updated) {
