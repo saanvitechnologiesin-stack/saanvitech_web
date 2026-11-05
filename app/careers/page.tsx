@@ -38,13 +38,20 @@ const PAGE_TITLE = "Careers at Saanvi Technologies";
 
 function formatPostedDate(dateStr?: string): string | null {
   if (!dateStr) return null;
-  const date = new Date(dateStr);
-  if (isNaN(date.getTime())) return null;
+  const postedDate = new Date(dateStr);
+  if (isNaN(postedDate.getTime())) return null;
+
   const now = new Date();
-  const diffMs = now.getTime() - date.getTime();
-  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+  // Normalize both dates to midnight local time for accurate calendar day comparison
+  const postedDay = new Date(postedDate.getFullYear(), postedDate.getMonth(), postedDate.getDate());
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  const diffMs = today.getTime() - postedDay.getTime();
+  const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
+
   if (diffDays <= 0) return "Posted today";
-  if (diffDays === 1) return "Posted 1 day ago";
+  if (diffDays === 1) return "Posted yesterday";
   if (diffDays < 30) return `Posted ${diffDays} days ago`;
   const diffMonths = Math.floor(diffDays / 30);
   if (diffMonths === 1) return "Posted 1 month ago";
