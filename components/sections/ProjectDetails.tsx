@@ -68,7 +68,7 @@ const ProjectDetails = ({
                             <SidebarPhone
                                 heading="Contact with us <br/> for any advice"
                                 text="Need help? Talk to an expert"
-                                phone="+91 70191 94859"
+                                phone="+91 8296556203"
                                 image={{
                                     src: SidebarPhoneImage.src,
                                     width: 1000,
