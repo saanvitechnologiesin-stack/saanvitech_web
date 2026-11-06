@@ -117,15 +117,28 @@ export async function initDb(): Promise<void> {
          ON CONFLICT (email) DO NOTHING`,
         [defaultEmail, defaultHash, defaultName, defaultUsername]
       );
-    } else if (process.env.ADMIN_DEFAULT_USERNAME || process.env.ADMIN_DEFAULT_NAME) {
-      // Sync environment settings to default admin account if set in .env.local
-      await client.query(
-        `UPDATE admin_users 
-         SET username = COALESCE(NULLIF($1, ''), username),
-             name = COALESCE(NULLIF($2, ''), name)
-         WHERE LOWER(email) = LOWER($3)`,
-        [process.env.ADMIN_DEFAULT_USERNAME || '', process.env.ADMIN_DEFAULT_NAME || '', defaultEmail]
-      );
+    } else {
+      // Sync environment settings (including password if specified) to the default admin account
+      const customPassword = process.env.ADMIN_DEFAULT_PASSWORD || process.env.ADMIN_PASSWORD;
+      if (customPassword) {
+        const newHash = hashPassword(customPassword);
+        await client.query(
+          `UPDATE admin_users 
+           SET password_hash = $1,
+               username = COALESCE(NULLIF($2, ''), username),
+               name = COALESCE(NULLIF($3, ''), name)
+           WHERE LOWER(email) = LOWER($4)`,
+          [newHash, process.env.ADMIN_DEFAULT_USERNAME || '', process.env.ADMIN_DEFAULT_NAME || '', defaultEmail]
+        );
+      } else if (process.env.ADMIN_DEFAULT_USERNAME || process.env.ADMIN_DEFAULT_NAME) {
+        await client.query(
+          `UPDATE admin_users 
+           SET username = COALESCE(NULLIF($1, ''), username),
+               name = COALESCE(NULLIF($2, ''), name)
+           WHERE LOWER(email) = LOWER($3)`,
+          [process.env.ADMIN_DEFAULT_USERNAME || '', process.env.ADMIN_DEFAULT_NAME || '', defaultEmail]
+        );
+      }
     }
 
     isInitialized = true;
